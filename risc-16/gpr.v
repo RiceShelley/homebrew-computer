@@ -18,6 +18,7 @@ reg [15:0] r[7:0];
 integer i;
 initial
     begin
+    	$monitor("r1 = %d | r2 = %d | r3 = %d | write_dest = %d | write_data = %d | time = %t", r[1], r[2], r[3], write_dest, write_data, $time);
         for (i = 4; i < 8; i = i + 1)
             r[i] <= 16'd0;
         r[0] <= 16'd0;
@@ -30,8 +31,8 @@ always @( posedge clk )
     begin
         if (write_en)
             begin
+				$display("writing = %d time %t", write_data, $time);
                 r[write_dest] <= write_data;
-                $display("r1 = %d | r2 = %d | r3 = %d", r[1], r[2], r[3]);
             end
     end
 
