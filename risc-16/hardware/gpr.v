@@ -18,7 +18,7 @@ reg [15:0] r[7:0];
 integer i;
 initial
     begin
-    	$monitor("r1 = %d | r2 = %d | r3 = %d | write_dest = %d | write_data = %d | time = %t", r[1], r[2], r[3], write_dest, write_data, $time);
+    	$monitor("r1 = %h | r2 = %h | r3 = %h | write_dest = %d | write_data = %d | time = %t", r[1], r[2], r[3], write_dest, write_data, $time);
         for (i = 4; i < 8; i = i + 1)
             r[i] <= 16'd0;
         r[0] <= 16'd0;
