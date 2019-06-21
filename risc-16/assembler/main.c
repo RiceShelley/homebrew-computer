@@ -12,6 +12,8 @@
 #define BASE_DATA_ADDR 1
 #define BASE_INS_ADDR 0xf
 
+void u16_to_ascii_bin(char* dest, uint16_t val);
+
 typedef struct prog_line {
 	struct prog_line* prev;
 	struct prog_line* next;
@@ -76,6 +78,36 @@ void free_prog_mem() {
 	}
 }
 
+char* replace(const char* str, const char* old, const char* new) {
+	char *rtn;
+	int i, cnt = 0;
+	int new_len = strlen(new);
+	int old_len = strlen(old);
+
+	for (i = 0; str[i] != '\0'; i++) {
+		if (strstr(&str[i], old) == &str[i]) {
+			cnt++;
+			i += old_len - 1;
+		}
+	}
+
+	rtn = (char *) malloc(i + cnt * (new_len - old_len) + 1);
+
+	i = 0;
+	while (*str) {
+		if (strstr(str, old) == str) {
+			strcpy(&rtn[i], new);
+			i += new_len;
+			str += old_len;
+		} else {
+			rtn[i++] = *str++;
+		}
+		
+	}
+	rtn[i] = '\0';
+	return rtn;
+}
+
 // Returns a pointer to the requested program section
 prog_line* find_section(const char* sec_name) {
 	prog_line* pl_cur = &program;
@@ -99,11 +131,11 @@ prog_line* find_section(const char* sec_name) {
 }
 
 void setup_memory(prog_line* data_sec, prog_line* text_sec) {
-	int next_addr = BASE_DATA_ADDR;
+	uint16_t next_addr = BASE_DATA_ADDR;
 	while (1) {
 		char line[strlen(data_sec->ins)];
 		strcpy(line, data_sec->ins);
-		char* numanic = strtok(line, " \t");
+		char* numanic = strtok(line, ": \t");
 		/*
 		* if numanic is the keyword section
 		* then data section has ended
@@ -126,6 +158,19 @@ void setup_memory(prog_line* data_sec, prog_line* text_sec) {
 		if (strcmp(size, "dw") == 0) {
 			uint16_t val = atoi(value);
 			bin[next_addr] = val;
+	
+			// replace numanic with address in code
+			char addr[20];
+			u16_to_ascii_bin(addr, next_addr);
+			prog_line* cur_line = &program;
+			while (cur_line != NULL) {
+				if (cur_line->ins != NULL) {
+						char* new_line = replace((const char*) cur_line->ins, numanic, addr);
+						free(cur_line->ins);
+						cur_line->ins = new_line;
+						cur_line = cur_line->next;
+				}
+			}
 			next_addr++;
 		}
 
@@ -143,6 +188,16 @@ uint16_t get_reg(char *reg) {
 	return -1;
 }
 
+uint16_t gen_imm(char* imm, int ulen) {
+	uint16_t rtn = 0;
+	int i, len = 16;
+	if (ulen < len)
+		len = ulen;
+	for (i = 0; i < len; i++)
+		rtn = (rtn << 1) + ((imm[i] == '1') ? 1 : 0);
+	return rtn;
+}
+
 uint16_t gen_add_rrr(char* rA_str, char* rB_str, char* rC_str) {
 	uint16_t ins = 0;
 	uint16_t rA = get_reg(rA_str);	
@@ -152,6 +207,44 @@ uint16_t gen_add_rrr(char* rA_str, char* rB_str, char* rC_str) {
 	ins |= rB << 7;
 	ins |= rC;
 	return ins;	
+}
+
+uint16_t gen_addi_rri(char* rA_str, char* rB_str, char* imm_str) {
+	uint16_t ins = 1 << 13;
+	uint16_t rA = get_reg(rA_str);	
+	uint16_t rB = get_reg(rB_str);
+	uint16_t imm = gen_imm(&imm_str[9], 7);
+	ins |= rA << 10;
+	ins |= rB << 7;
+	ins |= imm;
+	return ins;
+}
+
+uint16_t gen_ldr_ri(char* rA_str, char* imm_str) {
+	uint16_t ins = 5 << 13;
+	uint16_t rA = get_reg(rA_str);
+	uint16_t imm = gen_imm(&imm_str[6], 10);
+	ins |= rA << 10;
+	ins |= imm;
+	return ins;
+}
+
+uint16_t gen_str_ri(char* rA_str, char* imm_str) {
+	uint16_t ins = 4 << 13;
+	uint16_t rA = get_reg(rA_str);
+	uint16_t imm = gen_imm(&imm_str[6], 10);
+	ins |= rA << 10;
+	ins |= imm;
+	return ins;
+}
+
+uint16_t gen_lui_ri(char* rA_str, char* imm_str) {
+	uint16_t ins = 3 << 13;
+	uint16_t rA = get_reg(rA_str);
+	uint16_t imm = gen_imm(&imm_str[6], 10);
+	ins |= rA << 10;
+	ins |= imm;
+	return ins;
 }
 
 void parse_ins(prog_line* text_sec) {
@@ -173,6 +266,28 @@ void parse_ins(prog_line* text_sec) {
 			char* rC = strtok(NULL, " ,\t");
 			bin[next_addr] = gen_add_rrr(rA, rB, rC);
 			next_addr++;
+		} else if (strcmp(op, "addi") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* rB = strtok(NULL, " ,\t");
+			char* imm = strtok(NULL, " ,\t");
+			bin[next_addr] = gen_addi_rri(rA, rB, imm);
+			next_addr++;
+		} else if (strcmp(op, "lui") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* imm = strtok(NULL, " ,\t");
+			bin[next_addr] = gen_lui_ri(rA, imm);
+			next_addr++;
+		} else if (strcmp(op, "ldr") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* imm = strtok(NULL, " ,\t");
+			bin[next_addr] = gen_ldr_ri(rA, imm);
+			next_addr++;
+		} else if (strcmp(op, "str") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* imm = strtok(NULL, " ,\t");
+			bin[next_addr] = gen_str_ri(rA, imm);
+			next_addr++;
+			printf("got str\n");
 		}
 
 		if (text_sec->next == NULL) {
@@ -184,10 +299,8 @@ void parse_ins(prog_line* text_sec) {
 
 void u16_to_ascii_bin(char* dest, uint16_t val) {
 	int i = 0;
-	dest += 17;
+	dest += 16;
 	*dest = 0;
-	dest--;
-	*dest = '\n';
 	for (; i < 16; i++) {
 		dest--;
 		*dest = (val % 2) ? '1' : '0';
@@ -199,9 +312,11 @@ void write_bin() {
 	FILE* fd = fopen("prog.bin", "w");
 	char ins[18];
 	int i = 0; 
-	for (; i < 20; i++) {
+	for (; i < 21; i++) {
 		u16_to_ascii_bin(ins, bin[i]);
-		fwrite(ins, 18, 1, fd);
+		ins[16] = '\n';
+		ins[17] = 0;
+		fwrite(ins, 17, 1, fd);
 	}
 	fclose(fd);
 }
@@ -232,6 +347,12 @@ int main(int argc, char** argv) {
 
 	setup_memory(data->next, text->next);
 
+	pl_cur = &program;
+	while (pl_cur != NULL) {
+		printf("line %d: %s\n", pl_cur->depth, pl_cur->ins);
+		pl_cur = pl_cur->next;
+	}
+
 	parse_ins(text->next);
 
 	char aout[17];
@@ -243,9 +364,10 @@ int main(int argc, char** argv) {
 	for (i = 0; i < 20; i++) {
 		printf("%04x\n", bin[i]);
 	} 
-
+	
 	write_bin();
 
+	printf("here\n");
 	free_prog_mem();
 	return 0;
 }
