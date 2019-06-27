@@ -8,9 +8,22 @@
 *	
 */
 
+// 3 bit opcodes
+#define ADD 0
+#define ADDI 1
+#define NAND 2
+#define LUI 3
+#define STR 4
+#define LDR 5
+#define BEQ 6
+#define JALR 7
+
 #define MAX_PROG_LEN 255
 #define BASE_DATA_ADDR 1
 #define BASE_INS_ADDR 0xf
+
+#define SYNTAX_ERR -1
+
 
 void u16_to_ascii_bin(char* dest, uint16_t val);
 
@@ -18,7 +31,6 @@ typedef struct prog_line {
 	struct prog_line* prev;
 	struct prog_line* next;
 	char* ins;
-	int depth;
 } prog_line;
 
 uint16_t bin[MAX_PROG_LEN];
@@ -32,7 +44,6 @@ void read_prog(const char* filename) {
 	size_t len = 0;
 	char *line = NULL;
 	ssize_t br;
-	int depth = 0;
 	prog_line* prev_line;
 
 	// Init program struct linked list and read first line
@@ -42,12 +53,13 @@ void read_prog(const char* filename) {
 	// replace line feed will null term
 	ins[br - 1] = 0;
 	program.ins = ins;
-	program.depth = depth;
 	prev_line = &program;
-	depth++;
 
 	prog_line *new_line;
 	while ((br = getline(&line, &len, fd)) != -1) {
+		if (*line == '\n' || *line == '\r') {
+			continue;
+		}
 		// create new line struct on heap
 		new_line = malloc(sizeof(prog_line));
 		// store line read on heap
@@ -59,22 +71,34 @@ void read_prog(const char* filename) {
 		new_line->prev = prev_line;
 		new_line->next = NULL;
 		new_line->ins = ins;
-		new_line->depth = depth;
 		prev_line->next = new_line;
 		prev_line = new_line;
-		depth++;
 	}
 	last_line = new_line;
 	free(line);
 	fclose(fd);	
 }
 
-void free_prog_mem() {
+/*
+* free the input linked list
+* containing user source code
+* from the heap
+*/
+void clear_input_ds() {
 	prog_line* pl_cur = last_line;
 	while (pl_cur != NULL) {
-		free(pl_cur->ins);
+		if (pl_cur->ins != NULL) {
+			free(pl_cur->ins);
+		}
+		prog_line* pl_last = pl_cur;
 		pl_cur = pl_cur->prev;
-		free(pl_cur);
+		/*
+		* Note: the first element of the 
+		* linked list is NOT allocated on the heap
+		*/
+		if (pl_last != NULL && pl_last->prev != NULL) {
+			free(pl_last);
+		}
 	}
 }
 
@@ -165,10 +189,10 @@ void setup_memory(prog_line* data_sec, prog_line* text_sec) {
 			prog_line* cur_line = &program;
 			while (cur_line != NULL) {
 				if (cur_line->ins != NULL) {
-						char* new_line = replace((const char*) cur_line->ins, numanic, addr);
-						free(cur_line->ins);
-						cur_line->ins = new_line;
-						cur_line = cur_line->next;
+					char* new_line = replace((const char*) cur_line->ins, numanic, addr);
+					free(cur_line->ins);
+					cur_line->ins = new_line;
+					cur_line = cur_line->next;
 				}
 			}
 			next_addr++;
@@ -198,8 +222,8 @@ uint16_t gen_imm(char* imm, int ulen) {
 	return rtn;
 }
 
-uint16_t gen_add_rrr(char* rA_str, char* rB_str, char* rC_str) {
-	uint16_t ins = 0;
+uint16_t parse_rrr(uint8_t op_code, char* rA_str, char* rB_str, char* rC_str) {
+	uint16_t ins = op_code << 13;
 	uint16_t rA = get_reg(rA_str);	
 	uint16_t rB = get_reg(rB_str);	
 	uint16_t rC = get_reg(rC_str);
@@ -209,8 +233,8 @@ uint16_t gen_add_rrr(char* rA_str, char* rB_str, char* rC_str) {
 	return ins;	
 }
 
-uint16_t gen_addi_rri(char* rA_str, char* rB_str, char* imm_str) {
-	uint16_t ins = 1 << 13;
+uint16_t parse_rri(uint8_t op_code, char* rA_str, char* rB_str, char* imm_str) {
+	uint16_t ins = op_code << 13;
 	uint16_t rA = get_reg(rA_str);	
 	uint16_t rB = get_reg(rB_str);
 	uint16_t imm = gen_imm(&imm_str[9], 7);
@@ -220,8 +244,10 @@ uint16_t gen_addi_rri(char* rA_str, char* rB_str, char* imm_str) {
 	return ins;
 }
 
-uint16_t gen_ldr_ri(char* rA_str, char* imm_str) {
-	uint16_t ins = 5 << 13;
+
+// parse register imidiate instruction type
+uint16_t parse_ri(uint8_t op_code, char* rA_str, char* imm_str) {
+	uint16_t ins = op_code << 13;
 	uint16_t rA = get_reg(rA_str);
 	uint16_t imm = gen_imm(&imm_str[6], 10);
 	ins |= rA << 10;
@@ -229,65 +255,66 @@ uint16_t gen_ldr_ri(char* rA_str, char* imm_str) {
 	return ins;
 }
 
-uint16_t gen_str_ri(char* rA_str, char* imm_str) {
-	uint16_t ins = 4 << 13;
-	uint16_t rA = get_reg(rA_str);
-	uint16_t imm = gen_imm(&imm_str[6], 10);
-	ins |= rA << 10;
-	ins |= imm;
-	return ins;
-}
-
-uint16_t gen_lui_ri(char* rA_str, char* imm_str) {
-	uint16_t ins = 3 << 13;
-	uint16_t rA = get_reg(rA_str);
-	uint16_t imm = gen_imm(&imm_str[6], 10);
-	ins |= rA << 10;
-	ins |= imm;
-	return ins;
-}
-
-void parse_ins(prog_line* text_sec) {
+// returns number of instructions loaded into memory
+int parse_ins(prog_line* text_sec) {
 	int next_addr = BASE_INS_ADDR;
 	while (1) {
 		char line[strlen(text_sec->ins)];
 		strcpy(line, text_sec->ins);
-		printf("line = %s\n", line);
 		char* op = strtok(line, " \t");
 
 		if (op == NULL) {
 			break;
 		}
 
-		printf("op = %s\n", op);
 		if (strcmp(op, "add") == 0) {
 			char* rA = strtok(NULL, " ,\t");
 			char* rB = strtok(NULL, " ,\t");
 			char* rC = strtok(NULL, " ,\t");
-			bin[next_addr] = gen_add_rrr(rA, rB, rC);
+			bin[next_addr] = parse_rrr(ADD, rA, rB, rC);
 			next_addr++;
 		} else if (strcmp(op, "addi") == 0) {
 			char* rA = strtok(NULL, " ,\t");
 			char* rB = strtok(NULL, " ,\t");
 			char* imm = strtok(NULL, " ,\t");
-			bin[next_addr] = gen_addi_rri(rA, rB, imm);
+			char bin_imm[17];
+			u16_to_ascii_bin(bin_imm, (uint16_t) atoi(imm));
+			bin[next_addr] = parse_rri(ADDI, rA, rB, bin_imm);
+			next_addr++;
+		} else if (strcmp(op, "nand") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* rB = strtok(NULL, " ,\t");
+			char* rC = strtok(NULL, " ,\t");
+			bin[next_addr] = parse_rrr(NAND, rA, rB, rC);
 			next_addr++;
 		} else if (strcmp(op, "lui") == 0) {
 			char* rA = strtok(NULL, " ,\t");
 			char* imm = strtok(NULL, " ,\t");
-			bin[next_addr] = gen_lui_ri(rA, imm);
-			next_addr++;
-		} else if (strcmp(op, "ldr") == 0) {
-			char* rA = strtok(NULL, " ,\t");
-			char* imm = strtok(NULL, " ,\t");
-			bin[next_addr] = gen_ldr_ri(rA, imm);
+			bin[next_addr] = parse_ri(LUI, rA, imm);
 			next_addr++;
 		} else if (strcmp(op, "str") == 0) {
 			char* rA = strtok(NULL, " ,\t");
 			char* imm = strtok(NULL, " ,\t");
-			bin[next_addr] = gen_str_ri(rA, imm);
+			bin[next_addr] = parse_ri(STR, rA, imm);
 			next_addr++;
-			printf("got str\n");
+		} else if (strcmp(op, "ldr") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* imm = strtok(NULL, " ,\t");
+			bin[next_addr] = parse_ri(LDR, rA, imm);
+			next_addr++;
+		} else if (strcmp(op, "hlt") == 0) {
+			// halt cpu by setting the first bit of memory addr 0
+			bin[next_addr] = parse_ri(LUI, "r1", "0000000000000000");
+			next_addr++;
+			bin[next_addr] = parse_rri(ADDI, "r1", "r1", "0000000000000001");
+			next_addr++;
+			bin[next_addr] = parse_ri(STR, "r1", "0000000000000000");
+			next_addr++;
+		} else {
+			if (strncmp(op, ";", 1) != 0) {
+				printf("Syntax error: \"%s\"\n", line);
+				return SYNTAX_ERR;
+			}
 		}
 
 		if (text_sec->next == NULL) {
@@ -295,6 +322,7 @@ void parse_ins(prog_line* text_sec) {
 		}
 		text_sec = text_sec->next;
 	}
+	return next_addr;
 }
 
 void u16_to_ascii_bin(char* dest, uint16_t val) {
@@ -308,11 +336,11 @@ void u16_to_ascii_bin(char* dest, uint16_t val) {
 	}
 }
 
-void write_bin() {
+void write_bin(int len) {
 	FILE* fd = fopen("prog.bin", "w");
 	char ins[18];
 	int i = 0; 
-	for (; i < 21; i++) {
+	for (; i < len; i++) {
 		u16_to_ascii_bin(ins, bin[i]);
 		ins[16] = '\n';
 		ins[17] = 0;
@@ -337,7 +365,7 @@ int main(int argc, char** argv) {
 
 	prog_line* pl_cur = &program;
 	while (pl_cur != NULL) {
-		printf("line %d: %s\n", pl_cur->depth, pl_cur->ins);
+		printf("line: %s\n", pl_cur->ins);
 		pl_cur = pl_cur->next;
 	}
 
@@ -349,25 +377,23 @@ int main(int argc, char** argv) {
 
 	pl_cur = &program;
 	while (pl_cur != NULL) {
-		printf("line %d: %s\n", pl_cur->depth, pl_cur->ins);
+		printf("line: %s\n", pl_cur->ins);
 		pl_cur = pl_cur->next;
 	}
 
-	parse_ins(text->next);
+	int len = 0;
+	if ((len = parse_ins(text->next)) == SYNTAX_ERR) {
+		clear_input_ds();
+		return -1;
+	}
 
-	char aout[17];
-	u16_to_ascii_bin(aout, 5);
-	
-	printf("ascii bin = %s\n", aout);
-
-	int i = 0;
-	for (i = 0; i < 20; i++) {
+	int i;
+	for (i = 0; i < len; i++) {
 		printf("%04x\n", bin[i]);
-	} 
+	}
 	
-	write_bin();
+	write_bin(len);
 
-	printf("here\n");
-	free_prog_mem();
+	clear_input_ds();
 	return 0;
 }
