@@ -1,13 +1,13 @@
 module ram(
-	input clk,
-    input [15:0] addr,
-	input [15:0] pc,
-	output [15:0] ir,
-    input rw,
-    output [15:0] mem_out,
-    input [15:0] mem_in,
-	output [15:0] sys_ctrl
-);
+           input clk,
+           input [15:0] addr,
+           input [15:0] pc,
+           output [15:0] ir,
+           input rw,
+           output [15:0] mem_out,
+           input [15:0] mem_in,
+           output [15:0] sys_ctrl
+       );
 
 parameter MEM_SIZE = 255;
 parameter READ = 0, WRITE = 1;
@@ -46,17 +46,17 @@ parameter beq0 = 16'b1100010101111011;
 // clear memory
 integer i;
 initial
-    begin
-		$readmemb("prog.bin", mem);
-    end
+begin
+    $readmemb("prog.bin", mem);
+end
 
 always @(posedge clk)
-	begin
-		// write to memory
-		if (rw == WRITE)
-            begin
-                mem[addr] <= mem_in;
-            end
+begin
+    // write to memory
+    if (rw == WRITE)
+    begin
+        mem[addr] <= mem_in;
     end
+end
 
 endmodule

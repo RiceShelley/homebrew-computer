@@ -10,8 +10,8 @@ reg cpu_rst = 1'd0;
 always #100 cpu_clk = ~cpu_clk;
 
 risc16 cpu(
-	.clk(cpu_clk),
-	.rst(cpu_rst)
-);
+           .clk(cpu_clk),
+           .rst(cpu_rst)
+       );
 
 endmodule
