@@ -1,0 +1,1 @@
+gcc -Wall -o rasm main.c input.c parsing.c output.c

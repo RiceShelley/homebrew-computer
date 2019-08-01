@@ -10,6 +10,12 @@ prog_line* prog_getline(int i) {
     return cur;
 }
 
+char* left_trim(char* str) {
+	while ((*str == ' ' || *str == '\t') && *str != 0)
+		str++;
+	return str;
+}
+
 /*
 * open file containing source code 
 * and load into memory
@@ -31,17 +37,22 @@ void read_prog(const char* filename) {
 	prev_line = &program;
 
 	prog_line *new_line;
+	printf("prog read\n");
 	while ((br = getline(&line, &len, fd)) != -1) {
-		if (*line == '\n' || *line == '\r') {
+		char* trimed_line = line;
+		trimed_line = left_trim(trimed_line);
+		if (*line == '\n' || *line == '\r' || *trimed_line == ';') {
 			continue;
 		}
+		
 		// create new line struct on heap
 		new_line = malloc(sizeof(prog_line));
 		// store line read on heap
-		char* ins = malloc(br);
-		strncpy(ins, line, br);
+		size_t tl_len = strlen(trimed_line);
+		char* ins = malloc(tl_len);
+		strncpy(ins, trimed_line, tl_len);
 		// replace line feed will null term
-		ins[br - 1] = 0;
+		ins[tl_len - 1] = 0;
 		// init structure and add to linked list
 		new_line->prev = prev_line;
 		new_line->next = NULL;
@@ -51,7 +62,7 @@ void read_prog(const char* filename) {
 	}
 	last_line = new_line;
 	free(line);
-	fclose(fd);	
+	fclose(fd);
 }
 
 /*

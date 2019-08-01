@@ -42,6 +42,15 @@ uint16_t parse_rrr(uint8_t op_code, char* rA_str, char* rB_str, char* rC_str, in
 }
 
 uint16_t parse_rri(uint8_t op_code, char* rA_str, char* rB_str, char* imm_str, int line) {
+	/*
+	 * Error checking
+	 */
+
+	if (rA_str == NULL || rB_str == NULL || imm_str == NULL) {
+		printf("INVALID SYNTAX: instruction line %d type rri\n", line);
+		exit(1);
+	}
+
 	uint16_t ins = op_code << 13;
 	uint16_t rA = parse_reg(rA_str);	
 	uint16_t rB = parse_reg(rB_str);

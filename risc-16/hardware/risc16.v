@@ -119,7 +119,7 @@ begin
     end
     else
     begin
-        $display("\nPOSEDGE CLK: pc = %h ir = %h | time = %t", pc, ir[15:0], $time);
+        $display("\nPOSEDGE CLK: pc = %h ir = %h op = %d", pc, ir[15:0], ir[15:13]);
         if (branch == 2'b01)
         begin
             pc <= gpr_read_data_1;

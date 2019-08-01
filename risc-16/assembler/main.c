@@ -51,7 +51,11 @@ prog_line* find_section(const char* sec_name) {
 	return NULL;
 }
 
-void setup_memory(prog_line* data_sec, prog_line* text_sec) {
+
+/*
+ * returns next free address in memory
+ */
+int setup_memory(prog_line* data_sec, prog_line* text_sec) {
 	uint16_t next_addr = BASE_DATA_ADDR;
 	while (1) {
 		char line[strlen(data_sec->ins)];
@@ -80,9 +84,9 @@ void setup_memory(prog_line* data_sec, prog_line* text_sec) {
 			uint16_t val = atoi(value);
 			bin[next_addr] = val;
 	
-			// replace numanic with address in code
+			// replace numanic with address in text section
 			char addr[20];
-			u16_to_ascii_bin(addr, next_addr);
+			sprintf(addr, "%x", next_addr);
 			prog_line* cur_line = prog_getline(0);
 			while (cur_line != NULL) {
 				if (cur_line->ins != NULL) {
@@ -94,9 +98,9 @@ void setup_memory(prog_line* data_sec, prog_line* text_sec) {
 			}
 			next_addr++;
 		}
-
 		printf("%s %s %s\n", numanic, size, value);
 	}
+	return next_addr;
 }
 
 /*
@@ -112,6 +116,73 @@ uint16_t gen_imm(char* imm, int ulen) {
 	return rtn;
 }
 
+void setup_labels_in_memory(int mem_start, prog_line* text) {
+	int next_mem_addr = mem_start;
+	int next_ins_addr = BASE_INS_ADDR;
+	while (text != NULL) {
+		if (text->ins != NULL) {
+			char line[strlen(text->ins) + 1];
+			strcpy(line, text->ins);
+			if (strncmp(line, "add", 3) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "addi", 4) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "nand", 4) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "lui", 3) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "str", 3) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "ldr", 3) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "beq", 3) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "jalr", 4) == 0) {
+				next_ins_addr++;
+			} else if (strncmp(line, "hlt", 3) == 0) {
+				next_ins_addr += 2;
+			} else if (line[strlen(line) - 1] == ':') {
+				char* numanic = line;
+				printf("FOUND LABEL at %d numanic = %s c = %c\n", next_ins_addr, line, line[strlen(line) - 1]);
+				
+				
+				numanic[strlen(numanic) - 1] = 0;
+				bin[next_mem_addr] = next_ins_addr;
+				/*
+				 * search .text and replace label
+				 * with corresponding addr
+				 */
+
+				// replace numanic with address in text section
+				char addr[20];
+				sprintf(addr, "%x", next_mem_addr);
+				prog_line* cur_line = prog_getline(0);
+				while (cur_line != NULL) {
+					if (cur_line->ins != NULL) {
+						char* new_line = replace((const char*) cur_line->ins, numanic, addr);
+						free(cur_line->ins);
+						cur_line->ins = new_line;
+						cur_line = cur_line->next;
+					}
+				}
+
+				// remove label from program
+				prog_line* label_line = text;
+				label_line->prev->next = label_line->next;
+				label_line->next->prev = label_line->prev;
+				free(label_line->ins);
+				free(label_line);
+				
+				/*
+				 * increment to next free
+				 * addr in memory
+				 */
+				next_mem_addr++;
+			}
+			text = text->next;
+		}
+	}
+}
 
 // returns number of instructions loaded into memory
 int parse_ins(prog_line* text_sec) {
@@ -159,19 +230,29 @@ int parse_ins(prog_line* text_sec) {
 			char* imm = strtok(NULL, " ,\t");
 			bin[next_addr] = parse_ri(LDR, rA, imm, line_num);
 			next_addr++;
+		} else if (strcmp(op, "beq") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* rB = strtok(NULL, " ,\t");
+			char* imm = strtok(NULL, " ,\t");
+			bin[next_addr] = parse_rri(BEQ, rA, rB, imm, line_num);
+			next_addr++;
+		} else if (strcmp(op, "jalr") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* rB = strtok(NULL, " ,\t");
+			char* imm = "0x0";
+			bin[next_addr] = parse_rri(JALR, rA, rB, imm, line_num);
+			next_addr++;
 		} else if (strcmp(op, "hlt") == 0) {
 			// halt cpu by setting the first bit of memory addr 0
-			bin[next_addr] = parse_ri(LUI, "r1", "0", line_num);
+			bin[next_addr] = parse_ri(LUI, "r0", "0", line_num);
 			next_addr++;
-			bin[next_addr] = parse_rri(ADDI, "r1", "r1", "1", line_num);
+			bin[next_addr] = parse_rri(ADDI, "r0", "r0", "1", line_num);
 			next_addr++;
-			bin[next_addr] = parse_ri(STR, "r1", "0", line_num);
+			bin[next_addr] = parse_ri(STR, "r0", "0", line_num);
 			next_addr++;
 		} else {
-			if (strncmp(op, ";", 1) != 0) {
-				printf("Syntax error: \"%s\"\n", line);
-				return SYNTAX_ERR;
-			}
+			printf("Syntax error: \"%s\"\n", line);
+			return SYNTAX_ERR;
 		}
 		line_num++;
 
@@ -207,7 +288,7 @@ int main(int argc, char** argv) {
 	* should be set to zero and left alone
 	*/
 	bin[0] = 0;
-	// read line into memory	
+	// read program into memory	
 	read_prog((const char *) argv[1]);
 
 	prog_line* pl_cur = prog_getline(0);
@@ -215,29 +296,52 @@ int main(int argc, char** argv) {
 		printf("line: %s\n", pl_cur->ins);
 		pl_cur = pl_cur->next;
 	}
+	
+	// find sections
+	prog_line* text;
+	prog_line* data;
+	if ((text = find_section(".text")) == NULL) {
+		printf("ERROR: no text section found\n");
+	}
+	if ((data = find_section(".data")) == NULL) {
+		printf("ERROR: no data section found\n");
+	}
+	
+	// setup generic memory	
+	printf("Processed memory\n");
+	int label_start = setup_memory(data->next, text->next);
+	printf("Done.\n");
 
-	prog_line* text = find_section(".text");
-	prog_line* data = find_section(".data");
-	printf("found data and text section\n");
+	// store the addresses of labels in memory
+	printf("Processing labels\n");
+	setup_labels_in_memory(label_start, text->next);
+	printf("Done.\n");
 
-	setup_memory(data->next, text->next);
-
+	// print new prog to stdout	
 	pl_cur = prog_getline(0);
 	while (pl_cur != NULL) {
 		printf("line: %s\n", pl_cur->ins);
 		pl_cur = pl_cur->next;
 	}
-
+	
+	// process instructions and convert to machine code
+	printf("Processing instructions\n");
 	int len = 0;
 	if ((len = parse_ins(text->next)) == SYNTAX_ERR) {
 		clear_input_ds();
 		return -1;
 	}
-
+	printf("Done.\n");
+	
+	printf("Generated Machine Code.\n");
 	int i;
 	for (i = 0; i < len; i++) {
-		printf("%04x\n", bin[i]);
+		printf("0x%02x\t0x%02x\t", bin[i] >> 8, bin[i] & 0x0F);
+		if ((i + 1) % 5 == 0) {
+			printf("\n");
+		}
 	}
+	printf("\n");
 	
 	write_bin(len);
 
