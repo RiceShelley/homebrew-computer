@@ -41,7 +41,7 @@ void read_prog(const char* filename) {
 	while ((br = getline(&line, &len, fd)) != -1) {
 		char* trimed_line = line;
 		trimed_line = left_trim(trimed_line);
-		if (*line == '\n' || *line == '\r' || *trimed_line == ';') {
+		if (*line == '\n' || *line == '\r' || *trimed_line == ';' || *trimed_line == '\n') {
 			continue;
 		}
 		

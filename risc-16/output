@@ -1,1 +1,524 @@
-gcc -Wall -o rasm main.c input.c parsing.c output.c
+WARNING: ram.v:50: $readmemb: Standard inconsistency, following 1364-2005.
+WARNING: ram.v:50: $readmemb(prog.bin): Not enough words in the file for the requested range [0:2048].
+
+POSEDGE CLK: pc = 00ff ir = 6400 op = 3
+----------
+Reg Values
+r1 = xxxx
+r2 = xxxx
+r3 = xxxx
+r4 = 0000
+----------
+----------
+Reg Values
+r1 = 0000
+r2 = xxxx
+r3 = xxxx
+r4 = 0000
+----------
+
+POSEDGE CLK: pc = 0100 ir = 2480 op = 1
+
+POSEDGE CLK: pc = 0101 ir = 6800 op = 3
+----------
+Reg Values
+r1 = 0000
+r2 = xxxx
+r3 = xxxx
+r4 = 0000
+----------
+----------
+Reg Values
+r1 = 0000
+r2 = 0000
+r3 = xxxx
+r4 = 0000
+----------
+
+POSEDGE CLK: pc = 0102 ir = 2901 op = 1
+
+POSEDGE CLK: pc = 0103 ir = 7000 op = 3
+----------
+Reg Values
+r1 = 0000
+r2 = 0001
+r3 = xxxx
+r4 = 0000
+----------
+----------
+Reg Values
+r1 = 0000
+r2 = 0001
+r3 = xxxx
+r4 = 0000
+----------
+
+POSEDGE CLK: pc = 0104 ir = 3200 op = 1
+
+POSEDGE CLK: pc = 0105 ir = ac01 op = 5
+----------
+Reg Values
+r1 = 0000
+r2 = 0001
+r3 = xxxx
+r4 = 0000
+----------
+----------
+Reg Values
+r1 = 0000
+r2 = 0001
+r3 = 0007
+r4 = 0000
+----------
+
+POSEDGE CLK: pc = 0106 ir = 1c82 op = 0
+
+POSEDGE CLK: pc = 0107 ir = 8803 op = 4
+----------
+Reg Values
+r1 = 0000
+r2 = 0001
+r3 = 0007
+r4 = 0000
+----------
+
+POSEDGE CLK: pc = 0108 ir = a403 op = 5
+
+POSEDGE CLK: pc = 0109 ir = 9c03 op = 4
+----------
+Reg Values
+r1 = 0001
+r2 = 0001
+r3 = 0007
+r4 = 0000
+----------
+
+POSEDGE CLK: pc = 010a ir = a803 op = 5
+
+POSEDGE CLK: pc = 010b ir = 3201 op = 1
+----------
+Reg Values
+r1 = 0001
+r2 = 0001
+r3 = 0007
+r4 = 0000
+----------
+
+POSEDGE CLK: pc = 010c ir = ce02 op = 6
+
+POSEDGE CLK: pc = 010d ir = b404 op = 5
+----------
+Reg Values
+r1 = 0001
+r2 = 0001
+r3 = 0007
+r4 = 0001
+----------
+----------
+Reg Values
+r1 = 0001
+r2 = 0001
+r3 = 0007
+r4 = 0001
+----------
+
+POSEDGE CLK: pc = 010e ir = fa80 op = 7
+
+POSEDGE CLK: pc = 0106 ir = 1c82 op = 0
+----------
+Reg Values
+r1 = 0001
+r2 = 0001
+r3 = 0007
+r4 = 0001
+----------
+
+POSEDGE CLK: pc = 0107 ir = 8803 op = 4
+
+POSEDGE CLK: pc = 0108 ir = a403 op = 5
+----------
+Reg Values
+r1 = 0001
+r2 = 0001
+r3 = 0007
+r4 = 0001
+----------
+
+POSEDGE CLK: pc = 0109 ir = 9c03 op = 4
+
+POSEDGE CLK: pc = 010a ir = a803 op = 5
+----------
+Reg Values
+r1 = 0001
+r2 = 0001
+r3 = 0007
+r4 = 0001
+----------
+----------
+Reg Values
+r1 = 0001
+r2 = 0002
+r3 = 0007
+r4 = 0001
+----------
+
+POSEDGE CLK: pc = 010b ir = 3201 op = 1
+
+POSEDGE CLK: pc = 010c ir = ce02 op = 6
+----------
+Reg Values
+r1 = 0001
+r2 = 0002
+r3 = 0007
+r4 = 0002
+----------
+
+POSEDGE CLK: pc = 010d ir = b404 op = 5
+
+POSEDGE CLK: pc = 010e ir = fa80 op = 7
+----------
+Reg Values
+r1 = 0001
+r2 = 0002
+r3 = 0007
+r4 = 0002
+----------
+----------
+Reg Values
+r1 = 0001
+r2 = 0002
+r3 = 0007
+r4 = 0002
+----------
+
+POSEDGE CLK: pc = 0106 ir = 1c82 op = 0
+
+POSEDGE CLK: pc = 0107 ir = 8803 op = 4
+----------
+Reg Values
+r1 = 0001
+r2 = 0002
+r3 = 0007
+r4 = 0002
+----------
+
+POSEDGE CLK: pc = 0108 ir = a403 op = 5
+
+POSEDGE CLK: pc = 0109 ir = 9c03 op = 4
+----------
+Reg Values
+r1 = 0002
+r2 = 0002
+r3 = 0007
+r4 = 0002
+----------
+
+POSEDGE CLK: pc = 010a ir = a803 op = 5
+
+POSEDGE CLK: pc = 010b ir = 3201 op = 1
+----------
+Reg Values
+r1 = 0002
+r2 = 0003
+r3 = 0007
+r4 = 0002
+----------
+
+POSEDGE CLK: pc = 010c ir = ce02 op = 6
+
+POSEDGE CLK: pc = 010d ir = b404 op = 5
+----------
+Reg Values
+r1 = 0002
+r2 = 0003
+r3 = 0007
+r4 = 0003
+----------
+----------
+Reg Values
+r1 = 0002
+r2 = 0003
+r3 = 0007
+r4 = 0003
+----------
+
+POSEDGE CLK: pc = 010e ir = fa80 op = 7
+
+POSEDGE CLK: pc = 0106 ir = 1c82 op = 0
+----------
+Reg Values
+r1 = 0002
+r2 = 0003
+r3 = 0007
+r4 = 0003
+----------
+
+POSEDGE CLK: pc = 0107 ir = 8803 op = 4
+
+POSEDGE CLK: pc = 0108 ir = a403 op = 5
+----------
+Reg Values
+r1 = 0002
+r2 = 0003
+r3 = 0007
+r4 = 0003
+----------
+
+POSEDGE CLK: pc = 0109 ir = 9c03 op = 4
+
+POSEDGE CLK: pc = 010a ir = a803 op = 5
+----------
+Reg Values
+r1 = 0003
+r2 = 0003
+r3 = 0007
+r4 = 0003
+----------
+----------
+Reg Values
+r1 = 0003
+r2 = 0005
+r3 = 0007
+r4 = 0003
+----------
+
+POSEDGE CLK: pc = 010b ir = 3201 op = 1
+
+POSEDGE CLK: pc = 010c ir = ce02 op = 6
+----------
+Reg Values
+r1 = 0003
+r2 = 0005
+r3 = 0007
+r4 = 0004
+----------
+
+POSEDGE CLK: pc = 010d ir = b404 op = 5
+
+POSEDGE CLK: pc = 010e ir = fa80 op = 7
+----------
+Reg Values
+r1 = 0003
+r2 = 0005
+r3 = 0007
+r4 = 0004
+----------
+----------
+Reg Values
+r1 = 0003
+r2 = 0005
+r3 = 0007
+r4 = 0004
+----------
+
+POSEDGE CLK: pc = 0106 ir = 1c82 op = 0
+
+POSEDGE CLK: pc = 0107 ir = 8803 op = 4
+----------
+Reg Values
+r1 = 0003
+r2 = 0005
+r3 = 0007
+r4 = 0004
+----------
+
+POSEDGE CLK: pc = 0108 ir = a403 op = 5
+
+POSEDGE CLK: pc = 0109 ir = 9c03 op = 4
+----------
+Reg Values
+r1 = 0005
+r2 = 0005
+r3 = 0007
+r4 = 0004
+----------
+
+POSEDGE CLK: pc = 010a ir = a803 op = 5
+
+POSEDGE CLK: pc = 010b ir = 3201 op = 1
+----------
+Reg Values
+r1 = 0005
+r2 = 0008
+r3 = 0007
+r4 = 0004
+----------
+
+POSEDGE CLK: pc = 010c ir = ce02 op = 6
+
+POSEDGE CLK: pc = 010d ir = b404 op = 5
+----------
+Reg Values
+r1 = 0005
+r2 = 0008
+r3 = 0007
+r4 = 0005
+----------
+----------
+Reg Values
+r1 = 0005
+r2 = 0008
+r3 = 0007
+r4 = 0005
+----------
+
+POSEDGE CLK: pc = 010e ir = fa80 op = 7
+
+POSEDGE CLK: pc = 0106 ir = 1c82 op = 0
+----------
+Reg Values
+r1 = 0005
+r2 = 0008
+r3 = 0007
+r4 = 0005
+----------
+
+POSEDGE CLK: pc = 0107 ir = 8803 op = 4
+
+POSEDGE CLK: pc = 0108 ir = a403 op = 5
+----------
+Reg Values
+r1 = 0005
+r2 = 0008
+r3 = 0007
+r4 = 0005
+----------
+
+POSEDGE CLK: pc = 0109 ir = 9c03 op = 4
+
+POSEDGE CLK: pc = 010a ir = a803 op = 5
+----------
+Reg Values
+r1 = 0008
+r2 = 0008
+r3 = 0007
+r4 = 0005
+----------
+----------
+Reg Values
+r1 = 0008
+r2 = 000d
+r3 = 0007
+r4 = 0005
+----------
+
+POSEDGE CLK: pc = 010b ir = 3201 op = 1
+
+POSEDGE CLK: pc = 010c ir = ce02 op = 6
+----------
+Reg Values
+r1 = 0008
+r2 = 000d
+r3 = 0007
+r4 = 0006
+----------
+
+POSEDGE CLK: pc = 010d ir = b404 op = 5
+
+POSEDGE CLK: pc = 010e ir = fa80 op = 7
+----------
+Reg Values
+r1 = 0008
+r2 = 000d
+r3 = 0007
+r4 = 0006
+----------
+----------
+Reg Values
+r1 = 0008
+r2 = 000d
+r3 = 0007
+r4 = 0006
+----------
+
+POSEDGE CLK: pc = 0106 ir = 1c82 op = 0
+
+POSEDGE CLK: pc = 0107 ir = 8803 op = 4
+----------
+Reg Values
+r1 = 0008
+r2 = 000d
+r3 = 0007
+r4 = 0006
+----------
+
+POSEDGE CLK: pc = 0108 ir = a403 op = 5
+
+POSEDGE CLK: pc = 0109 ir = 9c03 op = 4
+----------
+Reg Values
+r1 = 000d
+r2 = 000d
+r3 = 0007
+r4 = 0006
+----------
+
+POSEDGE CLK: pc = 010a ir = a803 op = 5
+
+POSEDGE CLK: pc = 010b ir = 3201 op = 1
+----------
+Reg Values
+r1 = 000d
+r2 = 0015
+r3 = 0007
+r4 = 0006
+----------
+
+POSEDGE CLK: pc = 010c ir = ce02 op = 6
+
+POSEDGE CLK: pc = 010f ir = 6c00 op = 3
+----------
+Reg Values
+r1 = 000d
+r2 = 0015
+r3 = 0007
+r4 = 0007
+----------
+----------
+Reg Values
+r1 = 000d
+r2 = 0015
+r3 = 0000
+r4 = 0007
+----------
+
+POSEDGE CLK: pc = 0110 ir = 2d81 op = 1
+
+POSEDGE CLK: pc = 0111 ir = 4d83 op = 2
+----------
+Reg Values
+r1 = 000d
+r2 = 0015
+r3 = 0001
+r4 = 0007
+----------
+----------
+Reg Values
+r1 = 000d
+r2 = 0015
+r3 = fffe
+r4 = 0007
+----------
+
+POSEDGE CLK: pc = 0112 ir = 2d81 op = 1
+
+POSEDGE CLK: pc = 0113 ir = 6400 op = 3
+----------
+Reg Values
+r1 = 000d
+r2 = 0015
+r3 = ffff
+r4 = 0007
+----------
+----------
+Reg Values
+r1 = 0000
+r2 = 0015
+r3 = ffff
+r4 = 0007
+----------
+
+POSEDGE CLK: pc = 0114 ir = 2481 op = 1
+
+POSEDGE CLK: pc = 0115 ir = 8400 op = 4
+PROCESSOR HALTED.

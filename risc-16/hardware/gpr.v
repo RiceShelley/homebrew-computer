@@ -18,21 +18,16 @@ reg [15:0] r[7:0];
 integer i;
 initial
 begin
-    $monitor("r1 = %h | r2 = %h | r3 = %h | write_dest = %d | write_data = %d", r[1], r[2], r[3], write_dest, write_data);
     for (i = 4; i < 8; i = i + 1)
         r[i] <= 16'd0;
-    r[0] <= 16'd0;
-    r[1] <= 16'd0;
-    r[2] <= 16'd3;
-    r[3] <= 16'd3;
 end
 
 always @( posedge clk )
 begin
-    if (write_en)
+    if (write_en && write_dest != 0)
     begin
-        $display("writing = %d time %t", write_data, $time);
         r[write_dest] <= write_data;
+    	$display("----------\nReg Values\nr1 = %h\nr2 = %h\nr3 = %h\nr4 = %h\n----------", r[1], r[2], r[3], r[4]);
     end
 end
 

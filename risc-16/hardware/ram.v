@@ -7,9 +7,9 @@ module ram(
            output [15:0] mem_out,
            input [15:0] mem_in,
            output [15:0] sys_ctrl
-       );
+);
 
-parameter MEM_SIZE = 255;
+parameter MEM_SIZE = 2048;
 parameter READ = 0, WRITE = 1;
 
 // memory

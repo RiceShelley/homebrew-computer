@@ -3,7 +3,7 @@ module risc16 (
            input rst
        );
 
-parameter PROG_START = 16'h000F;
+parameter PROG_START = 16'h00FF;
 
 // <--- cpu regs --->
 

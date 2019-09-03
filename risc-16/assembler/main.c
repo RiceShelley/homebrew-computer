@@ -21,9 +21,9 @@
 #define BEQ 6
 #define JALR 7
 
-#define MAX_PROG_LEN 255
+#define MAX_PROG_LEN 2048
 #define BASE_DATA_ADDR 1
-#define BASE_INS_ADDR 0xf
+#define BASE_INS_ADDR 0xff
 
 #define SYNTAX_ERR -1
 
@@ -141,6 +141,10 @@ void setup_labels_in_memory(int mem_start, prog_line* text) {
 				next_ins_addr++;
 			} else if (strncmp(line, "hlt", 3) == 0) {
 				next_ins_addr += 2;
+			} else if (strncmp(line, "movi", 4) == 0) {
+				next_ins_addr += 2;	
+			} else if (strncmp(line, "neg", 3) == 0) {
+				next_ins_addr += 2;	
 			} else if (line[strlen(line) - 1] == ':') {
 				char* numanic = line;
 				printf("FOUND LABEL at %d numanic = %s c = %c\n", next_ins_addr, line, line[strlen(line) - 1]);
@@ -244,11 +248,25 @@ int parse_ins(prog_line* text_sec) {
 			next_addr++;
 		} else if (strcmp(op, "hlt") == 0) {
 			// halt cpu by setting the first bit of memory addr 0
-			bin[next_addr] = parse_ri(LUI, "r0", "0", line_num);
+			bin[next_addr] = parse_ri(LUI, "r1", "0", line_num);
 			next_addr++;
-			bin[next_addr] = parse_rri(ADDI, "r0", "r0", "1", line_num);
+			bin[next_addr] = parse_rri(ADDI, "r1", "r1", "1", line_num);
 			next_addr++;
-			bin[next_addr] = parse_ri(STR, "r0", "0", line_num);
+			bin[next_addr] = parse_ri(STR, "r1", "0", line_num);
+			next_addr++;
+		} else if (strcmp(op, "movi") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* imm = strtok(NULL, " ,\t");
+			bin[next_addr] = parse_ri(LUI, rA, "0", line_num);
+			next_addr++;
+			bin[next_addr] = parse_rri(ADDI, rA, rA, imm, line_num);
+			next_addr++;
+		} else if (strcmp(op, "neg") == 0) {
+			char* rA = strtok(NULL, " ,\t");
+			char* rB = strtok(NULL, " ,\t");
+			bin[next_addr] = parse_rrr(NAND, rB, rA, rA, line_num);
+			next_addr++;
+			bin[next_addr] = parse_rri(ADDI, rB, rA, "1", line_num);
 			next_addr++;
 		} else {
 			printf("Syntax error: \"%s\"\n", line);
@@ -293,7 +311,7 @@ int main(int argc, char** argv) {
 
 	prog_line* pl_cur = prog_getline(0);
 	while (pl_cur != NULL) {
-		printf("line: %s\n", pl_cur->ins);
+		printf("line: '%s'\n", pl_cur->ins);
 		pl_cur = pl_cur->next;
 	}
 	

@@ -1,16 +1,14 @@
 section .data
-	zero:		dw	0
-	one:		dw	1
 	n_terms: 	dw	7
 	result:		dw	0
 	tmp:		dw	0
 
 section .text
 	; init regs
-	ldr		r1, zero
-	ldr		r2, one
+	movi		r1, 0
+	movi		r2, 1
+	movi		r4, 0
 	ldr		r3, n_terms
-	ldr		r4, zero
 
 	; loop until n_terms have been calculated
 	loop:
@@ -32,4 +30,7 @@ section .text
 		ldr	r5, loop
 		jalr	r6, r5
 
+	movi	r3, 0x1
+	neg	r3, r3
+					
 	hlt
