@@ -7,5 +7,3 @@ RISC-16 -> HDL source for simulated development using Icarus Verilog.
 RISC-16-assembler -> an assembler for RISC-16.
 <br/>
 ![alt text](cpu_bd.png "cpu bd")
-
-
