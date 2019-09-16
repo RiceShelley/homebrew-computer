@@ -1,0 +1,355 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Sun Sep 15 01:55:45 2019
+| Host         : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.2 LTS
+| Command      : report_control_sets -verbose -file risc16System_wrapper_control_sets_placed.rpt
+| Design       : risc16System_wrapper
+| Device       : xc7a100t
+-------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |   282 |
+| Unused register locations in slices containing registers |    52 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      2 |            1 |
+|      3 |            3 |
+|      4 |            1 |
+|      5 |            1 |
+|      7 |            2 |
+|      8 |            2 |
+|     10 |            1 |
+|     13 |            1 |
+|     14 |            1 |
+|    16+ |          269 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              99 |           35 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               4 |            1 |
+| Yes          | No                    | No                     |            4247 |         2159 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             102 |           36 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++---------------------------------------------------+------------------------------------------------------------------+---------------------------------------------------------+------------------+----------------+
+|                    Clock Signal                   |                           Enable Signal                          |                     Set/Reset Signal                    | Slice Load Count | Bel Load Count |
++---------------------------------------------------+------------------------------------------------------------------+---------------------------------------------------------+------------------+----------------+
+|  risc16System_i/risc16_0/inst/mem/pc_reg[7]_6[0]  |                                                                  |                                                         |                1 |              2 |
+|  risc16System_i/risc16_0/inst/mem/pc_reg[7]_7[0]  |                                                                  |                                                         |                1 |              3 |
+|  risc16System_i/risc16_0/inst/mem/clk             |                                                                  |                                                         |                2 |              3 |
+|  risc16System_i/risc16_0/inst/mem/pc_reg[7]_42[0] |                                                                  |                                                         |                1 |              3 |
+|  risc16System_i/clk_div_0/inst/clk_out            |                                                                  | risc16System_i/nexys_7seg_0/inst/cur_seg[1]             |                1 |              4 |
+|  risc16System_i/risc16_0/inst/mem/pc_reg[7]_40[0] |                                                                  |                                                         |                2 |              5 |
+|  clk_IBUF_BUFG                                    | risc16System_i/spi_slave_0/inst/tx_buff_out[7]_i_1_n_0           |                                                         |                1 |              7 |
+|  risc16System_i/risc16_0/inst/mem/pc_reg[7]_39[0] |                                                                  |                                                         |                2 |              7 |
+|  clk_IBUF_BUFG                                    | risc16System_i/spi_slave_0/inst/rx_recv_reg0                     |                                                         |                1 |              8 |
+|  clk_IBUF_BUFG                                    | risc16System_i/spi_slave_0/inst/rx_buff[7]_i_1_n_0               |                                                         |                1 |              8 |
+|  risc16System_i/clk_wiz_0/inst/clk_out1           |                                                                  |                                                         |                3 |             10 |
+|  risc16System_i/risc16_0/inst/mem/pc_reg[7]_44    |                                                                  |                                                         |                5 |             13 |
+|  clk_IBUF_BUFG                                    | risc16System_i/CPU_Programmer_0/inst/packet[39]_i_2_n_0          | risc16System_i/CPU_Programmer_0/inst/packet[39]_i_1_n_0 |                3 |             14 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[217][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[194][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[195][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[197][15]_i_1_n_0            |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[198][15]_i_1_n_0            |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[240][15]_i_1_n_0            |                                                         |                3 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[1][15]_i_1_n_0              |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[228][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[227][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[226][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[225][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[224][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[223][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[220][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[21][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[218][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[239][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[193][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[231][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[230][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[22][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[229][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[61][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[232][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[67][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[63][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[233][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[234][15]_i_1_n_0            |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[235][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[236][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[237][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[238][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[128][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[175][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[183][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[182][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[181][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[180][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[179][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[178][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[177][15]_i_1_n_0            |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[176][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[184][15]_i_1_n_0            |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[174][15]_i_1_n_0            |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[173][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[59][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[201][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[202][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[207][15]_i_1_n_0            |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[135][15]_i_1_n_0            |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[216][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[185][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[186][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[5][15]_i_1_n_0              |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[187][15]_i_1_n_0            |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[60][15]_i_1_n_0             |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[188][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[248][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[191][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[208][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[209][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[210][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[211][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[212][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[213][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[214][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[6][15]_i_1_n_0              |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[7][15]_i_1_n_0              |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[79][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[77][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[76][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[74][15]_i_1_n_0             |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[73][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[72][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[71][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[81][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[25][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[26][15]_i_1_n_0             |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[28][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[29][15]_i_1_n_0             |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[2][15]_i_1_n_0              |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[30][15]_i_1_n_0             |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[31][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[37][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[82][15]_i_1_n_0             |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[83][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[85][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[86][15]_i_1_n_0             |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[89][15]_i_1_n_0             |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[8][15]_i_1_n_0              |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[91][15]_i_1_n_0             |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[93][15]_i_1_n_0             |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[94][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[95][15]_i_1_n_0             |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[97][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[98][15]_i_1_n_0             |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[99][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[9][15]_i_1_n_0              |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/pc_reg[7]_41[0] |                                                                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[245][15]_i_1_n_0            |                                                         |                4 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[58][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[252][15]_i_1_n_0            |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[69][15]_i_1_n_0             |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[254][15]_i_1_n_0            |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[250][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[24][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[56][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[246][15]_i_1_n_0            |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[53][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[244][15]_i_1_n_0            |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[62][15]_i_1_n_0             |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[253][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[243][15]_i_1_n_0            |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[249][15]_i_1_n_0            |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[242][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[241][15]_i_1_n_0            |                                                         |                4 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[68][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[54][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[51][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[50][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[4][15]_i_1_n_0              |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[49][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[48][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[47][15]_i_1_n_0             |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[46][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[45][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[44][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[42][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[41][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[40][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[3][15]_i_1_n_0              |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[38][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_49[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_54[0]                  |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_52[0]                  |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_51[0]                  |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_53[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_5[0]                   |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_50[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_48[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_47[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_55[0]                  |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_46[0]                  |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_57[0]                  |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_1[0]                   |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_10[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_11[0]                  |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_13[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_14[0]                  |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_7[0]                   |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/gpr_write_addr_reg[1]_0[0] |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/gpr_write_addr_reg[0]_0[0] |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/gpr_write_addr_reg[0]_1[0] |                                                         |                4 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/gpr_write_addr_reg[2]_1[0] |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_42[0]                  |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_43[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_44[0]                  |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_8[0]                   |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_12[0]                  |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_61[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_60[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_6[0]                   |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_9[0]                   |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_59[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_58[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_56[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_37[0]                  |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_3[0]                   |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_30[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_29[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_31[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_32[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_33[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_35[0]                  |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_36[0]                  |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_27[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_39[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_4[0]                   |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_38[0]                  |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_41[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_40[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_45[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_34[0]                  |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[131][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_28[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_24[0]                  |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_26[0]                  |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_25[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_23[0]                  |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_22[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_0[0]                   |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_21[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_20[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_2[0]                   |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_17[0]                  |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_19[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_18[0]                  |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_15[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_16[0]                  |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[125][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[151][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[152][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[153][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[154][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[155][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[156][15]_i_1_n_0            |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[127][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[126][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[150][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[124][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[157][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[123][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[122][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[121][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[159][15]_i_1_n_0            |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[120][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[141][15]_i_1_n_0            |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[12][15]_i_1_n_0             |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[132][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  clk_IBUF_BUFG                                    |                                                                  |                                                         |                4 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[136][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[138][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[139][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[13][15]_i_1_n_0             |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[140][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/E[0]                       |                                                         |                5 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[143][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[144][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[145][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[146][15]_i_1_n_0            |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[147][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[149][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[14][15]_i_1_n_0             |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[15][15]_i_1_n_0             |                                                         |               11 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/gpr_write_addr_reg[2]_0[0] |                                                         |                4 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/gpr_write_addr_reg[1]_2[0] |                                                         |                6 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/gpr_write_addr_reg[1]_1[0] |                                                         |                3 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[162][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[161][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[163][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[165][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[166][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[171][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[170][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[169][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[0][15]_i_1_n_0              | BTND_IBUF                                               |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[101][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[102][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[103][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[105][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[11][15]_i_1_n_0             |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[118][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[117][15]_i_1_n_0            |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[116][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[115][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[114][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[113][15]_i_1_n_0            |                                                         |               10 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[158][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[112][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[111][15]_i_1_n_0            |                                                         |                8 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[110][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[10][15]_i_1_n_0             |                                                         |               12 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[109][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[107][15]_i_1_n_0            |                                                         |                7 |             16 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/mem/mem[104][15]_i_1_n_0            |                                                         |                9 |             16 |
+|  risc16System_i/clk_div_0/inst/clk_out            |                                                                  |                                                         |                7 |             21 |
+|  clk_IBUF_BUFG                                    | risc16System_i/CPU_Programmer_0/inst/packet[39]_i_2_n_0          | risc16System_i/CPU_Programmer_0/inst/packet[25]_i_1_n_0 |                7 |             26 |
+|  clk_IBUF_BUFG                                    | risc16System_i/CPU_Programmer_0/inst/pgm_data_reg[15]_i_1_n_0    |                                                         |                8 |             32 |
+|  risc16System_i/risc16_0/inst/mem/clk             | risc16System_i/risc16_0/inst/cpu_ctrl/pgm_62                     | BTND_IBUF                                               |               17 |             46 |
++---------------------------------------------------+------------------------------------------------------------------+---------------------------------------------------------+------------------+----------------+
+
+

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1568530422">
+  <File Type="PA-TCL" Name="risc16System_wrapper.tcl"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="risc16System_wrapper_bus_skew_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="risc16System_wrapper_reports.tcl"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="risc16System_wrapper_bus_skew_routed.rpx"/>
+  <File Type="OPT-DCP" Name="risc16System_wrapper_opt.dcp"/>
+  <File Type="OPT-DRC" Name="risc16System_wrapper_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="risc16System_wrapper.hwdef"/>
+  <File Type="PWROPT-DCP" Name="risc16System_wrapper_pwropt.dcp"/>
+  <File Type="PLACE-DCP" Name="risc16System_wrapper_placed.dcp"/>
+  <File Type="PLACE-IO" Name="risc16System_wrapper_io_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="risc16System_wrapper_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="risc16System_wrapper_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="risc16System_wrapper_control_sets_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="risc16System_wrapper_incremental_reuse_pre_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="risc16System_wrapper_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="risc16System_wrapper_physopt.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="risc16System_wrapper_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="risc16System_wrapper_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="risc16System_wrapper_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="risc16System_wrapper_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="risc16System_wrapper_drc_routed.pb"/>
+  <File Type="BG-BIT" Name="risc16System_wrapper.bit"/>
+  <File Type="ROUTE-STATUS-PB" Name="risc16System_wrapper_route_status.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="risc16System_wrapper_methodology_drc_routed.rpt"/>
+  <File Type="BG-BIN" Name="risc16System_wrapper.bin"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="risc16System_wrapper_timing_summary_routed.rpt"/>
+  <File Type="BITSTR-MSK" Name="risc16System_wrapper.msk"/>
+  <File Type="ROUTE-TIMING-PB" Name="risc16System_wrapper_timing_summary_routed.pb"/>
+  <File Type="BITSTR-RBT" Name="risc16System_wrapper.rbt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="risc16System_wrapper_timing_summary_routed.rpx"/>
+  <File Type="BITSTR-NKY" Name="risc16System_wrapper.nky"/>
+  <File Type="BITSTR-BMM" Name="risc16System_wrapper_bd.bmm"/>
+  <File Type="ROUTE-CLK" Name="risc16System_wrapper_clock_utilization_routed.rpt"/>
+  <File Type="BG-DRC" Name="risc16System_wrapper.drc"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="risc16System_wrapper_methodology_drc_routed.rpx"/>
+  <File Type="BITSTR-MMI" Name="risc16System_wrapper.mmi"/>
+  <File Type="ROUTE-BUS-SKEW" Name="risc16System_wrapper_bus_skew_routed.rpt"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="BG-BGN" Name="risc16System_wrapper.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="risc16System_wrapper.sysdef"/>
+  <File Type="BITSTR-LTX" Name="risc16System_wrapper.ltx"/>
+  <File Type="RDI-RDI" Name="risc16System_wrapper.vdi"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="risc16System_wrapper_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="risc16System_wrapper_postroute_physopt.dcp"/>
+  <File Type="ROUTE-STATUS" Name="risc16System_wrapper_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="risc16System_wrapper_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="risc16System_wrapper_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="risc16System_wrapper_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="risc16System_wrapper_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="risc16System_wrapper_drc_routed.rpx"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../../hdl-stash/nexys/nexys_7seg.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/clk_div.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../risc-16/hardware/alu.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../risc-16/hardware/ctrl.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../risc-16/hardware/gpr.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../risc-16/hardware/ram.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../risc-16/hardware/risc16.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/display_ctrl.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../hdl-stash/nexys/spi_slave.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/CPU_Programmer.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/mux.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/clock_bus.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/risc16System/risc16System.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/risc16System/hdl/risc16System_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../risc-16/hardware/risc16_tb.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/RiSC_Programmer.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="risc16System_wrapper"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../../../../Documents/digilent-xdc-master/Nexys-A7-100T-Master.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_nexys_7seg_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_wiz_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_spi_slave_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_display_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_mux_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_clock_bus_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_div_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_div_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_risc16_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_CPU_Programmer_0_0"/>
+</GenRun>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="risc16System_display_ctrl_0_0_synth_1" LaunchDir="/home/rootie/risc16/risc16.runs/risc16System_display_ctrl_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="risc16System_risc16_0_0_synth_1" LaunchDir="/home/rootie/risc16/risc16.runs/risc16System_risc16_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="risc16System_spi_slave_0_0_synth_1" LaunchDir="/home/rootie/risc16/risc16.runs/risc16System_spi_slave_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="risc16System_CPU_Programmer_0_0_synth_1" LaunchDir="/home/rootie/risc16/risc16.runs/risc16System_CPU_Programmer_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/rootie/risc16/risc16.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="risc16System_display_ctrl_0_0_synth_1"/>
+		<Parent Id="risc16System_risc16_0_0_synth_1"/>
+		<Parent Id="risc16System_spi_slave_0_0_synth_1"/>
+		<Parent Id="risc16System_CPU_Programmer_0_0_synth_1"/>
+	</Run>
+	<Run Id="impl_1" LaunchDir="/home/rootie/risc16/risc16.runs/impl_1" FlowId="Vivado_Implementation" FromStepId="init_design" ToStepId="write_bitstream">
+		<Parent Id="synth_1"/>
+		<Parent Id="risc16System_display_ctrl_0_0_synth_1"/>
+		<Parent Id="risc16System_risc16_0_0_synth_1"/>
+		<Parent Id="risc16System_spi_slave_0_0_synth_1"/>
+		<Parent Id="risc16System_CPU_Programmer_0_0_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+

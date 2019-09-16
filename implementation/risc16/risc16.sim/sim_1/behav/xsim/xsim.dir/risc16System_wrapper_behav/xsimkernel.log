@@ -1,0 +1,7 @@
+Running: xsim.dir/risc16System_wrapper_behav/xsimk -simmode gui -wdb risc16System_wrapper_behav.wdb -simrunnum 0 -socket 60289
+Design successfully loaded
+Design Loading Memory Usage: 44400 KB (Peak: 44408 KB)
+Design Loading CPU Usage: 30 ms
+Simulation completed
+Simulation Memory Usage: 130756 KB (Peak: 191672 KB)
+Simulation CPU Usage: 270 ms

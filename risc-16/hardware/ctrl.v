@@ -15,7 +15,6 @@ module ctrl(
 parameter ALU = 3'b000;
 parameter CTRL = 3'b001;
 parameter MEM = 3'b010;
-
 parameter GPR = 3'b000;
 
 always @(*)

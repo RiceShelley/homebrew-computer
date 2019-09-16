@@ -1,0 +1,55 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port clk_sel -pg 1 -y 330 -defaultsOSRD
+preplace port BTNU -pg 1 -y 450 -defaultsOSRD
+preplace port miso -pg 1 -y 40 -defaultsOSRD
+preplace port mosi -pg 1 -y 150 -defaultsOSRD
+preplace port pgm_led -pg 1 -y 20 -defaultsOSRD
+preplace port pgm -pg 1 -y 90 -defaultsOSRD
+preplace port clk -pg 1 -y 210 -defaultsOSRD
+preplace port ss -pg 1 -y 190 -defaultsOSRD
+preplace port BTND -pg 1 -y 70 -defaultsOSRD
+preplace port LED_B -pg 1 -y 210 -defaultsOSRD
+preplace port sclk -pg 1 -y 170 -defaultsOSRD
+preplace portBus seg_sel -pg 1 -y 150 -defaultsOSRD
+preplace portBus seg -pg 1 -y 130 -defaultsOSRD
+preplace inst display_ctrl_0 -pg 1 -lvl 5 -y 150 -defaultsOSRD
+preplace inst clock_bus_0 -pg 1 -lvl 2 -y 400 -defaultsOSRD
+preplace inst spi_slave_0 -pg 1 -lvl 2 -y 200 -defaultsOSRD
+preplace inst risc16_0 -pg 1 -lvl 4 -y 160 -defaultsOSRD
+preplace inst CPU_Programmer_0 -pg 1 -lvl 3 -y 180 -defaultsOSRD
+preplace inst clk_div_0 -pg 1 -lvl 5 -y 530 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 4 -y 530 -defaultsOSRD
+preplace inst nexys_7seg_0 -pg 1 -lvl 6 -y 140 -defaultsOSRD
+preplace inst clk_div_1 -pg 1 -lvl 1 -y 390 -defaultsOSRD
+preplace inst Clk_Mux -pg 1 -lvl 3 -y 340 -defaultsOSRD
+preplace netloc spi_slave_0_rrdy 1 2 1 N
+preplace netloc mosi_1 1 0 2 NJ 150 NJ
+preplace netloc nexys_7seg_0_seg 1 6 1 NJ
+preplace netloc risc16_0_pc_out 1 4 1 N
+preplace netloc risc16_0_outRegA 1 4 1 N
+preplace netloc CPU_Programmer_0_pgm_addr 1 3 1 N
+preplace netloc spi_slave_0_miso 1 2 5 500J 10 NJ 10 NJ 10 NJ 10 1730J
+preplace netloc mux_0_out 1 3 1 810
+preplace netloc sclk_1 1 0 2 NJ 170 NJ
+preplace netloc BTND_1 1 0 4 NJ 70 NJ 70 NJ 70 820J
+preplace netloc nexys_7seg_0_seg_sel 1 6 1 NJ
+preplace netloc CPU_Programmer_0_pgm_data 1 3 1 N
+preplace netloc spi_slave_0_rx_recv 1 2 1 N
+preplace netloc display_ctrl_0_data_out 1 5 1 N
+preplace netloc clock_bus_0_clk_bus 1 2 1 500
+preplace netloc clk_1 1 0 4 NJ 210 220 90 510 270 820
+preplace netloc BTNU_1 1 0 2 10J 320 220J
+preplace netloc ss_1 1 0 2 NJ 190 NJ
+preplace netloc clk_div_0_clk_out 1 0 7 20 40 NJ 40 NJ 40 NJ 40 1150 70 1450 210 NJ
+preplace netloc clk_wiz_0_clk_out1 1 4 1 NJ
+preplace netloc clk_sel_1 1 0 3 NJ 330 N 330 N
+preplace netloc CPU_Programmer_0_pd_wr 1 3 1 N
+preplace netloc clk_div_1_clk_out 1 1 1 NJ
+preplace netloc CPU_Programmer_0_pgm 1 0 7 10J 80 NJ 80 NJ 80 830 20 NJ 20 NJ 20 NJ
+levelinfo -pg 1 -10 120 360 660 990 1300 1590 1750 -top 0 -bot 600
+"
+}
+0

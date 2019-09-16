@@ -1,14 +1,27 @@
 module risc16 (
-           input clk,
-           input rst
+           input clk_in,
+           input rst,
+           input pgm,
+           input [15:0] pgm_data,
+           input [15:0] pgm_addr,
+           input pg_wr,
+           input pclk,
+           output[15:0] pc_out,
+           output[15:0] outRegA
        );
 
-parameter PROG_START = 16'h00FF;
+parameter PROG_START = 16'h000F;
+
+// mux clks
+wire clk = (pgm)? pclk : clk_in;
 
 // <--- cpu regs --->
 
 // program counter reg
 reg [15:0] pc = PROG_START;
+assign pc_out = pc;
+wire [15:0] porta;
+//assign outRegA = porta;
 
 // instruction reg
 wire [15:0] ir;
@@ -24,12 +37,18 @@ wire rw;
 // memory
 ram mem(
         .clk(clk),
+        .rst(rst),
         .addr(mem_addr),
         .pc(pc),
+        .pgm(pgm),
+        .pgm_data(pgm_data),
+        .pgm_addr(pgm_addr),
+        .pg_wr(pg_wr),
         .ir(ir),
         .rw(rw),
         .mem_out(mem_out),
         .mem_in(mem_write_data),
+        .porta(porta),
         .sys_ctrl(sys_ctrl)
     );
 
@@ -50,7 +69,8 @@ gpr cpu_gpr(
         .read_addr_1(gpr_read_addr_1),
         .read_data_1(gpr_read_data_1),
         .read_addr_2(gpr_read_addr_2),
-        .read_data_2(gpr_read_data_2)
+        .read_data_2(gpr_read_data_2),
+        .outrega(outRegA)
     );
 
 // imediate operand
@@ -110,43 +130,29 @@ ctrl cpu_ctrl(
          .pc(pc)
      );
 
+// pc control logic
 always @( posedge clk )
 begin
-    if (halt)
-    begin
-        $display("PROCESSOR HALTED.");
-        $finish;
-    end
-    else
-    begin
-        $display("\nPOSEDGE CLK: pc = %h ir = %h op = %d", pc, ir[15:0], ir[15:13]);
-        if (branch == 2'b01)
-        begin
-            pc <= gpr_read_data_1;
-        end
-        else if (branch == 2'b10)
-        begin
-            if (alu_out == 16'd1)
-            begin
-                // if imm is neg
-                if (imm[6] == 1'b1)
-                begin
-                    pc <= (pc + 16'd1 - {9'd0, (~imm[6:0] + 7'd1)});
-                end
-                // if imm is positive
-                else
-                begin
-                    pc <= (pc + 16'd1 + {9'd0, imm[6:0]});
+    if (rst) begin
+        pc <= PROG_START;
+    end else begin
+        if (halt || pgm) begin
+            pc <= pc;
+        end else begin
+            if (branch == 2'b01) begin
+                pc <= gpr_read_data_1;
+            end 
+            else if (branch == 2'b10) begin
+                if (alu_out == 16'd1) begin
+                    // if imm is neg
+                    if (imm[6] == 1'b1) pc <= (pc + 16'd1 - {9'd0, (~imm[6:0] + 7'd1)});
+                    // if imm is positive
+                    else pc <= (pc + 16'd1 + {9'd0, imm[6:0]});
                 end
             end
-            else
-            begin
+            else begin
                 pc <= pc + 16'd1;
             end
-        end
-        else
-        begin
-            pc <= pc + 16'd1;
         end
     end
 end

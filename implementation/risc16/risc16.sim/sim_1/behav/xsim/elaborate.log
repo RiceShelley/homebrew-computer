@@ -1,0 +1,34 @@
+Vivado Simulator 2018.3
+Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
+Running: /tools/Xilinx/Vivado/2018.3/bin/unwrapped/lnx64.o/xelab -wto e0a9cd34521c4aaaaa9e1110d2a10743 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot risc16System_wrapper_behav xil_defaultlib.risc16System_wrapper xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.CPU_Programmer
+Compiling module xil_defaultlib.risc16System_CPU_Programmer_0_0
+Compiling module xil_defaultlib.clk_div(DIV=10)
+Compiling module xil_defaultlib.risc16System_clk_div_0_0
+Compiling module unisims_ver.IBUF
+Compiling module unisims_ver.MMCME2_ADV(CLKFBOUT_MULT_F=32.0,...
+Compiling module unisims_ver.BUFG
+Compiling module xil_defaultlib.risc16System_clk_wiz_0_0_clk_wiz
+Compiling module xil_defaultlib.risc16System_clk_wiz_0_0
+Compiling module xil_defaultlib.display_ctrl
+Compiling module xil_defaultlib.risc16System_display_ctrl_0_0
+Compiling module xil_defaultlib.nexys_7seg
+Compiling module xil_defaultlib.risc16System_nexys_7seg_0_0
+Compiling module xil_defaultlib.ram
+Compiling module xil_defaultlib.gpr
+Compiling module xil_defaultlib.alu
+Compiling module xil_defaultlib.ctrl
+Compiling module xil_defaultlib.risc16
+Compiling module xil_defaultlib.risc16System_risc16_0_0
+Compiling module xil_defaultlib.spi_slave
+Compiling module xil_defaultlib.risc16System_spi_slave_0_0
+Compiling module xil_defaultlib.risc16System
+Compiling module xil_defaultlib.risc16System_wrapper
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot risc16System_wrapper_behav
