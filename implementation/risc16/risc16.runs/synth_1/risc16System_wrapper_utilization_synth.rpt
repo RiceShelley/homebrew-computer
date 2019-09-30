@@ -1,8 +1,8 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Sun Sep 15 01:54:48 2019
-| Host         : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.2 LTS
+| Date         : Mon Sep 30 13:23:57 2019
+| Host         : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 | Command      : report_utilization -file risc16System_wrapper_utilization_synth.rpt -pb risc16System_wrapper_utilization_synth.pb
 | Design       : risc16System_wrapper
 | Device       : 7a100tcsg324-1
@@ -90,7 +90,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   26 |     0 |       210 | 12.38 |
+| Bonded IOB                  |   40 |     0 |       210 | 19.05 |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         6 |  0.00 |
@@ -146,7 +146,7 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| OBUF     |   19 |                  IO |
+| OBUF     |   33 |                  IO |
 | IBUF     |    7 |                  IO |
 +----------+------+---------------------+
 
@@ -157,12 +157,15 @@ Table of Contents
 +---------------------------------+------+
 |             Ref Name            | Used |
 +---------------------------------+------+
+| risc16System_vga_0_0            |    1 |
 | risc16System_spi_slave_0_0      |    1 |
 | risc16System_risc16_0_0         |    1 |
+| risc16System_ram_0_0            |    1 |
 | risc16System_nexys_7seg_0_0     |    1 |
 | risc16System_mux_0_0            |    1 |
 | risc16System_display_ctrl_0_0   |    1 |
 | risc16System_clock_bus_0_0      |    1 |
+| risc16System_clk_wiz_0_1        |    1 |
 | risc16System_clk_wiz_0_0        |    1 |
 | risc16System_clk_div_1_0        |    1 |
 | risc16System_clk_div_0_0        |    1 |

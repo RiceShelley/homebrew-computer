@@ -36,4 +36,13 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_cl
 # IP: bd/risc16System/ip/risc16System_clock_bus_0_0/risc16System_clock_bus_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_clock_bus_0_0 || ORIG_REF_NAME==risc16System_clock_bus_0_0} -quiet] -quiet
 
+# IP: bd/risc16System/ip/risc16System_vga_0_0/risc16System_vga_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_vga_0_0 || ORIG_REF_NAME==risc16System_vga_0_0} -quiet] -quiet
+
+# IP: bd/risc16System/ip/risc16System_clk_wiz_0_1/risc16System_clk_wiz_0_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_clk_wiz_0_1 || ORIG_REF_NAME==risc16System_clk_wiz_0_1} -quiet] -quiet
+
+# IP: bd/risc16System/ip/risc16System_ram_0_0/risc16System_ram_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_ram_0_0 || ORIG_REF_NAME==risc16System_ram_0_0} -quiet] -quiet
+
 # XDC: bd/risc16System/risc16System_ooc.xdc

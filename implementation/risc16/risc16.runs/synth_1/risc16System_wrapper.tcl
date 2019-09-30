@@ -18,7 +18,6 @@ proc create_report { reportName command } {
   }
 }
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -26,21 +25,24 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir /home/rootie/risc16/risc16.cache/wt [current_project]
-set_property parent.project_path /home/rootie/risc16/risc16.xpr [current_project]
+set_property webtalk.parent_dir /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.cache/wt [current_project]
+set_property parent.project_path /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.xpr [current_project]
 set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {/home/rootie/Documents/vivado-boards/new/board_files} [current_project]
 set_property board_part digilentinc.com:nexys-a7-100t:part0:1.0 [current_project]
-set_property ip_output_repo /home/rootie/risc16/risc16.cache/ip [current_project]
+set_property ip_output_repo /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_verilog -library xil_defaultlib /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/hdl/risc16System_wrapper.v
-add_files /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd
-set_property used_in_implementation false [get_files -all /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_0/risc16System_clk_wiz_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_0/risc16System_clk_wiz_0_0.xdc]
-set_property used_in_implementation false [get_files -all /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_0/risc16System_clk_wiz_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System_ooc.xdc]
+read_verilog -library xil_defaultlib /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/hdl/risc16System_wrapper.v
+add_files /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd
+set_property used_in_implementation false [get_files -all /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_0/risc16System_clk_wiz_0_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_0/risc16System_clk_wiz_0_0.xdc]
+set_property used_in_implementation false [get_files -all /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_0/risc16System_clk_wiz_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_1/risc16System_clk_wiz_0_1_board.xdc]
+set_property used_in_implementation false [get_files -all /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_1/risc16System_clk_wiz_0_1.xdc]
+set_property used_in_implementation false [get_files -all /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clk_wiz_0_1/risc16System_clk_wiz_0_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xC0DB5E516A38EF7D",
+      "boundary_crc": "0x28B214CE2A2F27A4",
       "device": "xc7a100tcsg324-1",
       "name": "risc16System",
       "synth_flow_mode": "Hierarchical",
@@ -9,16 +9,19 @@
       "validated": "true"
     },
     "design_tree": {
-      "nexys_7seg_0": "",
-      "clk_wiz_0": "",
-      "display_ctrl_0": "",
-      "spi_slave_0": "",
-      "CPU_Programmer_0": "",
-      "risc16_0": "",
-      "clk_div_0": "",
-      "clk_div_1": "",
+      "nexys_7seg_display": "",
+      "CLK_5MHz": "",
+      "display_ctrl": "",
+      "spi_slave": "",
+      "CPU_Programmer": "",
+      "clk_div_by_10": "",
+      "SLOW_DEBUG_CLK": "",
       "Clk_Mux": "",
-      "clock_bus_0": ""
+      "Clock_Bus": "",
+      "VGA_25MHz_CLK": "",
+      "MEM": "",
+      "Risc16_CPU": "",
+      "vga_0": ""
     },
     "ports": {
       "clk": {
@@ -63,10 +66,31 @@
       },
       "clk_sel": {
         "direction": "I"
+      },
+      "VGA_R": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "VGA_G": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "VGA_B": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "VGA_HS": {
+        "direction": "O"
+      },
+      "VGA_VS": {
+        "direction": "O"
       }
     },
     "components": {
-      "nexys_7seg_0": {
+      "nexys_7seg_display": {
         "vlnv": "xilinx.com:module_ref:nexys_7seg:1.0",
         "xci_name": "risc16System_nexys_7seg_0_0",
         "reference_info": {
@@ -96,7 +120,7 @@
           }
         }
       },
-      "clk_wiz_0": {
+      "CLK_5MHz": {
         "vlnv": "xilinx.com:ip:clk_wiz:6.0",
         "xci_name": "risc16System_clk_wiz_0_0",
         "parameters": {
@@ -126,7 +150,7 @@
           }
         }
       },
-      "display_ctrl_0": {
+      "display_ctrl": {
         "vlnv": "xilinx.com:module_ref:display_ctrl:1.0",
         "xci_name": "risc16System_display_ctrl_0_0",
         "reference_info": {
@@ -156,7 +180,7 @@
           }
         }
       },
-      "spi_slave_0": {
+      "spi_slave": {
         "vlnv": "xilinx.com:module_ref:spi_slave:1.0",
         "xci_name": "risc16System_spi_slave_0_0",
         "reference_info": {
@@ -202,7 +226,7 @@
           }
         }
       },
-      "CPU_Programmer_0": {
+      "CPU_Programmer": {
         "vlnv": "xilinx.com:module_ref:CPU_Programmer:1.0",
         "xci_name": "risc16System_CPU_Programmer_0_0",
         "reference_info": {
@@ -248,54 +272,7 @@
           }
         }
       },
-      "risc16_0": {
-        "vlnv": "xilinx.com:module_ref:risc16:1.0",
-        "xci_name": "risc16System_risc16_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "risc16",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "rst": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "clk_in": {
-            "direction": "I"
-          },
-          "pgm": {
-            "direction": "I"
-          },
-          "pgm_data": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "pgm_addr": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "pg_wr": {
-            "direction": "I"
-          },
-          "pclk": {
-            "direction": "I"
-          },
-          "pc_out": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          },
-          "outRegA": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          }
-        }
-      },
-      "clk_div_0": {
+      "clk_div_by_10": {
         "vlnv": "xilinx.com:module_ref:clk_div:1.0",
         "xci_name": "risc16System_clk_div_0_0",
         "parameters": {
@@ -314,7 +291,7 @@
             "direction": "I",
             "parameters": {
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
+                "value": "/CLK_5MHz_clk_out1",
                 "value_src": "ip_prop"
               },
               "FREQ_HZ": {
@@ -332,7 +309,7 @@
           }
         }
       },
-      "clk_div_1": {
+      "SLOW_DEBUG_CLK": {
         "vlnv": "xilinx.com:module_ref:clk_div:1.0",
         "xci_name": "risc16System_clk_div_1_0",
         "parameters": {
@@ -384,7 +361,7 @@
           }
         }
       },
-      "clock_bus_0": {
+      "Clock_Bus": {
         "vlnv": "xilinx.com:module_ref:clock_bus:1.0",
         "xci_name": "risc16System_clock_bus_0_0",
         "reference_info": {
@@ -405,128 +382,371 @@
             "right": "0"
           }
         }
+      },
+      "VGA_25MHz_CLK": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "risc16System_clk_wiz_0_1",
+        "parameters": {
+          "CLKOUT1_JITTER": {
+            "value": "181.828"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "104.359"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "25"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "9.125"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "36.500"
+          },
+          "MMCM_DIVCLK_DIVIDE": {
+            "value": "1"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "false"
+          }
+        }
+      },
+      "MEM": {
+        "vlnv": "xilinx.com:module_ref:ram:1.0",
+        "xci_name": "risc16System_ram_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "ram",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "risc16System_risc16_0_0_mem_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "addr": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pc": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pgm": {
+            "direction": "I"
+          },
+          "pgm_data": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pgm_addr": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pg_wr": {
+            "direction": "I"
+          },
+          "ir": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "rw": {
+            "direction": "I"
+          },
+          "data_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "mem_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "status_reg": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "Risc16_CPU": {
+        "vlnv": "xilinx.com:module_ref:risc16:1.0",
+        "xci_name": "risc16System_risc16_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "risc16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "mem_clk": {
+            "type": "clk",
+            "direction": "O",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "clk_in": {
+            "direction": "I"
+          },
+          "pgm": {
+            "direction": "I"
+          },
+          "pclk": {
+            "direction": "I"
+          },
+          "pc_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "outRegA": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "mem_addr": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "ir": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "mem_rw": {
+            "direction": "O"
+          },
+          "data_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "data_write": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "status_reg": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "vga_0": {
+        "vlnv": "xilinx.com:module_ref:vga:1.0",
+        "xci_name": "risc16System_vga_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "vga",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "/VGA_25MHz_CLK_clk_out1",
+                "value_src": "ip_prop"
+              },
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "red": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "green": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "blue": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "hsync": {
+            "direction": "O"
+          },
+          "vsync": {
+            "direction": "O"
+          }
+        }
       }
     },
     "nets": {
       "nexys_7seg_0_seg": {
         "ports": [
-          "nexys_7seg_0/seg",
+          "nexys_7seg_display/seg",
           "seg"
         ]
       },
       "nexys_7seg_0_seg_sel": {
         "ports": [
-          "nexys_7seg_0/seg_sel",
+          "nexys_7seg_display/seg_sel",
           "seg_sel"
         ]
       },
       "clk_1": {
         "ports": [
           "clk",
-          "clk_wiz_0/clk_in1",
-          "spi_slave_0/clk",
-          "CPU_Programmer_0/clk",
-          "risc16_0/pclk"
+          "CLK_5MHz/clk_in1",
+          "spi_slave/clk",
+          "CPU_Programmer/clk",
+          "VGA_25MHz_CLK/clk_in1",
+          "Risc16_CPU/pclk"
         ]
       },
       "clk_wiz_0_clk_out1": {
         "ports": [
-          "clk_wiz_0/clk_out1",
-          "clk_div_0/clk"
+          "CLK_5MHz/clk_out1",
+          "clk_div_by_10/clk"
         ]
       },
       "clk_div_0_clk_out": {
         "ports": [
-          "clk_div_0/clk_out",
-          "nexys_7seg_0/clk",
-          "display_ctrl_0/clk",
+          "clk_div_by_10/clk_out",
+          "nexys_7seg_display/clk",
+          "display_ctrl/clk",
           "LED_B",
-          "clk_div_1/clk"
+          "SLOW_DEBUG_CLK/clk"
         ]
       },
       "display_ctrl_0_data_out": {
         "ports": [
-          "display_ctrl_0/data_out",
-          "nexys_7seg_0/data"
+          "display_ctrl/data_out",
+          "nexys_7seg_display/data"
         ]
       },
       "BTND_1": {
         "ports": [
           "BTND",
-          "risc16_0/rst"
+          "MEM/rst",
+          "Risc16_CPU/rst",
+          "vga_0/rst"
         ]
       },
       "mosi_1": {
         "ports": [
           "mosi",
-          "spi_slave_0/mosi"
+          "spi_slave/mosi"
         ]
       },
       "sclk_1": {
         "ports": [
           "sclk",
-          "spi_slave_0/sclk"
+          "spi_slave/sclk"
         ]
       },
       "ss_1": {
         "ports": [
           "ss",
-          "spi_slave_0/ss"
+          "spi_slave/ss"
         ]
       },
       "spi_slave_0_miso": {
         "ports": [
-          "spi_slave_0/miso",
+          "spi_slave/miso",
           "miso"
         ]
       },
       "spi_slave_0_rx_recv": {
         "ports": [
-          "spi_slave_0/rx_recv",
-          "CPU_Programmer_0/byte_in"
+          "spi_slave/rx_recv",
+          "CPU_Programmer/byte_in"
         ]
       },
       "spi_slave_0_rrdy": {
         "ports": [
-          "spi_slave_0/rrdy",
-          "CPU_Programmer_0/rrdy"
+          "spi_slave/rrdy",
+          "CPU_Programmer/rrdy"
         ]
       },
       "CPU_Programmer_0_pgm": {
         "ports": [
           "pgm",
           "pgm_led",
-          "risc16_0/pgm"
+          "MEM/pgm",
+          "Risc16_CPU/pgm"
         ]
       },
       "CPU_Programmer_0_pgm_data": {
         "ports": [
-          "CPU_Programmer_0/pgm_data",
-          "risc16_0/pgm_data"
+          "CPU_Programmer/pgm_data",
+          "MEM/pgm_data"
         ]
       },
       "CPU_Programmer_0_pgm_addr": {
         "ports": [
-          "CPU_Programmer_0/pgm_addr",
-          "risc16_0/pgm_addr"
+          "CPU_Programmer/pgm_addr",
+          "MEM/pgm_addr"
         ]
       },
       "CPU_Programmer_0_pd_wr": {
         "ports": [
-          "CPU_Programmer_0/pg_wr",
-          "risc16_0/pg_wr"
+          "CPU_Programmer/pg_wr",
+          "MEM/pg_wr"
         ]
       },
       "risc16_0_outRegA": {
         "ports": [
-          "risc16_0/outRegA",
-          "display_ctrl_0/data"
+          "Risc16_CPU/outRegA",
+          "display_ctrl/data"
         ]
       },
       "risc16_0_pc_out": {
         "ports": [
-          "risc16_0/pc_out",
-          "display_ctrl_0/pc_in"
+          "Risc16_CPU/pc_out",
+          "display_ctrl/pc_in",
+          "MEM/pc"
         ]
       },
       "clk_sel_1": {
@@ -538,25 +758,103 @@
       "mux_0_out": {
         "ports": [
           "Clk_Mux/mux_out",
-          "risc16_0/clk_in"
+          "Risc16_CPU/clk_in"
         ]
       },
       "clk_div_1_clk_out": {
         "ports": [
-          "clk_div_1/clk_out",
-          "clock_bus_0/clka"
+          "SLOW_DEBUG_CLK/clk_out",
+          "Clock_Bus/clka"
         ]
       },
       "BTNU_1": {
         "ports": [
           "BTNU",
-          "clock_bus_0/clkb"
+          "Clock_Bus/clkb"
         ]
       },
       "clock_bus_0_clk_bus": {
         "ports": [
-          "clock_bus_0/clk_bus",
+          "Clock_Bus/clk_bus",
           "Clk_Mux/mux_in"
+        ]
+      },
+      "clk_wiz_0_clk_out2": {
+        "ports": [
+          "VGA_25MHz_CLK/clk_out1",
+          "vga_0/clk"
+        ]
+      },
+      "vga_0_red": {
+        "ports": [
+          "vga_0/red",
+          "VGA_R"
+        ]
+      },
+      "vga_0_green": {
+        "ports": [
+          "vga_0/green",
+          "VGA_G"
+        ]
+      },
+      "vga_0_blue": {
+        "ports": [
+          "vga_0/blue",
+          "VGA_B"
+        ]
+      },
+      "vga_0_hsync": {
+        "ports": [
+          "vga_0/hsync",
+          "VGA_HS"
+        ]
+      },
+      "vga_0_vsync": {
+        "ports": [
+          "vga_0/vsync",
+          "VGA_VS"
+        ]
+      },
+      "Risc16_CPU_mem_addr": {
+        "ports": [
+          "Risc16_CPU/mem_addr",
+          "MEM/addr"
+        ]
+      },
+      "ram_0_ir": {
+        "ports": [
+          "MEM/ir",
+          "Risc16_CPU/ir"
+        ]
+      },
+      "Risc16_CPU_mem_rw": {
+        "ports": [
+          "Risc16_CPU/mem_rw",
+          "MEM/rw"
+        ]
+      },
+      "Risc16_CPU_data_write": {
+        "ports": [
+          "Risc16_CPU/data_write",
+          "MEM/mem_in"
+        ]
+      },
+      "ram_0_status_reg": {
+        "ports": [
+          "MEM/status_reg",
+          "Risc16_CPU/status_reg"
+        ]
+      },
+      "ram_0_data_out": {
+        "ports": [
+          "MEM/data_out",
+          "Risc16_CPU/data_in"
+        ]
+      },
+      "Risc16_CPU_mem_clk": {
+        "ports": [
+          "Risc16_CPU/mem_clk",
+          "MEM/clk"
         ]
       }
     }

@@ -6,7 +6,7 @@ module ctrl(
            output reg [9:0] imm,
            output reg [15:0] mem_addr,
            output reg rw,
-           output reg [2:0] gpr_write_src, mem_write_src,
+           output reg [2:0] gpr_write_src,
            output reg [15:0] gpr_write_data,
            output reg [1:0] branch,
            input [15:0] pc
@@ -88,7 +88,6 @@ begin
                 gpr_write_en = 1'b0;
                 gpr_read_addr_0 = ir[12:10];
                 mem_addr = {6'd0, ir[9:0]};
-                mem_write_src = GPR;
             end
             3'b101:
             begin

@@ -1,10 +1,12 @@
 section .data
-	portA: dw 0
+	portA: dw 5
 
 section .text
-	movi	r1, 0x0
 	loop:
-		addi	r1, r1, 0x1
+		movi	r1, 0x6
+		str	r1, portA
+		movi	r1, 0x3
+		ldr	r1, portA
 		ldr	r5, loop
 		jalr	r6, r5
 	hlt	

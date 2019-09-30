@@ -2,55 +2,34 @@ module risc16 (
            input clk_in,
            input rst,
            input pgm,
-           input [15:0] pgm_data,
-           input [15:0] pgm_addr,
-           input pg_wr,
            input pclk,
            output[15:0] pc_out,
-           output[15:0] outRegA
+           output[15:0] outRegA,
+           output [15:0] mem_addr,
+           input [15:0] ir,
+           output mem_rw,
+           input [15:0] data_in,
+           output [15:0] data_write,
+           input [15:0] status_reg,
+           output mem_clk
        );
 
 parameter PROG_START = 16'h000F;
 
 // mux clks
 wire clk = (pgm)? pclk : clk_in;
+assign mem_clk = clk;
 
 // <--- cpu regs --->
 
 // program counter reg
 reg [15:0] pc = PROG_START;
 assign pc_out = pc;
-wire [15:0] porta;
-//assign outRegA = porta;
 
-// instruction reg
-wire [15:0] ir;
-wire [15:0] sys_ctrl;
-wire halt = sys_ctrl[0];
+wire halt = status_reg[0];
 
-// memory regs
-wire [15:0] mem_addr;
-reg [15:0] mem_write_data;
-wire [15:0] mem_out;
-wire rw;
-
-// memory
-ram mem(
-        .clk(clk),
-        .rst(rst),
-        .addr(mem_addr),
-        .pc(pc),
-        .pgm(pgm),
-        .pgm_data(pgm_data),
-        .pgm_addr(pgm_addr),
-        .pg_wr(pg_wr),
-        .ir(ir),
-        .rw(rw),
-        .mem_out(mem_out),
-        .mem_in(mem_write_data),
-        .porta(porta),
-        .sys_ctrl(sys_ctrl)
-    );
+// output onto data write
+assign data_write = gpr_read_data_1;
 
 // general purpose register file
 wire gpr_write_en = 1'd1;
@@ -89,24 +68,15 @@ alu cpu_alu(
 wire [15:0] gpr_write_data_ctrl_out;
 
 wire [2:0] gpr_write_src;
+
 // gpr write data mux
 always @(*)
 begin
     case (gpr_write_src)
         3'b000: gpr_write_data = alu_out;
         3'b001: gpr_write_data = gpr_write_data_ctrl_out;
-        3'b010: gpr_write_data = mem_out;
+        3'b010: gpr_write_data = data_in;
         default: gpr_write_data = alu_out;
-    endcase
-end
-
-wire [2:0] mem_write_src;
-// write mem data mux
-always @(*)
-begin
-    case (mem_write_src)
-        3'b000: mem_write_data = gpr_read_data_1;
-        default: mem_write_data = gpr_read_data_1;
     endcase
 end
 
@@ -114,7 +84,7 @@ wire [1:0] branch;
 
 ctrl cpu_ctrl(
          .ir(ir),
-         .rst(cpu_rst),
+         .rst(rst),
          .gpr_write_addr(gpr_write_addr),
          .gpr_read_addr_0(gpr_read_addr_1),
          .gpr_read_addr_1(gpr_read_addr_2),
@@ -122,20 +92,21 @@ ctrl cpu_ctrl(
          .gpr_write_en(gpr_write_en),
          .imm(imm),
          .mem_addr(mem_addr),
-         .rw(rw),
+         .rw(mem_rw),
          .gpr_write_src(gpr_write_src),
-         .mem_write_src(mem_write_src),
          .gpr_write_data(gpr_write_data_ctrl_out),
          .branch(branch),
          .pc(pc)
      );
 
 // pc control logic
+reg counter = 0;
 always @( posedge clk )
 begin
     if (rst) begin
         pc <= PROG_START;
     end else begin
+        if (counter) begin
         if (halt || pgm) begin
             pc <= pc;
         end else begin
@@ -154,6 +125,8 @@ begin
                 pc <= pc + 16'd1;
             end
         end
+        end
+        counter <= counter + 1'd1;
     end
 end
 endmodule

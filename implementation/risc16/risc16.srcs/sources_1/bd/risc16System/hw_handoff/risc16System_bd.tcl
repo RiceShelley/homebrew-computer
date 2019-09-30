@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# CPU_Programmer, mux, clk_div, clk_div, clock_bus, display_ctrl, nexys_7seg, risc16, spi_slave
+# CPU_Programmer, mux, clock_bus, ram, risc16, clk_div, clk_div, display_ctrl, nexys_7seg, spi_slave, vga
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -168,6 +168,11 @@ proc create_root_design { parentCell } {
   set BTND [ create_bd_port -dir I BTND ]
   set BTNU [ create_bd_port -dir I BTNU ]
   set LED_B [ create_bd_port -dir O LED_B ]
+  set VGA_B [ create_bd_port -dir O -from 3 -to 0 VGA_B ]
+  set VGA_G [ create_bd_port -dir O -from 3 -to 0 VGA_G ]
+  set VGA_HS [ create_bd_port -dir O VGA_HS ]
+  set VGA_R [ create_bd_port -dir O -from 3 -to 0 VGA_R ]
+  set VGA_VS [ create_bd_port -dir O VGA_VS ]
   set clk [ create_bd_port -dir I clk ]
   set clk_sel [ create_bd_port -dir I clk_sel ]
   set miso [ create_bd_port -dir O miso ]
@@ -179,13 +184,26 @@ proc create_root_design { parentCell } {
   set seg_sel [ create_bd_port -dir O -from 7 -to 0 seg_sel ]
   set ss [ create_bd_port -dir I ss ]
 
-  # Create instance: CPU_Programmer_0, and set properties
+  # Create instance: CLK_5MHz, and set properties
+  set CLK_5MHz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 CLK_5MHz ]
+  set_property -dict [ list \
+   CONFIG.CLKOUT1_JITTER {631.442} \
+   CONFIG.CLKOUT1_PHASE_ERROR {346.848} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {5} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {32.000} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {128.000} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {5} \
+   CONFIG.USE_LOCKED {false} \
+   CONFIG.USE_RESET {false} \
+ ] $CLK_5MHz
+
+  # Create instance: CPU_Programmer, and set properties
   set block_name CPU_Programmer
-  set block_cell_name CPU_Programmer_0
-  if { [catch {set CPU_Programmer_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  set block_cell_name CPU_Programmer
+  if { [catch {set CPU_Programmer [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $CPU_Programmer_0 eq "" } {
+   } elseif { $CPU_Programmer eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -204,127 +222,162 @@ proc create_root_design { parentCell } {
    CONFIG.WIDTH {2} \
  ] $Clk_Mux
 
-  # Create instance: clk_div_0, and set properties
-  set block_name clk_div
-  set block_cell_name clk_div_0
-  if { [catch {set clk_div_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create instance: Clock_Bus, and set properties
+  set block_name clock_bus
+  set block_cell_name Clock_Bus
+  if { [catch {set Clock_Bus [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $clk_div_0 eq "" } {
+   } elseif { $Clock_Bus eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: MEM, and set properties
+  set block_name ram
+  set block_cell_name MEM
+  if { [catch {set MEM [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $MEM eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: Risc16_CPU, and set properties
+  set block_name risc16
+  set block_cell_name Risc16_CPU
+  if { [catch {set Risc16_CPU [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Risc16_CPU eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: SLOW_DEBUG_CLK, and set properties
+  set block_name clk_div
+  set block_cell_name SLOW_DEBUG_CLK
+  if { [catch {set SLOW_DEBUG_CLK [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $SLOW_DEBUG_CLK eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
     set_property -dict [ list \
    CONFIG.DIV {10} \
- ] $clk_div_0
+ ] $SLOW_DEBUG_CLK
 
-  # Create instance: clk_div_1, and set properties
-  set block_name clk_div
-  set block_cell_name clk_div_1
-  if { [catch {set clk_div_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $clk_div_1 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.DIV {10} \
- ] $clk_div_1
-
-  # Create instance: clk_wiz_0, and set properties
-  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
+  # Create instance: VGA_25MHz_CLK, and set properties
+  set VGA_25MHz_CLK [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 VGA_25MHz_CLK ]
   set_property -dict [ list \
-   CONFIG.CLKOUT1_JITTER {631.442} \
-   CONFIG.CLKOUT1_PHASE_ERROR {346.848} \
-   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {5} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {32.000} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {128.000} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {5} \
+   CONFIG.CLKOUT1_JITTER {181.828} \
+   CONFIG.CLKOUT1_PHASE_ERROR {104.359} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {25} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {9.125} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {36.500} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
    CONFIG.USE_LOCKED {false} \
    CONFIG.USE_RESET {false} \
- ] $clk_wiz_0
+ ] $VGA_25MHz_CLK
 
-  # Create instance: clock_bus_0, and set properties
-  set block_name clock_bus
-  set block_cell_name clock_bus_0
-  if { [catch {set clock_bus_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create instance: clk_div_by_10, and set properties
+  set block_name clk_div
+  set block_cell_name clk_div_by_10
+  if { [catch {set clk_div_by_10 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $clock_bus_0 eq "" } {
+   } elseif { $clk_div_by_10 eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
-  
-  # Create instance: display_ctrl_0, and set properties
+    set_property -dict [ list \
+   CONFIG.DIV {10} \
+ ] $clk_div_by_10
+
+  # Create instance: display_ctrl, and set properties
   set block_name display_ctrl
-  set block_cell_name display_ctrl_0
-  if { [catch {set display_ctrl_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  set block_cell_name display_ctrl
+  if { [catch {set display_ctrl [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $display_ctrl_0 eq "" } {
+   } elseif { $display_ctrl eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
-  # Create instance: nexys_7seg_0, and set properties
+  # Create instance: nexys_7seg_display, and set properties
   set block_name nexys_7seg
-  set block_cell_name nexys_7seg_0
-  if { [catch {set nexys_7seg_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  set block_cell_name nexys_7seg_display
+  if { [catch {set nexys_7seg_display [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $nexys_7seg_0 eq "" } {
+   } elseif { $nexys_7seg_display eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
-  # Create instance: risc16_0, and set properties
-  set block_name risc16
-  set block_cell_name risc16_0
-  if { [catch {set risc16_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $risc16_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: spi_slave_0, and set properties
+  # Create instance: spi_slave, and set properties
   set block_name spi_slave
-  set block_cell_name spi_slave_0
-  if { [catch {set spi_slave_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  set block_cell_name spi_slave
+  if { [catch {set spi_slave [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $spi_slave_0 eq "" } {
+   } elseif { $spi_slave eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: vga_0, and set properties
+  set block_name vga
+  set block_cell_name vga_0
+  if { [catch {set vga_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $vga_0 eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
   # Create port connections
-  connect_bd_net -net BTND_1 [get_bd_ports BTND] [get_bd_pins risc16_0/rst]
-  connect_bd_net -net BTNU_1 [get_bd_ports BTNU] [get_bd_pins clock_bus_0/clkb]
-  connect_bd_net -net CPU_Programmer_0_pd_wr [get_bd_pins CPU_Programmer_0/pg_wr] [get_bd_pins risc16_0/pg_wr]
-  connect_bd_net -net CPU_Programmer_0_pgm [get_bd_ports pgm] [get_bd_ports pgm_led] [get_bd_pins risc16_0/pgm]
-  connect_bd_net -net CPU_Programmer_0_pgm_addr [get_bd_pins CPU_Programmer_0/pgm_addr] [get_bd_pins risc16_0/pgm_addr]
-  connect_bd_net -net CPU_Programmer_0_pgm_data [get_bd_pins CPU_Programmer_0/pgm_data] [get_bd_pins risc16_0/pgm_data]
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins CPU_Programmer_0/clk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins risc16_0/pclk] [get_bd_pins spi_slave_0/clk]
-  connect_bd_net -net clk_div_0_clk_out [get_bd_ports LED_B] [get_bd_pins clk_div_0/clk_out] [get_bd_pins clk_div_1/clk] [get_bd_pins display_ctrl_0/clk] [get_bd_pins nexys_7seg_0/clk]
-  connect_bd_net -net clk_div_1_clk_out [get_bd_pins clk_div_1/clk_out] [get_bd_pins clock_bus_0/clka]
+  connect_bd_net -net BTND_1 [get_bd_ports BTND] [get_bd_pins MEM/rst] [get_bd_pins Risc16_CPU/rst] [get_bd_pins vga_0/rst]
+  connect_bd_net -net BTNU_1 [get_bd_ports BTNU] [get_bd_pins Clock_Bus/clkb]
+  connect_bd_net -net CPU_Programmer_0_pd_wr [get_bd_pins CPU_Programmer/pg_wr] [get_bd_pins MEM/pg_wr]
+  connect_bd_net -net CPU_Programmer_0_pgm [get_bd_ports pgm] [get_bd_ports pgm_led] [get_bd_pins MEM/pgm] [get_bd_pins Risc16_CPU/pgm]
+  connect_bd_net -net CPU_Programmer_0_pgm_addr [get_bd_pins CPU_Programmer/pgm_addr] [get_bd_pins MEM/pgm_addr]
+  connect_bd_net -net CPU_Programmer_0_pgm_data [get_bd_pins CPU_Programmer/pgm_data] [get_bd_pins MEM/pgm_data]
+  connect_bd_net -net Risc16_CPU_data_write [get_bd_pins MEM/mem_in] [get_bd_pins Risc16_CPU/data_write]
+  connect_bd_net -net Risc16_CPU_mem_addr [get_bd_pins MEM/addr] [get_bd_pins Risc16_CPU/mem_addr]
+  connect_bd_net -net Risc16_CPU_mem_clk [get_bd_pins MEM/clk] [get_bd_pins Risc16_CPU/mem_clk]
+  connect_bd_net -net Risc16_CPU_mem_rw [get_bd_pins MEM/rw] [get_bd_pins Risc16_CPU/mem_rw]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins CLK_5MHz/clk_in1] [get_bd_pins CPU_Programmer/clk] [get_bd_pins Risc16_CPU/pclk] [get_bd_pins VGA_25MHz_CLK/clk_in1] [get_bd_pins spi_slave/clk]
+  connect_bd_net -net clk_div_0_clk_out [get_bd_ports LED_B] [get_bd_pins SLOW_DEBUG_CLK/clk] [get_bd_pins clk_div_by_10/clk_out] [get_bd_pins display_ctrl/clk] [get_bd_pins nexys_7seg_display/clk]
+  connect_bd_net -net clk_div_1_clk_out [get_bd_pins Clock_Bus/clka] [get_bd_pins SLOW_DEBUG_CLK/clk_out]
   connect_bd_net -net clk_sel_1 [get_bd_ports clk_sel] [get_bd_pins Clk_Mux/mux_sel]
-  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins clk_div_0/clk] [get_bd_pins clk_wiz_0/clk_out1]
-  connect_bd_net -net clock_bus_0_clk_bus [get_bd_pins Clk_Mux/mux_in] [get_bd_pins clock_bus_0/clk_bus]
-  connect_bd_net -net display_ctrl_0_data_out [get_bd_pins display_ctrl_0/data_out] [get_bd_pins nexys_7seg_0/data]
-  connect_bd_net -net mosi_1 [get_bd_ports mosi] [get_bd_pins spi_slave_0/mosi]
-  connect_bd_net -net mux_0_out [get_bd_pins Clk_Mux/mux_out] [get_bd_pins risc16_0/clk_in]
-  connect_bd_net -net nexys_7seg_0_seg [get_bd_ports seg] [get_bd_pins nexys_7seg_0/seg]
-  connect_bd_net -net nexys_7seg_0_seg_sel [get_bd_ports seg_sel] [get_bd_pins nexys_7seg_0/seg_sel]
-  connect_bd_net -net risc16_0_outRegA [get_bd_pins display_ctrl_0/data] [get_bd_pins risc16_0/outRegA]
-  connect_bd_net -net risc16_0_pc_out [get_bd_pins display_ctrl_0/pc_in] [get_bd_pins risc16_0/pc_out]
-  connect_bd_net -net sclk_1 [get_bd_ports sclk] [get_bd_pins spi_slave_0/sclk]
-  connect_bd_net -net spi_slave_0_miso [get_bd_ports miso] [get_bd_pins spi_slave_0/miso]
-  connect_bd_net -net spi_slave_0_rrdy [get_bd_pins CPU_Programmer_0/rrdy] [get_bd_pins spi_slave_0/rrdy]
-  connect_bd_net -net spi_slave_0_rx_recv [get_bd_pins CPU_Programmer_0/byte_in] [get_bd_pins spi_slave_0/rx_recv]
-  connect_bd_net -net ss_1 [get_bd_ports ss] [get_bd_pins spi_slave_0/ss]
+  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins CLK_5MHz/clk_out1] [get_bd_pins clk_div_by_10/clk]
+  connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins VGA_25MHz_CLK/clk_out1] [get_bd_pins vga_0/clk]
+  connect_bd_net -net clock_bus_0_clk_bus [get_bd_pins Clk_Mux/mux_in] [get_bd_pins Clock_Bus/clk_bus]
+  connect_bd_net -net display_ctrl_0_data_out [get_bd_pins display_ctrl/data_out] [get_bd_pins nexys_7seg_display/data]
+  connect_bd_net -net mosi_1 [get_bd_ports mosi] [get_bd_pins spi_slave/mosi]
+  connect_bd_net -net mux_0_out [get_bd_pins Clk_Mux/mux_out] [get_bd_pins Risc16_CPU/clk_in]
+  connect_bd_net -net nexys_7seg_0_seg [get_bd_ports seg] [get_bd_pins nexys_7seg_display/seg]
+  connect_bd_net -net nexys_7seg_0_seg_sel [get_bd_ports seg_sel] [get_bd_pins nexys_7seg_display/seg_sel]
+  connect_bd_net -net ram_0_data_out [get_bd_pins MEM/data_out] [get_bd_pins Risc16_CPU/data_in]
+  connect_bd_net -net ram_0_ir [get_bd_pins MEM/ir] [get_bd_pins Risc16_CPU/ir]
+  connect_bd_net -net ram_0_status_reg [get_bd_pins MEM/status_reg] [get_bd_pins Risc16_CPU/status_reg]
+  connect_bd_net -net risc16_0_outRegA [get_bd_pins Risc16_CPU/outRegA] [get_bd_pins display_ctrl/data]
+  connect_bd_net -net risc16_0_pc_out [get_bd_pins MEM/pc] [get_bd_pins Risc16_CPU/pc_out] [get_bd_pins display_ctrl/pc_in]
+  connect_bd_net -net sclk_1 [get_bd_ports sclk] [get_bd_pins spi_slave/sclk]
+  connect_bd_net -net spi_slave_0_miso [get_bd_ports miso] [get_bd_pins spi_slave/miso]
+  connect_bd_net -net spi_slave_0_rrdy [get_bd_pins CPU_Programmer/rrdy] [get_bd_pins spi_slave/rrdy]
+  connect_bd_net -net spi_slave_0_rx_recv [get_bd_pins CPU_Programmer/byte_in] [get_bd_pins spi_slave/rx_recv]
+  connect_bd_net -net ss_1 [get_bd_ports ss] [get_bd_pins spi_slave/ss]
+  connect_bd_net -net vga_0_blue [get_bd_ports VGA_B] [get_bd_pins vga_0/blue]
+  connect_bd_net -net vga_0_green [get_bd_ports VGA_G] [get_bd_pins vga_0/green]
+  connect_bd_net -net vga_0_hsync [get_bd_ports VGA_HS] [get_bd_pins vga_0/hsync]
+  connect_bd_net -net vga_0_red [get_bd_ports VGA_R] [get_bd_pins vga_0/red]
+  connect_bd_net -net vga_0_vsync [get_bd_ports VGA_VS] [get_bd_pins vga_0/vsync]
 
   # Create address segments
 

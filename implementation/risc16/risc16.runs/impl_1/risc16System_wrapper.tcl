@@ -60,7 +60,6 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
@@ -73,15 +72,15 @@ set rc [catch {
   set_property board_part digilentinc.com:nexys-a7-100t:part0:1.0 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir /home/rootie/risc16/risc16.cache/wt [current_project]
-  set_property parent.project_path /home/rootie/risc16/risc16.xpr [current_project]
-  set_property ip_output_repo /home/rootie/risc16/risc16.cache/ip [current_project]
+  set_property webtalk.parent_dir /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.cache/wt [current_project]
+  set_property parent.project_path /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.xpr [current_project]
+  set_property ip_output_repo /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_CDC [current_project]
-  add_files -quiet /home/rootie/risc16/risc16.runs/synth_1/risc16System_wrapper.dcp
+  add_files -quiet /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/synth_1/risc16System_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd
+  add_files /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd
   set_param project.isImplRun false
   read_xdc /home/rootie/Documents/digilent-xdc-master/Nexys-A7-100T-Master.xdc
   set_param project.isImplRun true

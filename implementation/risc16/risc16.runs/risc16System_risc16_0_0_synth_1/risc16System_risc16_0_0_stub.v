@@ -1,8 +1,8 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Sun Sep 15 00:29:44 2019
-// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.2 LTS
+// Date        : Mon Sep 30 00:10:24 2019
+// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 // Command     : write_verilog -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ risc16System_risc16_0_0_stub.v
 // Design      : risc16System_risc16_0_0
@@ -14,16 +14,20 @@
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "risc16,Vivado 2018.3" *)
-module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix(clk_in, rst, pgm, pgm_data, pgm_addr, pg_wr, pclk, 
-  pc_out, outRegA)
-/* synthesis syn_black_box black_box_pad_pin="clk_in,rst,pgm,pgm_data[15:0],pgm_addr[15:0],pg_wr,pclk,pc_out[15:0],outRegA[15:0]" */;
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix(clk_in, rst, pgm, pclk, pc_out, outRegA, mem_addr, ir, 
+  mem_rw, data_in, data_write, status_reg, mem_clk)
+/* synthesis syn_black_box black_box_pad_pin="clk_in,rst,pgm,pclk,pc_out[15:0],outRegA[15:0],mem_addr[15:0],ir[15:0],mem_rw,data_in[15:0],data_write[15:0],status_reg[15:0],mem_clk" */;
   input clk_in;
   input rst;
   input pgm;
-  input [15:0]pgm_data;
-  input [15:0]pgm_addr;
-  input pg_wr;
   input pclk;
   output [15:0]pc_out;
   output [15:0]outRegA;
+  output [15:0]mem_addr;
+  input [15:0]ir;
+  output mem_rw;
+  input [15:0]data_in;
+  output [15:0]data_write;
+  input [15:0]status_reg;
+  output mem_clk;
 endmodule

@@ -1,8 +1,8 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Sun Sep 15 02:05:16 2019
-| Host             : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.2 LTS
+| Date             : Mon Sep 30 13:34:52 2019
+| Host             : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 | Command          : report_power -file risc16System_wrapper_power_routed.rpt -pb risc16System_wrapper_power_summary_routed.pb -rpx risc16System_wrapper_power_routed.rpx
 | Design           : risc16System_wrapper
 | Device           : xc7a100tcsg324-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.279        |
+| Total On-Chip Power (W)  | 0.395        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.182        |
+| Dynamic (W)              | 0.297        |
 | Device Static (W)        | 0.098        |
 | Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 83.7         |
-| Junction Temperature (C) | 26.3         |
+| Max Ambient (C)          | 83.2         |
+| Junction Temperature (C) | 26.8         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.026 |        6 |       --- |             --- |
-| Slice Logic    |     0.014 |     9658 |       --- |             --- |
-|   LUT as Logic |     0.013 |     3378 |     63400 |            5.33 |
-|   F7/F8 Muxes  |     0.001 |     1653 |     63400 |            2.61 |
+| Clocks         |     0.028 |        9 |       --- |             --- |
+| Slice Logic    |     0.013 |     9672 |       --- |             --- |
+|   LUT as Logic |     0.012 |     3390 |     63400 |            5.35 |
+|   F7/F8 Muxes  |     0.001 |     1654 |     63400 |            2.61 |
 |   CARRY4       |    <0.001 |       14 |     15850 |            0.09 |
-|   Register     |    <0.001 |     4452 |    126800 |            3.51 |
-|   Others       |     0.000 |       22 |       --- |             --- |
-| Signals        |     0.026 |     6235 |       --- |             --- |
-| MMCM           |     0.086 |        1 |         6 |           16.67 |
-| I/O            |     0.030 |       27 |       210 |           12.86 |
+|   Register     |    <0.001 |     4443 |    126800 |            3.50 |
+|   Others       |     0.000 |       27 |       --- |             --- |
+| Signals        |     0.023 |     6243 |       --- |             --- |
+| MMCM           |     0.202 |        2 |         6 |           33.33 |
+| I/O            |     0.030 |       41 |       210 |           19.52 |
 | Static Power   |     0.098 |          |           |                 |
-| Total          |     0.279 |          |           |                 |
+| Total          |     0.395 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.082 |       0.067 |      0.015 |
-| Vccaux    |       1.800 |     0.067 |       0.049 |      0.018 |
-| Vcco33    |       3.300 |     0.012 |       0.008 |      0.004 |
+| Vccint    |       1.000 |     0.081 |       0.065 |      0.016 |
+| Vccaux    |       1.800 |     0.131 |       0.113 |      0.018 |
+| Vcco33    |       3.300 |     0.013 |       0.009 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -126,14 +126,16 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+-----------------------------------+-----------------------------------------------------------------+-----------------+
-| Clock                             | Domain                                                          | Constraint (ns) |
-+-----------------------------------+-----------------------------------------------------------------+-----------------+
-| clk_out1_risc16System_clk_wiz_0_0 | risc16System_i/clk_wiz_0/inst/clk_out1_risc16System_clk_wiz_0_0 |           200.0 |
-| clkfbout_risc16System_clk_wiz_0_0 | risc16System_i/clk_wiz_0/inst/clkfbout_risc16System_clk_wiz_0_0 |            50.0 |
-| sys_clk_pin                       | clk                                                             |            10.0 |
-| sys_clk_pin                       | clk_IBUF_BUFG                                                   |            10.0 |
-+-----------------------------------+-----------------------------------------------------------------+-----------------+
++-----------------------------------+---------------------------------------------------------------------+-----------------+
+| Clock                             | Domain                                                              | Constraint (ns) |
++-----------------------------------+---------------------------------------------------------------------+-----------------+
+| clk_out1_risc16System_clk_wiz_0_0 | risc16System_i/CLK_5MHz/inst/clk_out1_risc16System_clk_wiz_0_0      |           200.0 |
+| clk_out1_risc16System_clk_wiz_0_1 | risc16System_i/VGA_25MHz_CLK/inst/clk_out1_risc16System_clk_wiz_0_1 |            40.0 |
+| clkfbout_risc16System_clk_wiz_0_0 | risc16System_i/CLK_5MHz/inst/clkfbout_risc16System_clk_wiz_0_0      |            50.0 |
+| clkfbout_risc16System_clk_wiz_0_1 | risc16System_i/VGA_25MHz_CLK/inst/clkfbout_risc16System_clk_wiz_0_1 |            10.0 |
+| sys_clk_pin                       | clk                                                                 |            10.0 |
+| sys_clk_pin                       | clk_IBUF_BUFG                                                       |            10.0 |
++-----------------------------------+---------------------------------------------------------------------+-----------------+
 
 
 3. Detailed Reports
@@ -145,12 +147,18 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| risc16System_wrapper |     0.182 |
-|   risc16System_i     |     0.152 |
-|     clk_wiz_0        |     0.086 |
+| risc16System_wrapper |     0.297 |
+|   risc16System_i     |     0.266 |
+|     CLK_5MHz         |     0.086 |
 |       inst           |     0.086 |
-|     risc16_0         |     0.063 |
-|       inst           |     0.063 |
+|     CPU_Programmer   |     0.001 |
+|       inst           |     0.001 |
+|     MEM              |     0.048 |
+|       inst           |     0.048 |
+|     Risc16_CPU       |     0.012 |
+|       inst           |     0.012 |
+|     VGA_25MHz_CLK    |     0.117 |
+|       inst           |     0.117 |
 +----------------------+-----------+
 
 

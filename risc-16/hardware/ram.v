@@ -9,10 +9,9 @@ module ram(
            input pg_wr,
            output [15:0] ir,
            input rw,
-           output [15:0] mem_out,
+           output [15:0] data_out,
            input [15:0] mem_in,
-           output [15:0] porta,
-           output [15:0] sys_ctrl
+           output [15:0] status_reg
 );
 
 parameter MEM_SIZE = 255;
@@ -21,13 +20,11 @@ parameter READ = 0, WRITE = 1;
 // memory
 reg [15:0] mem[MEM_SIZE:0];
 
-assign sys_ctrl = mem[0];
-assign mem_out = mem[addr];
+assign status_reg = mem[0];
+assign data_out = mem[addr];
 
 // program counter decoding
 assign ir = mem[pc];
-// output portA
-assign porta = mem[1];
 
 reg [2:0] pg_wr_buff = 0;
 always @(posedge clk) pg_wr_buff <= {pg_wr_buff[1:0], pg_wr};
