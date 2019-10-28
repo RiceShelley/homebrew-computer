@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Sun Sep 15 01:36:47 2019
-// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.2 LTS
+// Date        : Sun Oct  6 03:11:55 2019
+// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/rootie/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clock_bus_0_0/risc16System_clock_bus_0_0_sim_netlist.v
+//               /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_clock_bus_0_0/risc16System_clock_bus_0_0_sim_netlist.v
 // Design      : risc16System_clock_bus_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -18,16 +18,22 @@
 module risc16System_clock_bus_0_0
    (clka,
     clkb,
+    clkc,
     clk_bus);
   input clka;
   input clkb;
-  output [1:0]clk_bus;
+  input clkc;
+  output [2:0]clk_bus;
 
-  wire clka;
+  wire \<const0> ;
   wire clkb;
+  wire clkc;
 
-  assign clk_bus[1] = clka;
-  assign clk_bus[0] = clkb;
+  assign clk_bus[2] = clkb;
+  assign clk_bus[1] = clkc;
+  assign clk_bus[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
 endmodule
 `ifndef GLBL
 `define GLBL

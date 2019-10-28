@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# CPU_Programmer, mux, clock_bus, ram, risc16, clk_div, clk_div, display_ctrl, nexys_7seg, spi_slave, vga
+# risc16, vga, mux, clock_bus, clk_div, clk_div, Ctrl_Registers, MCU, ram, Video_Buffer, or_gate, display_ctrl, nexys_7seg, CPU_Programmer, spi_slave
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -129,16 +129,14 @@ if { $nRet != 0 } {
 ##################################################################
 
 
-
-# Procedure to create entire design; Provide argument to make
-# procedure reusable. If parentCell is "", will use root.
-proc create_root_design { parentCell } {
+# Hierarchical cell: programer
+proc create_hier_cell_programer { parentCell nameHier } {
 
   variable script_folder
-  variable design_name
 
-  if { $parentCell eq "" } {
-     set parentCell [get_bd_cells /]
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_programer() - Empty argument(s)!"}
+     return
   }
 
   # Get object for parentCell
@@ -161,28 +159,325 @@ proc create_root_design { parentCell } {
   # Set parent object as current
   current_bd_instance $parentObj
 
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
 
-  # Create interface ports
+  # Create interface pins
 
-  # Create ports
-  set BTND [ create_bd_port -dir I BTND ]
-  set BTNU [ create_bd_port -dir I BTNU ]
-  set LED_B [ create_bd_port -dir O LED_B ]
-  set VGA_B [ create_bd_port -dir O -from 3 -to 0 VGA_B ]
-  set VGA_G [ create_bd_port -dir O -from 3 -to 0 VGA_G ]
-  set VGA_HS [ create_bd_port -dir O VGA_HS ]
-  set VGA_R [ create_bd_port -dir O -from 3 -to 0 VGA_R ]
-  set VGA_VS [ create_bd_port -dir O VGA_VS ]
-  set clk [ create_bd_port -dir I clk ]
-  set clk_sel [ create_bd_port -dir I clk_sel ]
-  set miso [ create_bd_port -dir O miso ]
-  set mosi [ create_bd_port -dir I mosi ]
-  set pgm [ create_bd_port -dir I pgm ]
-  set pgm_led [ create_bd_port -dir O pgm_led ]
-  set sclk [ create_bd_port -dir I sclk ]
-  set seg [ create_bd_port -dir O -from 7 -to 0 seg ]
-  set seg_sel [ create_bd_port -dir O -from 7 -to 0 seg_sel ]
-  set ss [ create_bd_port -dir I ss ]
+  # Create pins
+  create_bd_pin -dir I -type clk clk
+  create_bd_pin -dir O miso
+  create_bd_pin -dir I mosi
+  create_bd_pin -dir O pg_wr
+  create_bd_pin -dir O -from 15 -to 0 pgm_addr
+  create_bd_pin -dir O -from 15 -to 0 pgm_data
+  create_bd_pin -dir I sclk
+  create_bd_pin -dir I ss
+
+  # Create instance: CPU_Programmer, and set properties
+  set block_name CPU_Programmer
+  set block_cell_name CPU_Programmer
+  if { [catch {set CPU_Programmer [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $CPU_Programmer eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: spi_slave, and set properties
+  set block_name spi_slave
+  set block_cell_name spi_slave
+  if { [catch {set spi_slave [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $spi_slave eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create port connections
+  connect_bd_net -net CPU_Programmer_pg_wr [get_bd_pins pg_wr] [get_bd_pins CPU_Programmer/pg_wr]
+  connect_bd_net -net CPU_Programmer_pgm_addr [get_bd_pins pgm_addr] [get_bd_pins CPU_Programmer/pgm_addr]
+  connect_bd_net -net CPU_Programmer_pgm_data [get_bd_pins pgm_data] [get_bd_pins CPU_Programmer/pgm_data]
+  connect_bd_net -net clk_1 [get_bd_pins clk] [get_bd_pins CPU_Programmer/clk] [get_bd_pins spi_slave/clk]
+  connect_bd_net -net mosi_1 [get_bd_pins mosi] [get_bd_pins spi_slave/mosi]
+  connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins spi_slave/sclk]
+  connect_bd_net -net spi_slave_miso [get_bd_pins miso] [get_bd_pins spi_slave/miso]
+  connect_bd_net -net spi_slave_rrdy [get_bd_pins CPU_Programmer/rrdy] [get_bd_pins spi_slave/rrdy]
+  connect_bd_net -net spi_slave_rx_recv [get_bd_pins CPU_Programmer/byte_in] [get_bd_pins spi_slave/rx_recv]
+  connect_bd_net -net ss_1 [get_bd_pins ss] [get_bd_pins spi_slave/ss]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: Nexys_Peripherals
+proc create_hier_cell_Nexys_Peripherals { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_Nexys_Peripherals() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I -type clk clk
+  create_bd_pin -dir I -from 15 -to 0 data
+  create_bd_pin -dir I -from 15 -to 0 pc_in
+  create_bd_pin -dir O -from 7 -to 0 seg
+  create_bd_pin -dir O -from 7 -to 0 seg_sel
+
+  # Create instance: display_ctrl, and set properties
+  set block_name display_ctrl
+  set block_cell_name display_ctrl
+  if { [catch {set display_ctrl [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $display_ctrl eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: nexys_7seg_display, and set properties
+  set block_name nexys_7seg
+  set block_cell_name nexys_7seg_display
+  if { [catch {set nexys_7seg_display [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $nexys_7seg_display eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create port connections
+  connect_bd_net -net clk_1 [get_bd_pins clk] [get_bd_pins display_ctrl/clk] [get_bd_pins nexys_7seg_display/clk]
+  connect_bd_net -net data_1 [get_bd_pins data] [get_bd_pins display_ctrl/data]
+  connect_bd_net -net display_ctrl_data_out [get_bd_pins display_ctrl/data_out] [get_bd_pins nexys_7seg_display/data]
+  connect_bd_net -net nexys_7seg_display_seg [get_bd_pins seg] [get_bd_pins nexys_7seg_display/seg]
+  connect_bd_net -net nexys_7seg_display_seg_sel [get_bd_pins seg_sel] [get_bd_pins nexys_7seg_display/seg_sel]
+  connect_bd_net -net pc_in_1 [get_bd_pins pc_in] [get_bd_pins display_ctrl/pc_in]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: Memory
+proc create_hier_cell_Memory { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_Memory() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I -from 15 -to 0 addr
+  create_bd_pin -dir O -from 3 -to 0 blue
+  create_bd_pin -dir I -from 15 -to 0 data_bus
+  create_bd_pin -dir O -from 3 -to 0 green
+  create_bd_pin -dir O hlt_cpu
+  create_bd_pin -dir O -from 15 -to 0 ir
+  create_bd_pin -dir I mem_clk
+  create_bd_pin -dir O -from 15 -to 0 mem_data_out
+  create_bd_pin -dir I -from 15 -to 0 pc
+  create_bd_pin -dir I pg_wr
+  create_bd_pin -dir I pgm
+  create_bd_pin -dir I -from 15 -to 0 pgm_addr
+  create_bd_pin -dir I -type clk pgm_clk
+  create_bd_pin -dir I -from 15 -to 0 pgm_data
+  create_bd_pin -dir O -from 3 -to 0 red
+  create_bd_pin -dir I -type rst rst
+  create_bd_pin -dir I rw
+
+  # Create instance: Ctrl_Registers, and set properties
+  set block_name Ctrl_Registers
+  set block_cell_name Ctrl_Registers
+  if { [catch {set Ctrl_Registers [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Ctrl_Registers eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: MCU, and set properties
+  set block_name MCU
+  set block_cell_name MCU
+  if { [catch {set MCU [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $MCU eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: SYS_MEM, and set properties
+  set block_name ram
+  set block_cell_name SYS_MEM
+  if { [catch {set SYS_MEM [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $SYS_MEM eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: Video_Buffer, and set properties
+  set block_name Video_Buffer
+  set block_cell_name Video_Buffer
+  if { [catch {set Video_Buffer [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Video_Buffer eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: hlt_cpu_or, and set properties
+  set block_name or_gate
+  set block_cell_name hlt_cpu_or
+  if { [catch {set hlt_cpu_or [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $hlt_cpu_or eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create port connections
+  connect_bd_net -net BTND_1 [get_bd_pins rst] [get_bd_pins SYS_MEM/rst]
+  connect_bd_net -net Ctrl_Registers_0_data_out [get_bd_pins Ctrl_Registers/data_out] [get_bd_pins MCU/ctrl_reg_mem_data_in]
+  connect_bd_net -net Ctrl_Registers_0_hlt_cpu [get_bd_pins Ctrl_Registers/hlt_cpu] [get_bd_pins hlt_cpu_or/a]
+  connect_bd_net -net MCU_CR_mem_rw [get_bd_pins Ctrl_Registers/rw] [get_bd_pins MCU/CR_mem_rw]
+  connect_bd_net -net MCU_addr_out [get_bd_pins Ctrl_Registers/addr] [get_bd_pins MCU/addr_out] [get_bd_pins SYS_MEM/addr] [get_bd_pins Video_Buffer/addr]
+  connect_bd_net -net MCU_data_bus [get_bd_pins Ctrl_Registers/data] [get_bd_pins MCU/data_bus_out] [get_bd_pins SYS_MEM/mem_in] [get_bd_pins Video_Buffer/data]
+  connect_bd_net -net MCU_hlt_cpu [get_bd_pins MCU/hlt_cpu] [get_bd_pins hlt_cpu_or/b]
+  connect_bd_net -net MCU_mem_clk [get_bd_pins Ctrl_Registers/clk] [get_bd_pins MCU/mem_clk] [get_bd_pins SYS_MEM/clk] [get_bd_pins Video_Buffer/clk]
+  connect_bd_net -net MCU_mem_data_out [get_bd_pins mem_data_out] [get_bd_pins MCU/mem_data_out]
+  connect_bd_net -net MCU_sys_mem_rw [get_bd_pins MCU/sys_mem_rw] [get_bd_pins SYS_MEM/rw]
+  connect_bd_net -net MCU_vbuff_mem_rw [get_bd_pins MCU/vbuff_mem_rw] [get_bd_pins Video_Buffer/rw]
+  connect_bd_net -net SYS_MEM_data_out [get_bd_pins MCU/sys_mem_data_in] [get_bd_pins SYS_MEM/data_out]
+  connect_bd_net -net SYS_MEM_ir [get_bd_pins ir] [get_bd_pins SYS_MEM/ir]
+  connect_bd_net -net Video_Buffer_0_blue [get_bd_pins blue] [get_bd_pins Video_Buffer/blue]
+  connect_bd_net -net Video_Buffer_0_green [get_bd_pins green] [get_bd_pins Video_Buffer/green]
+  connect_bd_net -net Video_Buffer_0_red [get_bd_pins red] [get_bd_pins Video_Buffer/red]
+  connect_bd_net -net addr_in_1 [get_bd_pins addr] [get_bd_pins MCU/addr_in]
+  connect_bd_net -net clk_1 [get_bd_pins pgm_clk] [get_bd_pins MCU/pgm_mem_clk]
+  connect_bd_net -net data_bus_1 [get_bd_pins data_bus] [get_bd_pins MCU/data_bus]
+  connect_bd_net -net mem_clk_in_1 [get_bd_pins mem_clk] [get_bd_pins MCU/mem_clk_in]
+  connect_bd_net -net or_gate_0_c [get_bd_pins hlt_cpu] [get_bd_pins hlt_cpu_or/c]
+  connect_bd_net -net pc_1 [get_bd_pins pc] [get_bd_pins SYS_MEM/pc]
+  connect_bd_net -net pg_wr_1 [get_bd_pins pg_wr] [get_bd_pins SYS_MEM/pg_wr]
+  connect_bd_net -net pgm_1 [get_bd_pins pgm] [get_bd_pins MCU/pgm] [get_bd_pins SYS_MEM/pgm]
+  connect_bd_net -net pgm_addr_1 [get_bd_pins pgm_addr] [get_bd_pins SYS_MEM/pgm_addr]
+  connect_bd_net -net pgm_data_1 [get_bd_pins pgm_data] [get_bd_pins SYS_MEM/pgm_data]
+  connect_bd_net -net rw_1 [get_bd_pins rw] [get_bd_pins MCU/rw]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: Clocks
+proc create_hier_cell_Clocks { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_Clocks() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I BTNU
+  create_bd_pin -dir O CPU_Clk
+  create_bd_pin -dir O NEXYS_7SEG_CLK
+  create_bd_pin -dir O -type clk VGA_Base_Clk_25MHz
+  create_bd_pin -dir I -type clk clk1
+  create_bd_pin -dir O -type clk clk_out1
+  create_bd_pin -dir I -from 1 -to 0 clk_sel
+  create_bd_pin -dir I extern_clk
 
   # Create instance: CLK_5MHz, and set properties
   set CLK_5MHz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 CLK_5MHz ]
@@ -197,17 +492,6 @@ proc create_root_design { parentCell } {
    CONFIG.USE_RESET {false} \
  ] $CLK_5MHz
 
-  # Create instance: CPU_Programmer, and set properties
-  set block_name CPU_Programmer
-  set block_cell_name CPU_Programmer
-  if { [catch {set CPU_Programmer [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $CPU_Programmer eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
   # Create instance: Clk_Mux, and set properties
   set block_name mux
   set block_cell_name Clk_Mux
@@ -219,7 +503,7 @@ proc create_root_design { parentCell } {
      return 1
    }
     set_property -dict [ list \
-   CONFIG.WIDTH {2} \
+   CONFIG.WIDTH {3} \
  ] $Clk_Mux
 
   # Create instance: Clock_Bus, and set properties
@@ -229,28 +513,6 @@ proc create_root_design { parentCell } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $Clock_Bus eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: MEM, and set properties
-  set block_name ram
-  set block_cell_name MEM
-  if { [catch {set MEM [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $MEM eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: Risc16_CPU, and set properties
-  set block_name risc16
-  set block_cell_name Risc16_CPU
-  if { [catch {set Risc16_CPU [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $Risc16_CPU eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -296,39 +558,101 @@ proc create_root_design { parentCell } {
    CONFIG.DIV {10} \
  ] $clk_div_by_10
 
-  # Create instance: display_ctrl, and set properties
-  set block_name display_ctrl
-  set block_cell_name display_ctrl
-  if { [catch {set display_ctrl [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create port connections
+  connect_bd_net -net BTNU_1 [get_bd_pins BTNU] [get_bd_pins Clock_Bus/clkb]
+  connect_bd_net -net CLK_5MHz_clk_out1 [get_bd_pins CLK_5MHz/clk_out1] [get_bd_pins clk_div_by_10/clk]
+  connect_bd_net -net Clk_Mux_mux_out [get_bd_pins CPU_Clk] [get_bd_pins Clk_Mux/mux_out]
+  connect_bd_net -net Clock_Bus_clk_bus [get_bd_pins Clk_Mux/mux_in] [get_bd_pins Clock_Bus/clk_bus]
+  connect_bd_net -net SLOW_DEBUG_CLK_clk_out [get_bd_pins Clock_Bus/clka] [get_bd_pins SLOW_DEBUG_CLK/clk_out]
+  connect_bd_net -net VGA_25MHz_CLK_clk_out1 [get_bd_pins VGA_Base_Clk_25MHz] [get_bd_pins VGA_25MHz_CLK/clk_out1]
+  connect_bd_net -net clk1_1 [get_bd_pins clk1] [get_bd_pins CLK_5MHz/clk_in1] [get_bd_pins VGA_25MHz_CLK/clk_in1]
+  connect_bd_net -net clk_div_by_10_clk_out [get_bd_pins NEXYS_7SEG_CLK] [get_bd_pins clk_out1] [get_bd_pins SLOW_DEBUG_CLK/clk] [get_bd_pins clk_div_by_10/clk_out]
+  connect_bd_net -net clk_sel_1 [get_bd_pins clk_sel] [get_bd_pins Clk_Mux/mux_sel]
+  connect_bd_net -net extern_clk_1 [get_bd_pins extern_clk] [get_bd_pins Clock_Bus/clkc]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+
+# Procedure to create entire design; Provide argument to make
+# procedure reusable. If parentCell is "", will use root.
+proc create_root_design { parentCell } {
+
+  variable script_folder
+  variable design_name
+
+  if { $parentCell eq "" } {
+     set parentCell [get_bd_cells /]
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+
+  # Create interface ports
+
+  # Create ports
+  set BTND [ create_bd_port -dir I BTND ]
+  set BTNU [ create_bd_port -dir I BTNU ]
+  set LED_B [ create_bd_port -dir O LED_B ]
+  set VGA_B [ create_bd_port -dir O -from 3 -to 0 VGA_B ]
+  set VGA_G [ create_bd_port -dir O -from 3 -to 0 VGA_G ]
+  set VGA_HS [ create_bd_port -dir O VGA_HS ]
+  set VGA_R [ create_bd_port -dir O -from 3 -to 0 VGA_R ]
+  set VGA_VS [ create_bd_port -dir O VGA_VS ]
+  set clk [ create_bd_port -dir I clk ]
+  set clk_sel [ create_bd_port -dir I -from 1 -to 0 clk_sel ]
+  set extern_clk [ create_bd_port -dir I extern_clk ]
+  set miso [ create_bd_port -dir O miso ]
+  set mosi [ create_bd_port -dir I mosi ]
+  set pgm [ create_bd_port -dir I pgm ]
+  set pgm_led [ create_bd_port -dir O pgm_led ]
+  set sclk [ create_bd_port -dir I sclk ]
+  set seg [ create_bd_port -dir O -from 7 -to 0 seg ]
+  set seg_sel [ create_bd_port -dir O -from 7 -to 0 seg_sel ]
+  set ss [ create_bd_port -dir I ss ]
+
+  # Create instance: Clocks
+  create_hier_cell_Clocks [current_bd_instance .] Clocks
+
+  # Create instance: Memory
+  create_hier_cell_Memory [current_bd_instance .] Memory
+
+  # Create instance: Nexys_Peripherals
+  create_hier_cell_Nexys_Peripherals [current_bd_instance .] Nexys_Peripherals
+
+  # Create instance: Risc16_CPU, and set properties
+  set block_name risc16
+  set block_cell_name Risc16_CPU
+  if { [catch {set Risc16_CPU [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $display_ctrl eq "" } {
+   } elseif { $Risc16_CPU eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
-  # Create instance: nexys_7seg_display, and set properties
-  set block_name nexys_7seg
-  set block_cell_name nexys_7seg_display
-  if { [catch {set nexys_7seg_display [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $nexys_7seg_display eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: spi_slave, and set properties
-  set block_name spi_slave
-  set block_cell_name spi_slave
-  if { [catch {set spi_slave [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $spi_slave eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
+  # Create instance: programer
+  create_hier_cell_programer [current_bd_instance .] programer
+
   # Create instance: vga_0, and set properties
   set block_name vga
   set block_cell_name vga_0
@@ -341,38 +665,36 @@ proc create_root_design { parentCell } {
    }
   
   # Create port connections
-  connect_bd_net -net BTND_1 [get_bd_ports BTND] [get_bd_pins MEM/rst] [get_bd_pins Risc16_CPU/rst] [get_bd_pins vga_0/rst]
-  connect_bd_net -net BTNU_1 [get_bd_ports BTNU] [get_bd_pins Clock_Bus/clkb]
-  connect_bd_net -net CPU_Programmer_0_pd_wr [get_bd_pins CPU_Programmer/pg_wr] [get_bd_pins MEM/pg_wr]
-  connect_bd_net -net CPU_Programmer_0_pgm [get_bd_ports pgm] [get_bd_ports pgm_led] [get_bd_pins MEM/pgm] [get_bd_pins Risc16_CPU/pgm]
-  connect_bd_net -net CPU_Programmer_0_pgm_addr [get_bd_pins CPU_Programmer/pgm_addr] [get_bd_pins MEM/pgm_addr]
-  connect_bd_net -net CPU_Programmer_0_pgm_data [get_bd_pins CPU_Programmer/pgm_data] [get_bd_pins MEM/pgm_data]
-  connect_bd_net -net Risc16_CPU_data_write [get_bd_pins MEM/mem_in] [get_bd_pins Risc16_CPU/data_write]
-  connect_bd_net -net Risc16_CPU_mem_addr [get_bd_pins MEM/addr] [get_bd_pins Risc16_CPU/mem_addr]
-  connect_bd_net -net Risc16_CPU_mem_clk [get_bd_pins MEM/clk] [get_bd_pins Risc16_CPU/mem_clk]
-  connect_bd_net -net Risc16_CPU_mem_rw [get_bd_pins MEM/rw] [get_bd_pins Risc16_CPU/mem_rw]
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins CLK_5MHz/clk_in1] [get_bd_pins CPU_Programmer/clk] [get_bd_pins Risc16_CPU/pclk] [get_bd_pins VGA_25MHz_CLK/clk_in1] [get_bd_pins spi_slave/clk]
-  connect_bd_net -net clk_div_0_clk_out [get_bd_ports LED_B] [get_bd_pins SLOW_DEBUG_CLK/clk] [get_bd_pins clk_div_by_10/clk_out] [get_bd_pins display_ctrl/clk] [get_bd_pins nexys_7seg_display/clk]
-  connect_bd_net -net clk_div_1_clk_out [get_bd_pins Clock_Bus/clka] [get_bd_pins SLOW_DEBUG_CLK/clk_out]
-  connect_bd_net -net clk_sel_1 [get_bd_ports clk_sel] [get_bd_pins Clk_Mux/mux_sel]
-  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins CLK_5MHz/clk_out1] [get_bd_pins clk_div_by_10/clk]
-  connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins VGA_25MHz_CLK/clk_out1] [get_bd_pins vga_0/clk]
-  connect_bd_net -net clock_bus_0_clk_bus [get_bd_pins Clk_Mux/mux_in] [get_bd_pins Clock_Bus/clk_bus]
-  connect_bd_net -net display_ctrl_0_data_out [get_bd_pins display_ctrl/data_out] [get_bd_pins nexys_7seg_display/data]
-  connect_bd_net -net mosi_1 [get_bd_ports mosi] [get_bd_pins spi_slave/mosi]
-  connect_bd_net -net mux_0_out [get_bd_pins Clk_Mux/mux_out] [get_bd_pins Risc16_CPU/clk_in]
-  connect_bd_net -net nexys_7seg_0_seg [get_bd_ports seg] [get_bd_pins nexys_7seg_display/seg]
-  connect_bd_net -net nexys_7seg_0_seg_sel [get_bd_ports seg_sel] [get_bd_pins nexys_7seg_display/seg_sel]
-  connect_bd_net -net ram_0_data_out [get_bd_pins MEM/data_out] [get_bd_pins Risc16_CPU/data_in]
-  connect_bd_net -net ram_0_ir [get_bd_pins MEM/ir] [get_bd_pins Risc16_CPU/ir]
-  connect_bd_net -net ram_0_status_reg [get_bd_pins MEM/status_reg] [get_bd_pins Risc16_CPU/status_reg]
-  connect_bd_net -net risc16_0_outRegA [get_bd_pins Risc16_CPU/outRegA] [get_bd_pins display_ctrl/data]
-  connect_bd_net -net risc16_0_pc_out [get_bd_pins MEM/pc] [get_bd_pins Risc16_CPU/pc_out] [get_bd_pins display_ctrl/pc_in]
-  connect_bd_net -net sclk_1 [get_bd_ports sclk] [get_bd_pins spi_slave/sclk]
-  connect_bd_net -net spi_slave_0_miso [get_bd_ports miso] [get_bd_pins spi_slave/miso]
-  connect_bd_net -net spi_slave_0_rrdy [get_bd_pins CPU_Programmer/rrdy] [get_bd_pins spi_slave/rrdy]
-  connect_bd_net -net spi_slave_0_rx_recv [get_bd_pins CPU_Programmer/byte_in] [get_bd_pins spi_slave/rx_recv]
-  connect_bd_net -net ss_1 [get_bd_ports ss] [get_bd_pins spi_slave/ss]
+  connect_bd_net -net BTND_1 [get_bd_ports BTND] [get_bd_pins Memory/rst] [get_bd_pins Risc16_CPU/rst] [get_bd_pins vga_0/rst]
+  connect_bd_net -net BTNU_1 [get_bd_ports BTNU] [get_bd_pins Clocks/BTNU]
+  connect_bd_net -net CPU_Programmer_0_pgm [get_bd_ports pgm] [get_bd_ports pgm_led] [get_bd_pins Memory/pgm]
+  connect_bd_net -net Memory_blue [get_bd_pins Memory/blue] [get_bd_pins vga_0/blue_in]
+  connect_bd_net -net Memory_c [get_bd_pins Memory/hlt_cpu] [get_bd_pins Risc16_CPU/extern_halt]
+  connect_bd_net -net Memory_green [get_bd_pins Memory/green] [get_bd_pins vga_0/green_in]
+  connect_bd_net -net Memory_ir [get_bd_pins Memory/ir] [get_bd_pins Risc16_CPU/ir]
+  connect_bd_net -net Memory_mem_data_out [get_bd_pins Memory/mem_data_out] [get_bd_pins Risc16_CPU/data_in]
+  connect_bd_net -net Memory_red [get_bd_pins Memory/red] [get_bd_pins vga_0/red_in]
+  connect_bd_net -net Nexys_Peripherals_seg [get_bd_ports seg] [get_bd_pins Nexys_Peripherals/seg]
+  connect_bd_net -net Nexys_Peripherals_seg_sel [get_bd_ports seg_sel] [get_bd_pins Nexys_Peripherals/seg_sel]
+  connect_bd_net -net Risc16_CPU_addr [get_bd_pins Memory/addr] [get_bd_pins Risc16_CPU/addr]
+  connect_bd_net -net Risc16_CPU_data_bus [get_bd_pins Memory/data_bus] [get_bd_pins Risc16_CPU/data_bus]
+  connect_bd_net -net Risc16_CPU_mem_rw [get_bd_pins Memory/rw] [get_bd_pins Risc16_CPU/mem_rw]
+  connect_bd_net -net Risc16_CPU_outRegA [get_bd_pins Nexys_Peripherals/data] [get_bd_pins Risc16_CPU/outRegA]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins Clocks/clk1] [get_bd_pins Memory/pgm_clk] [get_bd_pins programer/clk]
+  connect_bd_net -net clk_div_0_clk_out [get_bd_ports LED_B] [get_bd_pins Clocks/NEXYS_7SEG_CLK] [get_bd_pins Nexys_Peripherals/clk]
+  connect_bd_net -net clk_sel_1 [get_bd_ports clk_sel] [get_bd_pins Clocks/clk_sel]
+  connect_bd_net -net clocks_CPU_Clk [get_bd_pins Clocks/CPU_Clk] [get_bd_pins Risc16_CPU/clk]
+  connect_bd_net -net clocks_clk_out2 [get_bd_pins Clocks/VGA_Base_Clk_25MHz] [get_bd_pins vga_0/clk]
+  connect_bd_net -net extern_clk_1 [get_bd_ports extern_clk] [get_bd_pins Clocks/extern_clk]
+  connect_bd_net -net mem_clk_1 [get_bd_pins Clocks/clk_out1] [get_bd_pins Memory/mem_clk]
+  connect_bd_net -net mosi_1 [get_bd_ports mosi] [get_bd_pins programer/mosi]
+  connect_bd_net -net programer_miso [get_bd_ports miso] [get_bd_pins programer/miso]
+  connect_bd_net -net programer_pg_wr [get_bd_pins Memory/pg_wr] [get_bd_pins programer/pg_wr]
+  connect_bd_net -net programer_pgm_addr [get_bd_pins Memory/pgm_addr] [get_bd_pins programer/pgm_addr]
+  connect_bd_net -net programer_pgm_data [get_bd_pins Memory/pgm_data] [get_bd_pins programer/pgm_data]
+  connect_bd_net -net risc16_0_pc_out [get_bd_pins Memory/pc] [get_bd_pins Nexys_Peripherals/pc_in] [get_bd_pins Risc16_CPU/pc_out]
+  connect_bd_net -net sclk_1 [get_bd_ports sclk] [get_bd_pins programer/sclk]
+  connect_bd_net -net ss_1 [get_bd_ports ss] [get_bd_pins programer/ss]
   connect_bd_net -net vga_0_blue [get_bd_ports VGA_B] [get_bd_pins vga_0/blue]
   connect_bd_net -net vga_0_green [get_bd_ports VGA_G] [get_bd_pins vga_0/green]
   connect_bd_net -net vga_0_hsync [get_bd_ports VGA_HS] [get_bd_pins vga_0/hsync]

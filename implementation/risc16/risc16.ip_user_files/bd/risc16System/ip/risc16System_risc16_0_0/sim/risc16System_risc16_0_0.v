@@ -57,12 +57,14 @@
 module risc16System_risc16_0_0 (
   clk,
   rst,
-  pgm,
-  pgm_data,
-  pgm_addr,
-  pg_wr,
+  extern_halt,
+  ir,
+  data_in,
   pc_out,
-  outRegA
+  outRegA,
+  addr,
+  data_bus,
+  mem_rw
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, PHASE 0.000, INSERT_VIP 0" *)
@@ -71,23 +73,27 @@ input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
-input wire pgm;
-input wire [15 : 0] pgm_data;
-input wire [15 : 0] pgm_addr;
-input wire pg_wr;
+input wire extern_halt;
+input wire [15 : 0] ir;
+input wire [15 : 0] data_in;
 output wire [15 : 0] pc_out;
 output wire [15 : 0] outRegA;
+output wire [15 : 0] addr;
+output wire [15 : 0] data_bus;
+output wire mem_rw;
 
   risc16 #(
-    .PROG_START(16'H0001)
+    .PROG_START(16'H000F)
   ) inst (
     .clk(clk),
     .rst(rst),
-    .pgm(pgm),
-    .pgm_data(pgm_data),
-    .pgm_addr(pgm_addr),
-    .pg_wr(pg_wr),
+    .extern_halt(extern_halt),
+    .ir(ir),
+    .data_in(data_in),
     .pc_out(pc_out),
-    .outRegA(outRegA)
+    .outRegA(outRegA),
+    .addr(addr),
+    .data_bus(data_bus),
+    .mem_rw(mem_rw)
   );
 endmodule

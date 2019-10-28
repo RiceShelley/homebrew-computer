@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Mon Sep 30 13:25:09 2019
+| Date         : Wed Oct 23 20:51:40 2019
 | Host         : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 | Command      : report_utilization -file risc16System_wrapper_utilization_placed.rpt -pb risc16System_wrapper_utilization_placed.pb
 | Design       : risc16System_wrapper
@@ -31,14 +31,14 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs              | 3390 |     0 |     63400 |  5.35 |
-|   LUT as Logic          | 3390 |     0 |     63400 |  5.35 |
+| Slice LUTs              | 3843 |     0 |     63400 |  6.06 |
+|   LUT as Logic          | 3843 |     0 |     63400 |  6.06 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
-| Slice Registers         | 4443 |     0 |    126800 |  3.50 |
-|   Register as Flip Flop | 4394 |     0 |    126800 |  3.47 |
-|   Register as Latch     |   49 |     0 |    126800 |  0.04 |
-| F7 Muxes                | 1110 |     0 |     31700 |  3.50 |
-| F8 Muxes                |  544 |     0 |     15850 |  3.43 |
+| Slice Registers         | 5275 |     0 |    126800 |  4.16 |
+|   Register as Flip Flop | 5192 |     0 |    126800 |  4.09 |
+|   Register as Latch     |   83 |     0 |    126800 |  0.07 |
+| F7 Muxes                | 1165 |     0 |     31700 |  3.68 |
+| F8 Muxes                |  462 |     0 |     15850 |  2.91 |
 +-------------------------+------+-------+-----------+-------+
 
 
@@ -55,9 +55,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 49    |          Yes |           - |        Reset |
+| 83    |          Yes |           - |        Reset |
 | 8     |          Yes |         Set |            - |
-| 4386  |          Yes |       Reset |            - |
+| 5184  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -67,22 +67,22 @@ Table of Contents
 +--------------------------------------------+------+-------+-----------+-------+
 |                  Site Type                 | Used | Fixed | Available | Util% |
 +--------------------------------------------+------+-------+-----------+-------+
-| Slice                                      | 2302 |     0 |     15850 | 14.52 |
-|   SLICEL                                   | 1669 |     0 |           |       |
-|   SLICEM                                   |  633 |     0 |           |       |
-| LUT as Logic                               | 3390 |     0 |     63400 |  5.35 |
+| Slice                                      | 2596 |     0 |     15850 | 16.38 |
+|   SLICEL                                   | 1973 |     0 |           |       |
+|   SLICEM                                   |  623 |     0 |           |       |
+| LUT as Logic                               | 3843 |     0 |     63400 |  6.06 |
 |   using O5 output only                     |    0 |       |           |       |
-|   using O6 output only                     | 3246 |       |           |       |
-|   using O5 and O6                          |  144 |       |           |       |
+|   using O6 output only                     | 3670 |       |           |       |
+|   using O5 and O6                          |  173 |       |           |       |
 | LUT as Memory                              |    0 |     0 |     19000 |  0.00 |
 |   LUT as Distributed RAM                   |    0 |     0 |           |       |
 |   LUT as Shift Register                    |    0 |     0 |           |       |
-| Slice Registers                            | 4443 |     0 |    126800 |  3.50 |
-|   Register driven from within the Slice    |  118 |       |           |       |
-|   Register driven from outside the Slice   | 4325 |       |           |       |
-|     LUT in front of the register is unused | 3340 |       |           |       |
-|     LUT in front of the register is used   |  985 |       |           |       |
-| Unique Control Sets                        |  286 |       |     15850 |  1.80 |
+| Slice Registers                            | 5275 |     0 |    126800 |  4.16 |
+|   Register driven from within the Slice    |  902 |       |           |       |
+|   Register driven from outside the Slice   | 4373 |       |           |       |
+|     LUT in front of the register is unused | 3042 |       |           |       |
+|     LUT in front of the register is used   | 1331 |       |           |       |
+| Unique Control Sets                        |  295 |       |     15850 |  1.86 |
 +--------------------------------------------+------+-------+-----------+-------+
 * Note: Available Control Sets calculated as Slice Registers / 8, Review the Control Sets Report for more information regarding control sets.
 
@@ -116,9 +116,9 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   41 |    41 |       210 | 19.52 |
-|   IOB Master Pads           |   19 |       |           |       |
-|   IOB Slave Pads            |   20 |       |           |       |
+| Bonded IOB                  |   43 |    43 |       210 | 20.48 |
+|   IOB Master Pads           |   20 |       |           |       |
+|   IOB Slave Pads            |   21 |       |           |       |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         6 |  0.00 |
@@ -174,21 +174,21 @@ Table of Contents
 +------------+------+---------------------+
 |  Ref Name  | Used | Functional Category |
 +------------+------+---------------------+
-| FDRE       | 4386 |        Flop & Latch |
-| LUT6       | 3025 |                 LUT |
-| MUXF7      | 1110 |               MuxFx |
-| MUXF8      |  544 |               MuxFx |
-| LUT3       |  141 |                 LUT |
-| LUT2       |  139 |                 LUT |
-| LUT4       |  127 |                 LUT |
-| LUT5       |   98 |                 LUT |
-| LDCE       |   49 |        Flop & Latch |
+| FDRE       | 5184 |        Flop & Latch |
+| LUT6       | 3299 |                 LUT |
+| MUXF7      | 1165 |               MuxFx |
+| MUXF8      |  462 |               MuxFx |
+| CARRY4     |  227 |          CarryLogic |
+| LUT2       |  166 |                 LUT |
+| LUT3       |  153 |                 LUT |
+| LUT4       |  151 |                 LUT |
+| LUT5       |  136 |                 LUT |
+| LUT1       |  111 |                 LUT |
+| LDCE       |   83 |        Flop & Latch |
 | OBUF       |   33 |                  IO |
-| CARRY4     |   14 |          CarryLogic |
-| IBUF       |    8 |                  IO |
+| IBUF       |   10 |                  IO |
 | FDSE       |    8 |        Flop & Latch |
 | BUFG       |    5 |               Clock |
-| LUT1       |    4 |                 LUT |
 | MMCME2_ADV |    2 |               Clock |
 +------------+------+---------------------+
 
@@ -211,14 +211,16 @@ Table of Contents
 | risc16System_spi_slave_0_0      |    1 |
 | risc16System_risc16_0_0         |    1 |
 | risc16System_ram_0_0            |    1 |
+| risc16System_or_gate_0_0        |    1 |
 | risc16System_nexys_7seg_0_0     |    1 |
 | risc16System_mux_0_0            |    1 |
 | risc16System_display_ctrl_0_0   |    1 |
 | risc16System_clock_bus_0_0      |    1 |
 | risc16System_clk_wiz_0_1        |    1 |
 | risc16System_clk_wiz_0_0        |    1 |
-| risc16System_clk_div_1_0        |    1 |
 | risc16System_clk_div_0_0        |    1 |
+| risc16System_MCU_0_0            |    1 |
+| risc16System_Ctrl_Registers_0_0 |    1 |
 | risc16System_CPU_Programmer_0_0 |    1 |
 +---------------------------------+------+
 

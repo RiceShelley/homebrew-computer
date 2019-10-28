@@ -21,9 +21,11 @@
 #define BEQ 6
 #define JALR 7
 
-#define MAX_PROG_LEN 256
-#define BASE_DATA_ADDR 1
-#define BASE_INS_ADDR 0x0F
+#define MAX_PROG_LEN 255
+#define SYS_MEM_BASE_ADDR 5
+#define BASE_DATA_ADDR (SYS_MEM_BASE_ADDR)
+#define DATA_SEC_LEN 0x0F
+#define BASE_INS_ADDR (BASE_DATA_ADDR + DATA_SEC_LEN)
 
 #define SYNTAX_ERR -1
 
@@ -149,9 +151,8 @@ void setup_labels_in_memory(int mem_start, prog_line* text) {
 				char* numanic = line;
 				printf("FOUND LABEL at %d numanic = %s c = %c\n", next_ins_addr, line, line[strlen(line) - 1]);
 				
-				
 				numanic[strlen(numanic) - 1] = 0;
-				bin[next_mem_addr] = next_ins_addr;
+				bin[next_mem_addr] = next_ins_addr - SYS_MEM_BASE_ADDR;
 				/*
 				 * search .text and replace label
 				 * with corresponding addr
@@ -298,7 +299,7 @@ void write_bin(int len) {
 void write_hex(int len) {
 	FILE* fd = fopen("prog.bin", "w");
 	char ins[18];
-	int i = 0; 
+	int i = SYS_MEM_BASE_ADDR;
 	for (; i < len - 1; i++) {
 		sprintf(ins, "0x%04x,\n", bin[i]);
 		fwrite(ins, strlen(ins), 1, fd);
@@ -313,12 +314,6 @@ int main(int argc, char** argv) {
 		printf("Error no input files.\n");
 		return 1;
 	}
-	/* 
-	* Memory address zero 
-	* is reserved as a sys ctrl reg
-	* should be set to zero and left alone
-	*/
-	bin[0] = 0;
 	// read program into memory	
 	read_prog((const char *) argv[1]);
 
@@ -366,8 +361,8 @@ int main(int argc, char** argv) {
 	
 	printf("Generated Machine Code.\n");
 	int i;
-	for (i = 0; i < len; i++) {
-		printf("0x%04x 0x%04x\n", i, bin[i]);
+	for (i = SYS_MEM_BASE_ADDR; i < len; i++) {
+		printf("0x%04x 0x%04x\n", i - SYS_MEM_BASE_ADDR, bin[i]);
 	}
 	printf("\n");
 	

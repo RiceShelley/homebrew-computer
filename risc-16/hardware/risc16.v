@@ -1,35 +1,25 @@
 module risc16 (
-           input clk_in,
+           input clk,
            input rst,
-           input pgm,
-           input pclk,
+           input extern_halt,
+           input [15:0] ir,
+           input [15:0] data_in,
            output[15:0] pc_out,
            output[15:0] outRegA,
-           output [15:0] mem_addr,
-           input [15:0] ir,
-           output mem_rw,
-           input [15:0] data_in,
-           output [15:0] data_write,
-           input [15:0] status_reg,
-           output mem_clk
+           output [15:0] addr,
+           output [15:0] data_bus,
+           output mem_rw
        );
 
 parameter PROG_START = 16'h000F;
 
-// mux clks
-wire clk = (pgm)? pclk : clk_in;
-assign mem_clk = clk;
+wire halt = extern_halt;
 
 // <--- cpu regs --->
 
 // program counter reg
 reg [15:0] pc = PROG_START;
 assign pc_out = pc;
-
-wire halt = status_reg[0];
-
-// output onto data write
-assign data_write = gpr_read_data_1;
 
 // general purpose register file
 wire gpr_write_en = 1'd1;
@@ -39,6 +29,9 @@ wire [2:0] gpr_read_addr_1;
 wire [2:0] gpr_read_addr_2;
 wire [15:0] gpr_read_data_1;
 wire [15:0] gpr_read_data_2;
+
+// output reg value from GPR file onto data bus.
+assign data_bus = gpr_read_data_1;
 
 gpr cpu_gpr(
         .clk(clk),
@@ -91,7 +84,7 @@ ctrl cpu_ctrl(
          .alu_op_code(alu_op_code),
          .gpr_write_en(gpr_write_en),
          .imm(imm),
-         .mem_addr(mem_addr),
+         .mem_addr(addr),
          .rw(mem_rw),
          .gpr_write_src(gpr_write_src),
          .gpr_write_data(gpr_write_data_ctrl_out),
@@ -100,14 +93,12 @@ ctrl cpu_ctrl(
      );
 
 // pc control logic
-reg counter = 0;
 always @( posedge clk )
 begin
     if (rst) begin
         pc <= PROG_START;
     end else begin
-        if (counter) begin
-        if (halt || pgm) begin
+        if (halt) begin
             pc <= pc;
         end else begin
             if (branch == 2'b01) begin
@@ -125,8 +116,6 @@ begin
                 pc <= pc + 16'd1;
             end
         end
-        end
-        counter <= counter + 1'd1;
     end
 end
 endmodule

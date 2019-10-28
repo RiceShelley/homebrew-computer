@@ -59,7 +59,6 @@ module risc16System_CPU_Programmer_0_0 (
   rst,
   byte_in,
   rrdy,
-  pgm,
   pgm_data,
   pgm_addr,
   pg_wr
@@ -73,7 +72,6 @@ input wire clk;
 input wire rst;
 input wire [7 : 0] byte_in;
 input wire rrdy;
-output wire pgm;
 output wire [15 : 0] pgm_data;
 output wire [15 : 0] pgm_addr;
 output wire pg_wr;
@@ -83,7 +81,6 @@ output wire pg_wr;
     .rst(rst),
     .byte_in(byte_in),
     .rrdy(rrdy),
-    .pgm(pgm),
     .pgm_data(pgm_data),
     .pgm_addr(pgm_addr),
     .pg_wr(pg_wr)

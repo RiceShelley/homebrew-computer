@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-//Date        : Mon Sep 30 13:22:32 2019
+//Date        : Wed Oct 23 20:48:22 2019
 //Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 //Command     : generate_target risc16System_wrapper.bd
 //Design      : risc16System_wrapper
@@ -20,6 +20,7 @@ module risc16System_wrapper
     VGA_VS,
     clk,
     clk_sel,
+    extern_clk,
     miso,
     mosi,
     pgm,
@@ -37,7 +38,8 @@ module risc16System_wrapper
   output [3:0]VGA_R;
   output VGA_VS;
   input clk;
-  input clk_sel;
+  input [1:0]clk_sel;
+  input extern_clk;
   output miso;
   input mosi;
   input pgm;
@@ -56,7 +58,8 @@ module risc16System_wrapper
   wire [3:0]VGA_R;
   wire VGA_VS;
   wire clk;
-  wire clk_sel;
+  wire [1:0]clk_sel;
+  wire extern_clk;
   wire miso;
   wire mosi;
   wire pgm;
@@ -77,6 +80,7 @@ module risc16System_wrapper
         .VGA_VS(VGA_VS),
         .clk(clk),
         .clk_sel(clk_sel),
+        .extern_clk(extern_clk),
         .miso(miso),
         .mosi(mosi),
         .pgm(pgm),

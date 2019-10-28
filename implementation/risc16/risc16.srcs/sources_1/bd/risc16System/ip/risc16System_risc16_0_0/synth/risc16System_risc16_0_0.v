@@ -56,54 +56,45 @@
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module risc16System_risc16_0_0 (
-  clk_in,
+  clk,
   rst,
-  pgm,
-  pclk,
+  extern_halt,
+  ir,
+  data_in,
   pc_out,
   outRegA,
-  mem_addr,
-  ir,
-  mem_rw,
-  data_in,
-  data_write,
-  status_reg,
-  mem_clk
+  addr,
+  data_bus,
+  mem_rw
 );
 
-input wire clk_in;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, PHASE 0.000, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
+input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
-input wire pgm;
-input wire pclk;
+input wire extern_halt;
+input wire [15 : 0] ir;
+input wire [15 : 0] data_in;
 output wire [15 : 0] pc_out;
 output wire [15 : 0] outRegA;
-output wire [15 : 0] mem_addr;
-input wire [15 : 0] ir;
+output wire [15 : 0] addr;
+output wire [15 : 0] data_bus;
 output wire mem_rw;
-input wire [15 : 0] data_in;
-output wire [15 : 0] data_write;
-input wire [15 : 0] status_reg;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME mem_clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN risc16System_risc16_0_0_mem_clk, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 mem_clk CLK" *)
-output wire mem_clk;
 
   risc16 #(
     .PROG_START(16'H000F)
   ) inst (
-    .clk_in(clk_in),
+    .clk(clk),
     .rst(rst),
-    .pgm(pgm),
-    .pclk(pclk),
+    .extern_halt(extern_halt),
+    .ir(ir),
+    .data_in(data_in),
     .pc_out(pc_out),
     .outRegA(outRegA),
-    .mem_addr(mem_addr),
-    .ir(ir),
-    .mem_rw(mem_rw),
-    .data_in(data_in),
-    .data_write(data_write),
-    .status_reg(status_reg),
-    .mem_clk(mem_clk)
+    .addr(addr),
+    .data_bus(data_bus),
+    .mem_rw(mem_rw)
   );
 endmodule

@@ -23,7 +23,8 @@
 module clock_bus(
     input clka,
     input clkb,
-    output [1:0] clk_bus
+    input clkc,
+    output [2:0] clk_bus
     );
-    assign clk_bus = {clka, clkb};
+    assign clk_bus = {clka, clkb, clkc, 1'b0};
 endmodule

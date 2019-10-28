@@ -79,7 +79,7 @@ begin
             end
             3'b100:
             begin
-                /* STORE WORD RRI
+                /* STORE WORD RI
                 * RI
                 * store contents of reg A in mem at addr I
                 */

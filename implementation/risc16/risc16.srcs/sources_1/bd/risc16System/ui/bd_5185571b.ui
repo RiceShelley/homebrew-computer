@@ -1,76 +1,69 @@
 {
    "ExpandedHierarchyInLayout":"",
+   "PinnedBlocks":"/Nexys_Peripherals|",
    "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port clk_sel -pg 1 -y 550 -defaultsOSRD
-preplace port BTNU -pg 1 -y 670 -defaultsOSRD
-preplace port miso -pg 1 -y 530 -defaultsOSRD
-preplace port VGA_VS -pg 1 -y 140 -defaultsOSRD
-preplace port mosi -pg 1 -y 360 -defaultsOSRD
-preplace port pgm_led -pg 1 -y 200 -defaultsOSRD
-preplace port pgm -pg 1 -y 210 -defaultsOSRD
-preplace port clk -pg 1 -y 420 -defaultsOSRD
-preplace port VGA_HS -pg 1 -y 120 -defaultsOSRD
-preplace port ss -pg 1 -y 400 -defaultsOSRD
-preplace port BTND -pg 1 -y 170 -defaultsOSRD
-preplace port LED_B -pg 1 -y 550 -defaultsOSRD
-preplace port sclk -pg 1 -y 380 -defaultsOSRD
-preplace portBus VGA_B -pg 1 -y 100 -defaultsOSRD
-preplace portBus seg_sel -pg 1 -y 630 -defaultsOSRD
-preplace portBus VGA_R -pg 1 -y 60 -defaultsOSRD
-preplace portBus seg -pg 1 -y 610 -defaultsOSRD
-preplace portBus VGA_G -pg 1 -y 80 -defaultsOSRD
-preplace inst Risc16_CPU -pg 1 -lvl 4 -y 320 -defaultsOSRD
-preplace inst Clock_Bus -pg 1 -lvl 2 -y 620 -defaultsOSRD
-preplace inst clk_div_by_10 -pg 1 -lvl 5 -y 750 -defaultsOSRD
-preplace inst display_ctrl -pg 1 -lvl 5 -y 630 -defaultsOSRD
-preplace inst CLK_5MHz -pg 1 -lvl 4 -y 750 -defaultsOSRD
-preplace inst MEM -pg 1 -lvl 3 -y 360 -defaultsOSRD
-preplace inst VGA_25MHz_CLK -pg 1 -lvl 5 -y 90 -defaultsOSRD
-preplace inst vga_0 -pg 1 -lvl 6 -y 100 -defaultsOSRD
-preplace inst CPU_Programmer -pg 1 -lvl 2 -y 390 -defaultsOSRD
-preplace inst SLOW_DEBUG_CLK -pg 1 -lvl 1 -y 610 -defaultsOSRD
-preplace inst spi_slave -pg 1 -lvl 1 -y 410 -defaultsOSRD
-preplace inst nexys_7seg_display -pg 1 -lvl 6 -y 620 -defaultsOSRD
-preplace inst Clk_Mux -pg 1 -lvl 3 -y 610 -defaultsOSRD
-preplace netloc spi_slave_0_rrdy 1 1 1 N
-preplace netloc mosi_1 1 0 1 NJ
-preplace netloc nexys_7seg_0_seg 1 6 1 NJ
-preplace netloc Risc16_CPU_mem_clk 1 2 3 660 170 NJ 170 1400
-preplace netloc vga_0_vsync 1 6 1 NJ
-preplace netloc vga_0_hsync 1 6 1 NJ
-preplace netloc risc16_0_pc_out 1 2 3 670 190 NJ 190 1440
-preplace netloc risc16_0_outRegA 1 4 1 1420
-preplace netloc CPU_Programmer_0_pgm_addr 1 2 1 N
-preplace netloc spi_slave_0_miso 1 1 6 300J 150 NJ 150 NJ 150 NJ 150 1750J 530 NJ
-preplace netloc ram_0_ir 1 3 1 N
-preplace netloc mux_0_out 1 3 1 1030
-preplace netloc sclk_1 1 0 1 NJ
-preplace netloc ram_0_data_out 1 3 1 N
-preplace netloc BTND_1 1 0 6 NJ 170 NJ 170 620 160 1020 160 NJ 160 1740J
-preplace netloc nexys_7seg_0_seg_sel 1 6 1 NJ
-preplace netloc vga_0_blue 1 6 1 NJ
-preplace netloc CPU_Programmer_0_pgm_data 1 2 1 N
-preplace netloc spi_slave_0_rx_recv 1 1 1 N
-preplace netloc display_ctrl_0_data_out 1 5 1 N
-preplace netloc Risc16_CPU_mem_addr 1 2 3 640 140 NJ 140 1390
-preplace netloc vga_0_red 1 6 1 NJ
-preplace netloc clock_bus_0_clk_bus 1 2 1 N
-preplace netloc clk_1 1 0 5 20 300 310 130 NJ 130 1010 90 NJ
-preplace netloc ram_0_status_reg 1 3 1 N
-preplace netloc vga_0_green 1 6 1 NJ
-preplace netloc BTNU_1 1 0 2 NJ 670 310J
-preplace netloc ss_1 1 0 1 NJ
-preplace netloc clk_div_0_clk_out 1 0 7 20 690 NJ 690 NJ 690 NJ 690 1430 810 1740 550 NJ
-preplace netloc clk_wiz_0_clk_out1 1 4 1 NJ
-preplace netloc Risc16_CPU_data_write 1 2 3 630 120 NJ 120 1410
-preplace netloc clk_wiz_0_clk_out2 1 5 1 NJ
-preplace netloc clk_sel_1 1 0 3 NJ 550 NJ 550 640J
-preplace netloc CPU_Programmer_0_pd_wr 1 2 1 N
-preplace netloc clk_div_1_clk_out 1 1 1 NJ
-preplace netloc CPU_Programmer_0_pgm 1 0 7 NJ 210 NJ 210 610 210 1040 200 NJ 200 NJ 200 NJ
-preplace netloc Risc16_CPU_mem_rw 1 2 3 650 180 NJ 180 1380
-levelinfo -pg 1 0 160 460 840 1210 1590 1890 2050 -top 0 -bot 820
+preplace port BTNU -pg 1 -y -130 -defaultsOSRD
+preplace port miso -pg 1 -y 200 -defaultsOSRD
+preplace port VGA_VS -pg 1 -y 10 -defaultsOSRD
+preplace port mosi -pg 1 -y 250 -defaultsOSRD
+preplace port pgm_led -pg 1 -y 220 -defaultsOSRD
+preplace port pgm -pg 1 -y 360 -defaultsOSRD
+preplace port clk -pg 1 -y -110 -defaultsOSRD
+preplace port VGA_HS -pg 1 -y -10 -defaultsOSRD
+preplace port ss -pg 1 -y 230 -defaultsOSRD
+preplace port BTND -pg 1 -y 340 -defaultsOSRD
+preplace port extern_clk -pg 1 -y 400 -defaultsOSRD
+preplace port LED_B -pg 1 -y 240 -defaultsOSRD
+preplace port sclk -pg 1 -y 290 -defaultsOSRD
+preplace portBus clk_sel -pg 1 -y 380 -defaultsOSRD
+preplace portBus VGA_B -pg 1 -y -30 -defaultsOSRD
+preplace portBus seg_sel -pg 1 -y 140 -defaultsOSRD
+preplace portBus VGA_R -pg 1 -y -70 -defaultsOSRD
+preplace portBus seg -pg 1 -y 120 -defaultsOSRD
+preplace portBus VGA_G -pg 1 -y -50 -defaultsOSRD
+preplace inst Risc16_CPU -pg 1 -lvl 3 -y 100 -defaultsOSRD
+preplace inst Memory -pg 1 -lvl 2 -y -40 -defaultsOSRD
+preplace inst programer -pg 1 -lvl 1 -y 270 -defaultsOSRD
+preplace inst Clocks -pg 1 -lvl 1 -y -100 -defaultsOSRD
+preplace inst vga_0 -pg 1 -lvl 3 -y -80 -defaultsOSRD
+preplace inst Nexys_Peripherals -pg 1 -lvl 4 -y 130 -defaultsOSRD
+preplace netloc programer_pgm_addr 1 1 1 0
+preplace netloc mosi_1 1 0 1 -470J
+preplace netloc programer_miso 1 1 4 -40 260 NJ 260 940J 200 NJ
+preplace netloc clocks_clk_out2 1 1 2 -40J -200 500
+preplace netloc vga_0_vsync 1 3 2 880 10 NJ
+preplace netloc vga_0_hsync 1 3 2 890 -10 NJ
+preplace netloc Memory_c 1 2 1 550
+preplace netloc risc16_0_pc_out 1 1 3 50 200 NJ 200 910
+preplace netloc Memory_blue 1 2 1 560
+preplace netloc sclk_1 1 0 1 -490J
+preplace netloc Memory_green 1 2 1 540
+preplace netloc programer_pgm_data 1 1 1 -50
+preplace netloc BTND_1 1 0 3 -480J 170 10 110 530
+preplace netloc Memory_red 1 2 1 510
+preplace netloc vga_0_blue 1 3 2 900 -30 NJ
+preplace netloc Risc16_CPU_addr 1 1 3 30 230 NJ 230 900
+preplace netloc Memory_mem_data_out 1 2 1 500
+preplace netloc programer_pg_wr 1 1 1 -10
+preplace netloc vga_0_red 1 3 2 930 -70 NJ
+preplace netloc clocks_CPU_Clk 1 1 2 -50 -210 570
+preplace netloc clk_1 1 0 2 -440 -20 NJ
+preplace netloc vga_0_green 1 3 2 920 -50 NJ
+preplace netloc extern_clk_1 1 0 1 -460
+preplace netloc Memory_ir 1 2 1 520
+preplace netloc Risc16_CPU_outRegA 1 3 1 920
+preplace netloc BTNU_1 1 0 1 NJ
+preplace netloc ss_1 1 0 1 -420J
+preplace netloc clk_div_0_clk_out 1 1 4 -30 250 NJ 250 930 240 NJ
+preplace netloc clk_sel_1 1 0 1 -450
+preplace netloc Nexys_Peripherals_seg 1 4 1 N
+preplace netloc mem_clk_1 1 1 1 -20
+preplace netloc Risc16_CPU_data_bus 1 1 3 40 240 NJ 240 890
+preplace netloc CPU_Programmer_0_pgm 1 0 5 -430J 180 20 190 540J 220 NJ 220 NJ
+preplace netloc Risc16_CPU_mem_rw 1 1 3 60 210 NJ 210 880
+preplace netloc Nexys_Peripherals_seg_sel 1 4 1 N
+levelinfo -pg 1 -510 -200 340 728 1165 1320 -top -220 -bot 1080
 "
 }
 0

@@ -67,11 +67,10 @@ module risc16System_ram_0_0 (
   ir,
   rw,
   data_out,
-  mem_in,
-  status_reg
+  mem_in
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, PHASE 0.000, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN risc16System_MCU_0_0_mem_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -87,7 +86,6 @@ output wire [15 : 0] ir;
 input wire rw;
 output wire [15 : 0] data_out;
 input wire [15 : 0] mem_in;
-output wire [15 : 0] status_reg;
 
   ram #(
     .MEM_SIZE(255),
@@ -105,7 +103,6 @@ output wire [15 : 0] status_reg;
     .ir(ir),
     .rw(rw),
     .data_out(data_out),
-    .mem_in(mem_in),
-    .status_reg(status_reg)
+    .mem_in(mem_in)
   );
 endmodule

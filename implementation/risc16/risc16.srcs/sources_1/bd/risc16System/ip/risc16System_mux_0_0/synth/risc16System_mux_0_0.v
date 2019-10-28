@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "mux,Vivado 2018.3" *)
 (* CHECK_LICENSE_TYPE = "risc16System_mux_0_0,mux,{}" *)
-(* CORE_GENERATION_INFO = "risc16System_mux_0_0,mux,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=mux,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,WIDTH=2}" *)
+(* CORE_GENERATION_INFO = "risc16System_mux_0_0,mux,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=mux,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,WIDTH=3}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module risc16System_mux_0_0 (
@@ -61,12 +61,12 @@ module risc16System_mux_0_0 (
   mux_out
 );
 
-input wire [0 : 0] mux_sel;
-input wire [1 : 0] mux_in;
+input wire [1 : 0] mux_sel;
+input wire [2 : 0] mux_in;
 output wire mux_out;
 
   mux #(
-    .WIDTH(2)
+    .WIDTH(3)
   ) inst (
     .mux_sel(mux_sel),
     .mux_in(mux_in),

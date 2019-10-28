@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<webTalkData  fileName='usage_statistics_ext_xsim.xml'  majorVersion='1' minorVersion='0' timeStamp='Thu Sep 12 20:23:04 2019'>
+<webTalkData  fileName='usage_statistics_ext_xsim.xml'  majorVersion='1' minorVersion='0' timeStamp='Mon Oct  7 04:33:00 2019'>
 <section name="__ROOT__" level="0" order="1" description="">
  <section name="software_version_and_target_device" level="1" order="1" description="">
   <keyValuePair key="beta" value="FALSE" description="" />
   <keyValuePair key="build_version" value="2405991" description="" />
-  <keyValuePair key="date_generated" value="Thu Sep 12 20:23:03 2019" description="" />
+  <keyValuePair key="date_generated" value="Mon Oct  7 04:32:59 2019" description="" />
   <keyValuePair key="os_platform" value="LIN64" description="" />
   <keyValuePair key="product_version" value="XSIM v2018.3 (64-bit)" description="" />
   <keyValuePair key="project_id" value="e0a9cd34521c4aaaaa9e1110d2a10743" description="" />
-  <keyValuePair key="project_iteration" value="22" description="" />
+  <keyValuePair key="project_iteration" value="24" description="" />
   <keyValuePair key="random_id" value="b400401b-20eb-4fbe-bc2b-750ea32fe5cf" description="" />
   <keyValuePair key="registration_id" value="b400401b-20eb-4fbe-bc2b-750ea32fe5cf" description="" />
   <keyValuePair key="route_design" value="FALSE" description="" />
@@ -20,9 +20,9 @@
  </section>
  <section name="user_environment" level="1" order="2" description="">
   <keyValuePair key="cpu_name" value="Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz" description="" />
-  <keyValuePair key="cpu_speed" value="1031.886 MHz" description="" />
+  <keyValuePair key="cpu_speed" value="800.057 MHz" description="" />
   <keyValuePair key="os_name" value="Ubuntu" description="" />
-  <keyValuePair key="os_release" value="Ubuntu 18.04.2 LTS" description="" />
+  <keyValuePair key="os_release" value="Ubuntu 18.04.3 LTS" description="" />
   <keyValuePair key="system_ram" value="16.000 GB" description="" />
   <keyValuePair key="total_processors" value="1" description="" />
  </section>
@@ -33,10 +33,10 @@
    <keyValuePair key="command" value="xsim" description="" />
   </section>
   <section name="usage" level="2" order="2" description="">
-   <keyValuePair key="iteration" value="2" description="" />
-   <keyValuePair key="runtime" value="11600 ns" description="" />
-   <keyValuePair key="simulation_memory" value="130756_KB" description="" />
-   <keyValuePair key="simulation_time" value="0.28_sec" description="" />
+   <keyValuePair key="iteration" value="1" description="" />
+   <keyValuePair key="runtime" value="7800 ns" description="" />
+   <keyValuePair key="simulation_memory" value="131464_KB" description="" />
+   <keyValuePair key="simulation_time" value="0.33_sec" description="" />
    <keyValuePair key="trace_waveform" value="true" description="" />
   </section>
  </section>

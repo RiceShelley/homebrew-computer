@@ -1,8 +1,8 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Sun Sep 15 01:29:35 2019
-// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.2 LTS
+// Date        : Sun Oct  6 03:11:54 2019
+// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 // Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ risc16System_mux_0_0_sim_netlist.v
 // Design      : risc16System_mux_0_0
@@ -12,6 +12,29 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_mux
+   (mux_out,
+    mux_in,
+    mux_sel);
+  output mux_out;
+  input [2:0]mux_in;
+  input [1:0]mux_sel;
+
+  wire [2:0]mux_in;
+  wire mux_out;
+  wire [1:0]mux_sel;
+
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    mux_out__0
+       (.I0(mux_in[2]),
+        .I1(mux_sel[1]),
+        .I2(mux_in[1]),
+        .I3(mux_sel[0]),
+        .I4(mux_in[0]),
+        .O(mux_out));
+endmodule
+
 (* CHECK_LICENSE_TYPE = "risc16System_mux_0_0,mux,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
 (* X_CORE_INFO = "mux,Vivado 2018.3" *) 
 (* NotValidForBitStream *)
@@ -19,21 +42,18 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix
    (mux_sel,
     mux_in,
     mux_out);
-  input [0:0]mux_sel;
-  input [1:0]mux_in;
+  input [1:0]mux_sel;
+  input [2:0]mux_in;
   output mux_out;
 
-  wire [1:0]mux_in;
+  wire [2:0]mux_in;
   wire mux_out;
-  wire [0:0]mux_sel;
+  wire [1:0]mux_sel;
 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mux_out_INST_0
-       (.I0(mux_in[1]),
-        .I1(mux_sel),
-        .I2(mux_in[0]),
-        .O(mux_out));
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_mux inst
+       (.mux_in(mux_in),
+        .mux_out(mux_out),
+        .mux_sel(mux_sel));
 endmodule
 `ifndef GLBL
 `define GLBL

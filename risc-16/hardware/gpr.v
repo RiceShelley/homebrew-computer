@@ -17,12 +17,6 @@ module gpr(
        );
 
 reg [15:0] r[7:0];
-integer i;
-initial
-begin
-    for (i = 4; i < 8; i = i + 1)
-        r[i] <= 16'd0;
-end
 
 always @( posedge clk )
 begin

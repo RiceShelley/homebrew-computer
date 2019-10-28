@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Mon Sep 30 13:34:47 2019
+| Date         : Wed Oct 23 20:54:25 2019
 | Host         : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 | Command      : report_drc -file risc16System_wrapper_drc_routed.rpt -pb risc16System_wrapper_drc_routed.pb -rpx risc16System_wrapper_drc_routed.rpx
 | Design       : risc16System_wrapper
@@ -24,13 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 10
+             Violations found: 14
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
-| PDRC-153    | Warning  | Gated clock check                                           | 8          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
+| PDRC-153    | Warning  | Gated clock check                                           | 11         |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
 +-------------+----------+-------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -50,48 +50,69 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/alu_op_code_reg[1]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/alu_op_code_reg[1]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/alu_op_code_reg[1]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Clocks/Clk_Mux/inst/mux_out is a gated clock net sourced by a combinational pin risc16System_i/Clocks/Clk_Mux/inst/mux_out__0/O, cell risc16System_i/Clocks/Clk_Mux/inst/mux_out__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_0_reg[2]_i_2_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_0_reg[2]_i_2/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_0_reg[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Memory/MCU/inst/addr_out0 is a gated clock net sourced by a combinational pin risc16System_i/Memory/MCU/inst/sys_mem_rw_reg_i_1/O, cell risc16System_i/Memory/MCU/inst/sys_mem_rw_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_1_reg[2]_i_2_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_1_reg[2]_i_2/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_1_reg[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Memory/MCU/inst/addr_out_reg[15]_i_2_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Memory/MCU/inst/addr_out_reg[15]_i_2/O, cell risc16System_i/Memory/MCU/inst/addr_out_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#4 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_addr_reg[2]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_addr_reg[2]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_addr_reg[2]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Memory/MCU/mem_clk is a gated clock net sourced by a combinational pin risc16System_i/Memory/MCU/mem_clk_INST_0/O, cell risc16System_i/Memory/MCU/mem_clk_INST_0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#5 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_data_reg[15]_i_2_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_data_reg[15]_i_2/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_data_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/alu_op_code_reg[1]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/alu_op_code_reg[1]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/alu_op_code_reg[1]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#6 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/imm_reg[6]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/imm_reg[6]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/imm_reg[6]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_0_reg[2]_i_2_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_0_reg[2]_i_2/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_0_reg[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#7 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/mem_addr_reg[9]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/mem_addr_reg[9]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/mem_addr_reg[9]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_1_reg[2]_i_2_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_1_reg[2]_i_2/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_read_addr_1_reg[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#8 Warning
 Gated clock check  
-Net risc16System_i/Risc16_CPU/inst/cpu_gpr/CLK is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_gpr/mem_clk_INST_0/O, cell risc16System_i/Risc16_CPU/inst/cpu_gpr/mem_clk_INST_0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_addr_reg[2]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_addr_reg[2]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_addr_reg[2]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#9 Warning
+Gated clock check  
+Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_data_reg[15]_i_2_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_data_reg[15]_i_2/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/gpr_write_data_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#10 Warning
+Gated clock check  
+Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/imm_reg[6]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/imm_reg[6]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/imm_reg[6]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#11 Warning
+Gated clock check  
+Net risc16System_i/Risc16_CPU/inst/cpu_ctrl/mem_addr_reg[9]_i_1_n_0 is a gated clock net sourced by a combinational pin risc16System_i/Risc16_CPU/inst/cpu_ctrl/mem_addr_reg[9]_i_1/O, cell risc16System_i/Risc16_CPU/inst/cpu_ctrl/mem_addr_reg[9]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT risc16System_i/Risc16_CPU/inst/cpu_gpr/mem_clk_INST_0 is driving clock pin of 4228 cells. This could lead to large hold time violations. Involved cells are:
-risc16System_i/MEM/inst/mem_reg[0][0], risc16System_i/MEM/inst/mem_reg[0][10], risc16System_i/MEM/inst/mem_reg[0][11], risc16System_i/MEM/inst/mem_reg[0][12], risc16System_i/MEM/inst/mem_reg[0][13], risc16System_i/MEM/inst/mem_reg[0][14], risc16System_i/MEM/inst/mem_reg[0][15], risc16System_i/MEM/inst/mem_reg[0][1], risc16System_i/MEM/inst/mem_reg[0][2], risc16System_i/MEM/inst/mem_reg[0][3], risc16System_i/MEM/inst/mem_reg[0][4], risc16System_i/MEM/inst/mem_reg[0][5], risc16System_i/MEM/inst/mem_reg[0][6], risc16System_i/MEM/inst/mem_reg[0][7], risc16System_i/MEM/inst/mem_reg[0][8] (the first 15 of 4228 listed)
+A LUT risc16System_i/Clocks/Clk_Mux/inst/mux_out__0 is driving clock pin of 128 cells. This could lead to large hold time violations. Involved cells are:
+risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][0], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][10], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][11], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][12], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][13], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][14], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][15], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][1], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][2], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][3], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][4], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][5], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][6], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][7], risc16System_i/Risc16_CPU/inst/cpu_gpr/r_reg[1][8] (the first 15 of 128 listed)
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT risc16System_i/Memory/MCU/mem_clk_INST_0 is driving clock pin of 4115 cells. This could lead to large hold time violations. Involved cells are:
+risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][0], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][10], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][11], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][12], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][13], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][14], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][15], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][1], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][2], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][3], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][4], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][5], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][6], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][7], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][8] (the first 15 of 4115 listed)
 Related violations: <none>
 
 

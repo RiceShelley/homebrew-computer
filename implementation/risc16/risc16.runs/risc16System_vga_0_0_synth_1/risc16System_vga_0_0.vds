@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Mon Sep 30 13:22:40 2019
-# Process ID: 23815
+# Start of session at: Wed Oct 23 20:48:42 2019
+# Process ID: 12045
 # Current directory: /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_vga_0_0_synth_1
 # Command line: vivado -log risc16System_vga_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source risc16System_vga_0_0.tcl
 # Log file: /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_vga_0_0_synth_1/risc16System_vga_0_0.vds
@@ -16,9 +16,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 23949 
+INFO: Helper process launched with PID 12204 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1424.164 ; gain = 87.879 ; free physical = 1233 ; free virtual = 7646
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1424.984 ; gain = 26.867 ; free physical = 1330 ; free virtual = 6664
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'risc16System_vga_0_0' [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_vga_0_0/synth/risc16System_vga_0_0.v:58]
 INFO: [Synth 8-6157] synthesizing module 'vga' [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/new/vga.v:23]
@@ -33,8 +33,20 @@ INFO: [Synth 8-6157] synthesizing module 'vga' [/home/rootie/devel/homebrew-comp
 INFO: [Synth 8-6155] done synthesizing module 'vga' (1#1) [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/new/vga.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'risc16System_vga_0_0' (2#1) [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_vga_0_0/synth/risc16System_vga_0_0.v:58]
 WARNING: [Synth 8-3331] design vga has unconnected port rst
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[3]
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[2]
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[1]
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[0]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[3]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[2]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[1]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[0]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[3]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[2]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[1]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1468.914 ; gain = 132.629 ; free physical = 1247 ; free virtual = 7660
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1470.734 ; gain = 72.617 ; free physical = 1339 ; free virtual = 6674
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -47,10 +59,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1468.914 ; gain = 132.629 ; free physical = 1247 ; free virtual = 7661
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1470.734 ; gain = 72.617 ; free physical = 1339 ; free virtual = 6674
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1468.914 ; gain = 132.629 ; free physical = 1247 ; free virtual = 7661
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1470.734 ; gain = 72.617 ; free physical = 1339 ; free virtual = 6674
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -59,32 +71,32 @@ Processing XDC Constraints
 Initializing timing engine
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1799.762 ; gain = 0.000 ; free physical = 992 ; free virtual = 7409
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1823.590 ; gain = 0.000 ; free physical = 1081 ; free virtual = 6416
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1799.762 ; gain = 0.000 ; free physical = 992 ; free virtual = 7409
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1823.590 ; gain = 0.000 ; free physical = 1081 ; free virtual = 6416
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1801.762 ; gain = 2.000 ; free physical = 991 ; free virtual = 7407
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.12 . Memory (MB): peak = 1826.590 ; gain = 3.000 ; free physical = 1078 ; free virtual = 6413
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 1058 ; free virtual = 7475
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 1154 ; free virtual = 6487
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 1058 ; free virtual = 7475
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 1154 ; free virtual = 6487
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 1058 ; free virtual = 7475
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 1155 ; free virtual = 6488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 1051 ; free virtual = 7468
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 1147 ; free virtual = 6480
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -97,11 +109,19 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input     17 Bit       Adders := 47    
 	   2 Input     10 Bit       Adders := 2     
+	   2 Input      7 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 2     
 +---Registers : 
+	               64 Bit    Registers := 48    
 	               10 Bit    Registers := 2     
+	                7 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
 +---Muxes : 
-	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      7 Bit        Muxes := 4     
+	   2 Input      4 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 7     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -112,11 +132,19 @@ Hierarchical RTL Component report
 Module vga 
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input     17 Bit       Adders := 47    
 	   2 Input     10 Bit       Adders := 2     
+	   2 Input      7 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 2     
 +---Registers : 
+	               64 Bit    Registers := 48    
 	               10 Bit    Registers := 2     
+	                7 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
 +---Muxes : 
-	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      7 Bit        Muxes := 4     
+	   2 Input      4 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 7     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -133,9 +161,223 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-WARNING: [Synth 8-3331] design risc16System_vga_0_0 has unconnected port rst
+WARNING: [Synth 8-3331] design vga has unconnected port rst
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[3]
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[2]
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[1]
+WARNING: [Synth 8-3331] design vga has unconnected port red_in[0]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[3]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[2]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[1]
+WARNING: [Synth 8-3331] design vga has unconnected port green_in[0]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[3]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[2]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[1]
+WARNING: [Synth 8-3331] design vga has unconnected port blue_in[0]
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[47][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[46][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[45][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[44][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[43][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[42][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[41][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[40][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[39][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[38][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[37][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[36][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[35][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[34][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[33][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[32][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[31][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[30][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[29][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[28][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[27][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[26][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[25][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[24][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[23][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[22][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[21][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[20][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[19][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[18][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[17][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[16][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[15][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[14][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[13][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[12][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[11][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[10][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[9][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[8][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[7][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[6][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[5][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[4][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[3][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[2][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[1][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[0][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[47][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[46][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[45][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[44][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[43][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[42][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[41][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[40][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[39][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[38][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[37][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[36][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[35][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[34][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[33][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[32][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[31][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[30][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[29][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[28][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[27][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[26][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[25][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[24][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[23][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[22][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[21][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[20][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[19][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[18][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[17][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[16][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[15][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[14][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[13][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[12][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[11][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[10][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[9][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[8][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[7][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[6][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[5][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[4][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[3][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[2][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[1][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[0][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[47][61] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[46][61] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[45][61] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/px_map_reg[44][61] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[47][48]' (FDE) to 'inst/px_map_reg[47][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[46][48]' (FDE) to 'inst/px_map_reg[46][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[45][48]' (FDE) to 'inst/px_map_reg[45][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[44][48]' (FDE) to 'inst/px_map_reg[44][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[43][48]' (FDE) to 'inst/px_map_reg[43][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[42][48]' (FDE) to 'inst/px_map_reg[42][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[41][48]' (FDE) to 'inst/px_map_reg[41][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[40][48]' (FDE) to 'inst/px_map_reg[40][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[39][48]' (FDE) to 'inst/px_map_reg[39][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[38][48]' (FDE) to 'inst/px_map_reg[38][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[37][48]' (FDE) to 'inst/px_map_reg[37][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[36][48]' (FDE) to 'inst/px_map_reg[36][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[35][48]' (FDE) to 'inst/px_map_reg[35][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[34][48]' (FDE) to 'inst/px_map_reg[34][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[33][48]' (FDE) to 'inst/px_map_reg[33][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[32][48]' (FDE) to 'inst/px_map_reg[32][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[31][48]' (FDE) to 'inst/px_map_reg[31][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[30][48]' (FDE) to 'inst/px_map_reg[30][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[29][48]' (FDE) to 'inst/px_map_reg[29][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[28][48]' (FDE) to 'inst/px_map_reg[28][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[27][48]' (FDE) to 'inst/px_map_reg[27][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[26][48]' (FDE) to 'inst/px_map_reg[26][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[25][48]' (FDE) to 'inst/px_map_reg[25][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[24][48]' (FDE) to 'inst/px_map_reg[24][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[23][48]' (FDE) to 'inst/px_map_reg[23][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[22][48]' (FDE) to 'inst/px_map_reg[22][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[21][48]' (FDE) to 'inst/px_map_reg[21][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[20][48]' (FDE) to 'inst/px_map_reg[20][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[19][48]' (FDE) to 'inst/px_map_reg[19][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[18][48]' (FDE) to 'inst/px_map_reg[18][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[17][48]' (FDE) to 'inst/px_map_reg[17][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[16][48]' (FDE) to 'inst/px_map_reg[16][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[15][48]' (FDE) to 'inst/px_map_reg[15][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[14][48]' (FDE) to 'inst/px_map_reg[14][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[13][48]' (FDE) to 'inst/px_map_reg[13][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[12][48]' (FDE) to 'inst/px_map_reg[12][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[11][48]' (FDE) to 'inst/px_map_reg[11][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[10][48]' (FDE) to 'inst/px_map_reg[10][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[9][48]' (FDE) to 'inst/px_map_reg[9][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[8][48]' (FDE) to 'inst/px_map_reg[8][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[7][48]' (FDE) to 'inst/px_map_reg[7][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[6][48]' (FDE) to 'inst/px_map_reg[6][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[5][48]' (FDE) to 'inst/px_map_reg[5][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[4][48]' (FDE) to 'inst/px_map_reg[4][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[3][48]' (FDE) to 'inst/px_map_reg[3][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[2][48]' (FDE) to 'inst/px_map_reg[2][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[1][48]' (FDE) to 'inst/px_map_reg[1][16]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[47][47]' (FDE) to 'inst/px_map_reg[47][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[46][47]' (FDE) to 'inst/px_map_reg[46][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[45][47]' (FDE) to 'inst/px_map_reg[45][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[44][47]' (FDE) to 'inst/px_map_reg[44][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[43][47]' (FDE) to 'inst/px_map_reg[43][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[42][47]' (FDE) to 'inst/px_map_reg[42][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[41][47]' (FDE) to 'inst/px_map_reg[41][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[40][47]' (FDE) to 'inst/px_map_reg[40][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[39][47]' (FDE) to 'inst/px_map_reg[39][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[38][47]' (FDE) to 'inst/px_map_reg[38][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[37][47]' (FDE) to 'inst/px_map_reg[37][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[36][47]' (FDE) to 'inst/px_map_reg[36][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[35][47]' (FDE) to 'inst/px_map_reg[35][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[34][47]' (FDE) to 'inst/px_map_reg[34][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[33][47]' (FDE) to 'inst/px_map_reg[33][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[32][47]' (FDE) to 'inst/px_map_reg[32][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[31][47]' (FDE) to 'inst/px_map_reg[31][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[30][47]' (FDE) to 'inst/px_map_reg[30][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[29][47]' (FDE) to 'inst/px_map_reg[29][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[28][47]' (FDE) to 'inst/px_map_reg[28][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[27][47]' (FDE) to 'inst/px_map_reg[27][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[26][47]' (FDE) to 'inst/px_map_reg[26][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[25][47]' (FDE) to 'inst/px_map_reg[25][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[24][47]' (FDE) to 'inst/px_map_reg[24][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[23][47]' (FDE) to 'inst/px_map_reg[23][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[22][47]' (FDE) to 'inst/px_map_reg[22][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[21][47]' (FDE) to 'inst/px_map_reg[21][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[20][47]' (FDE) to 'inst/px_map_reg[20][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[19][47]' (FDE) to 'inst/px_map_reg[19][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[18][47]' (FDE) to 'inst/px_map_reg[18][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[17][47]' (FDE) to 'inst/px_map_reg[17][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[16][47]' (FDE) to 'inst/px_map_reg[16][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[15][47]' (FDE) to 'inst/px_map_reg[15][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[14][47]' (FDE) to 'inst/px_map_reg[14][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[13][47]' (FDE) to 'inst/px_map_reg[13][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[12][47]' (FDE) to 'inst/px_map_reg[12][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[11][47]' (FDE) to 'inst/px_map_reg[11][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[10][47]' (FDE) to 'inst/px_map_reg[10][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[9][47]' (FDE) to 'inst/px_map_reg[9][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[8][47]' (FDE) to 'inst/px_map_reg[8][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[7][47]' (FDE) to 'inst/px_map_reg[7][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[6][47]' (FDE) to 'inst/px_map_reg[6][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[5][47]' (FDE) to 'inst/px_map_reg[5][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[4][47]' (FDE) to 'inst/px_map_reg[4][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[3][47]' (FDE) to 'inst/px_map_reg[3][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[2][47]' (FDE) to 'inst/px_map_reg[2][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[1][47]' (FDE) to 'inst/px_map_reg[1][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[0][47]' (FDE) to 'inst/px_map_reg[0][15]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[47][46]' (FDE) to 'inst/px_map_reg[47][14]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[46][46]' (FDE) to 'inst/px_map_reg[46][14]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[45][46]' (FDE) to 'inst/px_map_reg[45][14]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[44][46]' (FDE) to 'inst/px_map_reg[44][14]'
+INFO: [Synth 8-3886] merging instance 'inst/px_map_reg[43][46]' (FDE) to 'inst/px_map_reg[43][14]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 1040 ; free virtual = 7458
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 1122 ; free virtual = 6461
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -147,13 +389,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 913 ; free virtual = 7333
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 994 ; free virtual = 6339
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 913 ; free virtual = 7333
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 994 ; free virtual = 6340
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -165,7 +407,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7331
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -189,7 +431,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7332
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -202,7 +444,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7332
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -214,25 +456,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7332
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7332
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7332
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7332
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -245,49 +487,55 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-----+------+
-|      |Cell |Count |
-+------+-----+------+
-|1     |LUT1 |     1|
-|2     |LUT2 |     2|
-|3     |LUT3 |     5|
-|4     |LUT4 |     9|
-|5     |LUT5 |     9|
-|6     |LUT6 |    19|
-|7     |FDRE |    20|
-+------+-----+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |   209|
+|2     |LUT1   |   109|
+|3     |LUT2   |    10|
+|4     |LUT3   |     7|
+|5     |LUT4   |    15|
+|6     |LUT5   |    41|
+|7     |LUT6   |   229|
+|8     |MUXF7  |   104|
+|9     |MUXF8  |    46|
+|10    |FDRE   |   813|
++------+-------+------+
 
 Report Instance Areas: 
 +------+---------+-------+------+
 |      |Instance |Module |Cells |
 +------+---------+-------+------+
-|1     |top      |       |    65|
-|2     |  inst   |vga    |    65|
+|1     |top      |       |  1583|
+|2     |  inst   |vga    |  1583|
 +------+---------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 911 ; free virtual = 7332
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 993 ; free virtual = 6338
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1801.762 ; gain = 132.629 ; free physical = 965 ; free virtual = 7386
-Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1801.762 ; gain = 465.477 ; free physical = 965 ; free virtual = 7386
+Synthesis finished with 0 errors, 0 critical warnings and 13 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1826.590 ; gain = 72.617 ; free physical = 1045 ; free virtual = 6391
+Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1826.590 ; gain = 428.473 ; free physical = 1045 ; free virtual = 6391
 INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 359 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'risc16System_vga_0_0' is not ideal for floorplanning, since the cellview 'vga' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1817.777 ; gain = 0.000 ; free physical = 906 ; free virtual = 7326
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1827.598 ; gain = 0.000 ; free physical = 987 ; free virtual = 6332
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-13 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+217 Infos, 28 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1817.777 ; gain = 487.340 ; free physical = 960 ; free virtual = 7381
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1817.777 ; gain = 0.000 ; free physical = 960 ; free virtual = 7381
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1827.598 ; gain = 429.613 ; free physical = 1041 ; free virtual = 6387
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1827.598 ; gain = 0.000 ; free physical = 1041 ; free virtual = 6387
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_vga_0_0_synth_1/risc16System_vga_0_0.dcp' has been generated.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1841.789 ; gain = 0.000 ; free physical = 962 ; free virtual = 7383
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1851.609 ; gain = 0.000 ; free physical = 1038 ; free virtual = 6384
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_vga_0_0_synth_1/risc16System_vga_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file risc16System_vga_0_0_utilization_synth.rpt -pb risc16System_vga_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Sep 30 13:23:05 2019...
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 23 20:49:15 2019...

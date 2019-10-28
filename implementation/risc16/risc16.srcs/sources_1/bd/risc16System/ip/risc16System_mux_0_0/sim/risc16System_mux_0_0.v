@@ -60,12 +60,12 @@ module risc16System_mux_0_0 (
   mux_out
 );
 
-input wire [0 : 0] mux_sel;
-input wire [1 : 0] mux_in;
+input wire [1 : 0] mux_sel;
+input wire [2 : 0] mux_in;
 output wire mux_out;
 
   mux #(
-    .WIDTH(2)
+    .WIDTH(3)
   ) inst (
     .mux_sel(mux_sel),
     .mux_in(mux_in),

@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
--- Date        : Mon Sep 30 13:23:05 2019
+-- Date        : Wed Oct 23 20:49:15 2019
 -- Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_vga_0_0/risc16System_vga_0_0_stub.vhdl
@@ -16,6 +16,9 @@ entity risc16System_vga_0_0 is
   Port ( 
     clk : in STD_LOGIC;
     rst : in STD_LOGIC;
+    red_in : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    green_in : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    blue_in : in STD_LOGIC_VECTOR ( 3 downto 0 );
     red : out STD_LOGIC_VECTOR ( 3 downto 0 );
     green : out STD_LOGIC_VECTOR ( 3 downto 0 );
     blue : out STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -29,7 +32,7 @@ architecture stub of risc16System_vga_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clk,rst,red[3:0],green[3:0],blue[3:0],hsync,vsync";
+attribute black_box_pad_pin of stub : architecture is "clk,rst,red_in[3:0],green_in[3:0],blue_in[3:0],red[3:0],green[3:0],blue[3:0],hsync,vsync";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "vga,Vivado 2018.3";
 begin

@@ -21,7 +21,7 @@
 
 
 module mux#(
-    parameter WIDTH = 2
+    parameter WIDTH = 3
 )
 (
     input [$clog2(WIDTH) - 1:0] mux_sel,

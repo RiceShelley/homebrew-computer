@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="risc16System" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1569867752"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1569867752"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1569867752"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1569867752"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1571881703"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1571881703"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1571881703"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1571881703"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth/risc16System.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
@@ -19,7 +19,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_nexys_7seg_0_0/risc16System_nexys_7seg_0_0.xci" Type="IP">
-        <Instance HierarchyPath="nexys_7seg_display"/>
+        <Instance HierarchyPath="Nexys_Peripherals/nexys_7seg_display"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -27,7 +27,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_clk_wiz_0_0/risc16System_clk_wiz_0_0.xci" Type="IP">
-        <Instance HierarchyPath="CLK_5MHz"/>
+        <Instance HierarchyPath="Clocks/CLK_5MHz"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -35,7 +35,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_clk_div_0_0/risc16System_clk_div_0_0.xci" Type="IP">
-        <Instance HierarchyPath="clk_div_by_10"/>
+        <Instance HierarchyPath="Clocks/clk_div_by_10"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -51,7 +51,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_display_ctrl_0_0/risc16System_display_ctrl_0_0.xci" Type="IP">
-        <Instance HierarchyPath="display_ctrl"/>
+        <Instance HierarchyPath="Nexys_Peripherals/display_ctrl"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -59,7 +59,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_spi_slave_0_0/risc16System_spi_slave_0_0.xci" Type="IP">
-        <Instance HierarchyPath="spi_slave"/>
+        <Instance HierarchyPath="programer/spi_slave"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -67,7 +67,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_CPU_Programmer_0_0/risc16System_CPU_Programmer_0_0.xci" Type="IP">
-        <Instance HierarchyPath="CPU_Programmer"/>
+        <Instance HierarchyPath="programer/CPU_Programmer"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -75,7 +75,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_mux_0_0/risc16System_mux_0_0.xci" Type="IP">
-        <Instance HierarchyPath="Clk_Mux"/>
+        <Instance HierarchyPath="Clocks/Clk_Mux"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -83,7 +83,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_clk_div_1_0/risc16System_clk_div_1_0.xci" Type="IP">
-        <Instance HierarchyPath="SLOW_DEBUG_CLK"/>
+        <Instance HierarchyPath="Clocks/SLOW_DEBUG_CLK"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -91,7 +91,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_clock_bus_0_0/risc16System_clock_bus_0_0.xci" Type="IP">
-        <Instance HierarchyPath="Clock_Bus"/>
+        <Instance HierarchyPath="Clocks/Clock_Bus"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -107,7 +107,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_clk_wiz_0_1/risc16System_clk_wiz_0_1.xci" Type="IP">
-        <Instance HierarchyPath="VGA_25MHz_CLK"/>
+        <Instance HierarchyPath="Clocks/VGA_25MHz_CLK"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -115,7 +115,39 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_ram_0_0/risc16System_ram_0_0.xci" Type="IP">
-        <Instance HierarchyPath="MEM"/>
+        <Instance HierarchyPath="Memory/SYS_MEM"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/risc16System_MCU_0_0/risc16System_MCU_0_0.xci" Type="IP">
+        <Instance HierarchyPath="Memory/MCU"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/risc16System_or_gate_0_0/risc16System_or_gate_0_0.xci" Type="IP">
+        <Instance HierarchyPath="Memory/hlt_cpu_or"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/risc16System_Ctrl_Registers_0_0/risc16System_Ctrl_Registers_0_0.xci" Type="IP">
+        <Instance HierarchyPath="Memory/Ctrl_Registers"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/risc16System_Video_Buffer_0_0/risc16System_Video_Buffer_0_0.xci" Type="IP">
+        <Instance HierarchyPath="Memory/Video_Buffer"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

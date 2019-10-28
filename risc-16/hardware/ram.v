@@ -10,17 +10,15 @@ module ram(
            output [15:0] ir,
            input rw,
            output [15:0] data_out,
-           input [15:0] mem_in,
-           output [15:0] status_reg
+           input [15:0] mem_in
 );
 
 parameter MEM_SIZE = 255;
 parameter READ = 0, WRITE = 1;
 
 // memory
-reg [15:0] mem[MEM_SIZE:0];
+reg [15:0] mem[MEM_SIZE - 1:0];
 
-assign status_reg = mem[0];
 assign data_out = mem[addr];
 
 // program counter decoding
