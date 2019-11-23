@@ -1,0 +1,44 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Sat Nov 23 16:06:22 2019
+# Process ID: 2336
+# Current directory: /home/rootie/devel/homebrew-computer
+# Command line: vivado
+# Log file: /home/rootie/devel/homebrew-computer/vivado.log
+# Journal file: /home/rootie/devel/homebrew-computer/vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script '/home/rootie/.Xilinx/Vivado/Vivado_init.tcl'
+start_gui
+open_project /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2018.3/data/ip'.
+open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:06 . Memory (MB): peak = 6468.438 ; gain = 126.609 ; free physical = 12373 ; free virtual = 16130
+open_bd_design {/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd}
+Adding cell -- xilinx.com:module_ref:spi_slave:1.0 - spi_slave
+Adding cell -- xilinx.com:module_ref:CPU_Programmer:1.0 - CPU_Programmer
+Adding cell -- xilinx.com:module_ref:clk_div:1.0 - SLOW_DEBUG_CLK
+Adding cell -- xilinx.com:ip:clk_wiz:6.0 - CLK_5MHz
+Adding cell -- xilinx.com:module_ref:clk_div:1.0 - clk_div_by_10
+Adding cell -- xilinx.com:ip:clk_wiz:6.0 - VGA_25MHz_CLK
+Adding cell -- xilinx.com:module_ref:mux:1.0 - Clk_Mux
+Adding cell -- xilinx.com:module_ref:clock_bus:1.0 - Clock_Bus
+WARNING: [BD 41-1731] Type mismatch between connected pins: /Clocks/clk_div_by_10/clk_out(undef) and /Clocks/SLOW_DEBUG_CLK/clk(clk)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /Clocks/clk_div_by_10/clk_out(undef) and /Clocks/clk_out1(clk)
+Adding cell -- xilinx.com:module_ref:nexys_7seg:1.0 - nexys_7seg_display
+Adding cell -- xilinx.com:module_ref:display_ctrl:1.0 - display_ctrl
+Adding cell -- xilinx.com:module_ref:or_gate:1.0 - hlt_cpu_or
+Adding cell -- xilinx.com:module_ref:ram:1.0 - SYS_MEM
+Adding cell -- xilinx.com:module_ref:Video_Buffer:1.0 - Video_Buffer_0
+Adding cell -- xilinx.com:module_ref:Ctrl_Registers:1.0 - Ctrl_Registers
+Adding cell -- xilinx.com:module_ref:MCU:1.0 - MCU
+Adding cell -- xilinx.com:module_ref:io_regs:1.0 - io_regs_0
+Adding cell -- xilinx.com:module_ref:vga:1.0 - vga_0
+Adding cell -- xilinx.com:module_ref:risc16:1.0 - Risc16_CPU
+Successfully read diagram <risc16System> from BD file </home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd>
+open_bd_design: Time (s): cpu = 00:00:53 ; elapsed = 00:00:08 . Memory (MB): peak = 6848.609 ; gain = 48.023 ; free physical = 11873 ; free virtual = 15706
+update_compile_order -fileset sources_1
