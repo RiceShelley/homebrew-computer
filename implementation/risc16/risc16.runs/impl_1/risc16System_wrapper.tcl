@@ -68,7 +68,6 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7a100tcsg324-1
-  set_property board_part_repo_paths {/home/rootie/Documents/vivado-boards/new/board_files} [current_project]
   set_property board_part digilentinc.com:nexys-a7-100t:part0:1.0 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
@@ -82,7 +81,7 @@ set rc [catch {
   set_param project.isImplRun true
   add_files /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd
   set_param project.isImplRun false
-  read_xdc /home/rootie/Documents/digilent-xdc-master/Nexys-A7-100T-Master.xdc
+  read_xdc /home/rootie/devel/homebrew-computer/implementation/risc16/Nexys-A7-100T.xdc
   set_param project.isImplRun true
   link_design -top risc16System_wrapper -part xc7a100tcsg324-1
   set_param project.isImplRun false
