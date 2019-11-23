@@ -77,6 +77,10 @@ uint16_t parse_ri(uint8_t op_code, char* rA_str, char* imm_str, int line) {
 	}
 	ins |= rA << 10;
 	ins |= imm;
+
+	if (ins == 0x7000) {
+		printf("FOUND BAD INS op code = '%d' ra = '%s' imm = '%s'\n\n\n", (int) op_code, rA_str, imm_str);
+	}
 	return ins;
 }
 

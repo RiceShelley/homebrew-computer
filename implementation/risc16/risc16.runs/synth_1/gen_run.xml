@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1571881721">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1572571168">
   <File Type="VDS-TIMING-PB" Name="risc16System_wrapper_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="risc16System_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="risc16System_wrapper.dcp"/>
@@ -130,6 +130,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/io_regs.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/bd/risc16System/risc16System.bd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -184,23 +191,26 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_mux_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_MCU_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_Video_Buffer_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_clock_bus_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_io_regs_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_vga_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_Ctrl_Registers_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_ram_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_vga_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_Video_Buffer_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_mux_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_wiz_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_MCU_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_div_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_clock_bus_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_div_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_risc16_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_CPU_Programmer_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_display_ctrl_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_spi_slave_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_display_ctrl_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_wiz_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_nexys_7seg_0_0"/>
 </GenRun>

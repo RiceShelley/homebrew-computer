@@ -54,7 +54,10 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_or
 # IP: bd/risc16System/ip/risc16System_Ctrl_Registers_0_0/risc16System_Ctrl_Registers_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_Ctrl_Registers_0_0 || ORIG_REF_NAME==risc16System_Ctrl_Registers_0_0} -quiet] -quiet
 
-# IP: bd/risc16System/ip/risc16System_Video_Buffer_0_0/risc16System_Video_Buffer_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_Video_Buffer_0_0 || ORIG_REF_NAME==risc16System_Video_Buffer_0_0} -quiet] -quiet
+# IP: bd/risc16System/ip/risc16System_Video_Buffer_0_1/risc16System_Video_Buffer_0_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_Video_Buffer_0_1 || ORIG_REF_NAME==risc16System_Video_Buffer_0_1} -quiet] -quiet
+
+# IP: bd/risc16System/ip/risc16System_io_regs_0_0/risc16System_io_regs_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==risc16System_io_regs_0_0 || ORIG_REF_NAME==risc16System_io_regs_0_0} -quiet] -quiet
 
 # XDC: bd/risc16System/risc16System_ooc.xdc

@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Sun Oct  6 02:16:54 2019
+| Date         : Thu Oct 31 16:34:53 2019
 | Host         : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 | Command      : report_utilization -file risc16System_MCU_0_0_utilization_synth.rpt -pb risc16System_MCU_0_0_utilization_synth.pb
 | Design       : risc16System_MCU_0_0
@@ -30,12 +30,12 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |   43 |     0 |     63400 |  0.07 |
-|   LUT as Logic          |   43 |     0 |     63400 |  0.07 |
+| Slice LUTs*             |   65 |     0 |     63400 |  0.10 |
+|   LUT as Logic          |   65 |     0 |     63400 |  0.10 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
-| Slice Registers         |   35 |     0 |    126800 |  0.03 |
+| Slice Registers         |   16 |     0 |    126800 |  0.01 |
 |   Register as Flip Flop |    0 |     0 |    126800 |  0.00 |
-|   Register as Latch     |   35 |     0 |    126800 |  0.03 |
+|   Register as Latch     |   16 |     0 |    126800 |  0.01 |
 | F7 Muxes                |    0 |     0 |     31700 |  0.00 |
 | F8 Muxes                |    0 |     0 |     15850 |  0.00 |
 +-------------------------+------+-------+-----------+-------+
@@ -55,7 +55,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 35    |          Yes |           - |        Reset |
+| 16    |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 0     |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -146,14 +146,13 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LDCE     |   35 |        Flop & Latch |
-| LUT4     |   20 |                 LUT |
-| LUT2     |   15 |                 LUT |
-| LUT6     |    4 |                 LUT |
+| LUT6     |   26 |                 LUT |
+| LUT2     |   18 |                 LUT |
+| LDCE     |   16 |        Flop & Latch |
+| LUT5     |   14 |                 LUT |
+| LUT4     |    6 |                 LUT |
+| LUT3     |    4 |                 LUT |
 | CARRY4   |    4 |          CarryLogic |
-| LUT5     |    3 |                 LUT |
-| LUT3     |    3 |                 LUT |
-| LUT1     |    1 |                 LUT |
 +----------+------+---------------------+
 
 

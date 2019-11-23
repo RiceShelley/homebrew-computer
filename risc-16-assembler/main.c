@@ -83,7 +83,7 @@ int setup_memory(prog_line* data_sec, prog_line* text_sec) {
 		}
 
 		if (strcmp(size, "dw") == 0) {
-			uint16_t val = atoi(value);
+			uint16_t val = parse_imm(value);
 			bin[next_addr] = val;
 	
 			// replace numanic with address in text section
@@ -160,7 +160,7 @@ void setup_labels_in_memory(int mem_start, prog_line* text) {
 
 				// replace numanic with address in text section
 				char addr[20];
-				sprintf(addr, "%x", next_mem_addr);
+				sprintf(addr, "0x%x", next_mem_addr);
 				prog_line* cur_line = prog_getline(0);
 				while (cur_line != NULL) {
 					if (cur_line->ins != NULL) {
@@ -227,8 +227,9 @@ int parse_ins(prog_line* text_sec) {
 			next_addr++;
 		} else if (strcmp(op, "str") == 0) {
 			char* rA = strtok(NULL, " ,\t");
+			char* rB = strtok(NULL, " ,\t");
 			char* imm = strtok(NULL, " ,\t");
-			bin[next_addr] = parse_ri(STR, rA, imm, line_num);
+			bin[next_addr] = parse_rri(STR, rA, rB, imm, line_num);
 			next_addr++;
 		} else if (strcmp(op, "ldr") == 0) {
 			char* rA = strtok(NULL, " ,\t");

@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Wed Oct 23 20:54:30 2019
+| Date             : Thu Oct 31 20:24:31 2019
 | Host             : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 | Command          : report_power -file risc16System_wrapper_power_routed.rpt -pb risc16System_wrapper_power_summary_routed.pb -rpx risc16System_wrapper_power_routed.rpx
 | Design           : risc16System_wrapper
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.375        |
+| Total On-Chip Power (W)  | 0.378        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.277        |
+| Dynamic (W)              | 0.280        |
 | Device Static (W)        | 0.098        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 83.3         |
@@ -49,22 +49,23 @@ Table of Contents
 1.1 On-Chip Components
 ----------------------
 
-+----------------+-----------+----------+-----------+-----------------+
-| On-Chip        | Power (W) | Used     | Available | Utilization (%) |
-+----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.024 |        9 |       --- |             --- |
-| Slice Logic    |     0.006 |    11174 |       --- |             --- |
-|   LUT as Logic |     0.006 |     3843 |     63400 |            6.06 |
-|   CARRY4       |    <0.001 |      227 |     15850 |            1.43 |
-|   F7/F8 Muxes  |    <0.001 |     1627 |     63400 |            2.57 |
-|   Register     |    <0.001 |     5275 |    126800 |            4.16 |
-|   Others       |     0.000 |       29 |       --- |             --- |
-| Signals        |     0.015 |     7602 |       --- |             --- |
-| MMCM           |     0.202 |        2 |         6 |           33.33 |
-| I/O            |     0.030 |       43 |       210 |           20.48 |
-| Static Power   |     0.098 |          |           |                 |
-| Total          |     0.375 |          |           |                 |
-+----------------+-----------+----------+-----------+-----------------+
++--------------------------+-----------+----------+-----------+-----------------+
+| On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
++--------------------------+-----------+----------+-----------+-----------------+
+| Clocks                   |     0.026 |        9 |       --- |             --- |
+| Slice Logic              |     0.009 |    10250 |       --- |             --- |
+|   LUT as Logic           |     0.008 |     3728 |     63400 |            5.88 |
+|   F7/F8 Muxes            |    <0.001 |     1528 |     63400 |            2.41 |
+|   LUT as Distributed RAM |    <0.001 |      256 |     19000 |            1.35 |
+|   CARRY4                 |    <0.001 |       18 |     15850 |            0.11 |
+|   Register               |    <0.001 |     4496 |    126800 |            3.55 |
+|   Others                 |     0.000 |       34 |       --- |             --- |
+| Signals                  |     0.015 |     6908 |       --- |             --- |
+| MMCM                     |     0.202 |        2 |         6 |           33.33 |
+| I/O                      |     0.028 |       43 |       210 |           20.48 |
+| Static Power             |     0.098 |          |           |                 |
+| Total                    |     0.378 |          |           |                 |
++--------------------------+-----------+----------+-----------+-----------------+
 
 
 1.2 Power Supply Summary
@@ -73,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.062 |       0.046 |      0.016 |
+| Vccint    |       1.000 |     0.067 |       0.051 |      0.016 |
 | Vccaux    |       1.800 |     0.131 |       0.113 |      0.018 |
 | Vcco33    |       3.300 |     0.012 |       0.008 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -144,22 +145,21 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+--------------------------+-----------+
-| Name                     | Power (W) |
-+--------------------------+-----------+
-| risc16System_wrapper     |     0.277 |
-|   risc16System_i         |     0.247 |
-|     Clocks               |     0.203 |
-|       CLK_5MHz           |     0.086 |
-|       VGA_25MHz_CLK      |     0.117 |
-|     Memory               |     0.036 |
-|       MCU                |     0.004 |
-|       SYS_MEM            |     0.032 |
-|     Nexys_Peripherals    |     0.001 |
-|       nexys_7seg_display |     0.001 |
-|     Risc16_CPU           |     0.005 |
-|       inst               |     0.005 |
-|     programer            |     0.001 |
-+--------------------------+-----------+
++----------------------+-----------+
+| Name                 | Power (W) |
++----------------------+-----------+
+| risc16System_wrapper |     0.280 |
+|   risc16System_i     |     0.252 |
+|     Clocks           |     0.203 |
+|       CLK_5MHz       |     0.086 |
+|       VGA_25MHz_CLK  |     0.117 |
+|     Memory           |     0.041 |
+|       MCU            |     0.002 |
+|       SYS_MEM        |     0.037 |
+|       Video_Buffer_0 |     0.002 |
+|     Risc16_CPU       |     0.006 |
+|       inst           |     0.006 |
+|     programer        |     0.001 |
++----------------------+-----------+
 
 

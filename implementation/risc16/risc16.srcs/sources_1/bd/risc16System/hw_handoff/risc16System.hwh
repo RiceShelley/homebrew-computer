@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Oct 23 20:48:23 2019" VIVADOVERSION="2018.3">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Oct 31 20:19:04 2019" VIVADOVERSION="2018.3">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:nexys-a7-100t:part0:1.0" DEVICE="7a100t" NAME="risc16System" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -26,8 +26,8 @@
     <PORT DIR="I" NAME="BTND" SIGIS="undef" SIGNAME="External_Ports_BTND">
       <CONNECTIONS>
         <CONNECTION INSTANCE="Memory_SYS_MEM" PORT="rst"/>
-        <CONNECTION INSTANCE="Risc16_CPU" PORT="rst"/>
         <CONNECTION INSTANCE="vga_0" PORT="rst"/>
+        <CONNECTION INSTANCE="Risc16_CPU" PORT="rst"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="mosi" SIGIS="undef" SIGNAME="External_Ports_mosi">
@@ -99,12 +99,17 @@
     </PORT>
     <PORT DIR="I" NAME="extern_clk" SIGIS="undef" SIGNAME="External_Ports_extern_clk">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="Clocks_Clock_Bus" PORT="clkc"/>
+        <CONNECTION INSTANCE="Clocks_Clock_Bus" PORT="clka"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" LEFT="1" NAME="clk_sel" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_clk_sel">
       <CONNECTIONS>
         <CONNECTION INSTANCE="Clocks_Clk_Mux" PORT="mux_sel"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="usr_sw" SIGIS="undef" SIGNAME="External_Ports_usr_sw">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Memory_io_regs_0" PORT="input_a"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -728,9 +733,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="clka" SIGIS="undef" SIGNAME="Clocks_SLOW_DEBUG_CLK_clk_out">
+        <PORT DIR="I" NAME="clka" SIGIS="undef" SIGNAME="External_Ports_extern_clk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Clocks_SLOW_DEBUG_CLK" PORT="clk_out"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="extern_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="clkb" SIGIS="undef" SIGNAME="External_Ports_BTNU">
@@ -738,9 +743,14 @@
             <CONNECTION INSTANCE="External_Ports" PORT="BTNU"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="clkc" SIGIS="undef" SIGNAME="External_Ports_extern_clk">
+        <PORT DIR="I" NAME="clkc" SIGIS="undef" SIGNAME="Clocks_SLOW_DEBUG_CLK_clk_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="extern_clk"/>
+            <CONNECTION INSTANCE="Clocks_SLOW_DEBUG_CLK" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="clkd" SIGIS="undef" SIGNAME="Clocks_clk_div_by_10_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Clocks_clk_div_by_10" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="2" NAME="clk_bus" RIGHT="0" SIGIS="undef" SIGNAME="Clocks_Clock_Bus_clk_bus">
@@ -766,7 +776,7 @@
         </PORT>
         <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="Clocks_SLOW_DEBUG_CLK_clk_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Clocks_Clock_Bus" PORT="clka"/>
+            <CONNECTION INSTANCE="Clocks_Clock_Bus" PORT="clkc"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1375,6 +1385,7 @@
             <CONNECTION INSTANCE="Nexys_Peripherals_display_ctrl" PORT="clk"/>
             <CONNECTION INSTANCE="Clocks_SLOW_DEBUG_CLK" PORT="clk"/>
             <CONNECTION INSTANCE="Memory_MCU" PORT="mem_clk_in"/>
+            <CONNECTION INSTANCE="Clocks_Clock_Bus" PORT="clkd"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1424,12 +1435,6 @@
     <MODULE COREREVISION="1" FULLNAME="/Memory/MCU" HWVERSION="1.0" INSTANCE="Memory_MCU" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="MCU" VLNV="xilinx.com:module_ref:MCU:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="CR_MEM_START" VALUE="0"/>
-        <PARAMETER NAME="CR_MEM_END" VALUE="1"/>
-        <PARAMETER NAME="VBUFF_MEM_START" VALUE="2"/>
-        <PARAMETER NAME="VBUFF_MEM_END" VALUE="4"/>
-        <PARAMETER NAME="SYS_MEM_START" VALUE="5"/>
-        <PARAMETER NAME="SYS_MEM_END" VALUE="260"/>
         <PARAMETER NAME="Component_Name" VALUE="risc16System_MCU_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -1474,11 +1479,17 @@
             <CONNECTION INSTANCE="Memory_Ctrl_Registers" PORT="data_out"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="15" NAME="io_regs_data_in" RIGHT="0" SIGIS="undef" SIGNAME="Memory_io_regs_0_data_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_io_regs_0" PORT="data_out"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="mem_clk" SIGIS="clk" SIGNAME="Memory_MCU_mem_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Memory_SYS_MEM" PORT="clk"/>
+            <CONNECTION INSTANCE="Memory_Video_Buffer_0" PORT="clk"/>
             <CONNECTION INSTANCE="Memory_Ctrl_Registers" PORT="clk"/>
-            <CONNECTION INSTANCE="Memory_Video_Buffer" PORT="clk"/>
+            <CONNECTION INSTANCE="Memory_io_regs_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="hlt_cpu" SIGIS="undef" SIGNAME="Memory_MCU_hlt_cpu">
@@ -1489,15 +1500,17 @@
         <PORT DIR="O" LEFT="15" NAME="addr_out" RIGHT="0" SIGIS="undef" SIGNAME="Memory_MCU_addr_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Memory_SYS_MEM" PORT="addr"/>
+            <CONNECTION INSTANCE="Memory_Video_Buffer_0" PORT="addr"/>
             <CONNECTION INSTANCE="Memory_Ctrl_Registers" PORT="addr"/>
-            <CONNECTION INSTANCE="Memory_Video_Buffer" PORT="addr"/>
+            <CONNECTION INSTANCE="Memory_io_regs_0" PORT="addr"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="15" NAME="data_bus_out" RIGHT="0" SIGIS="undef" SIGNAME="Memory_MCU_data_bus_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Memory_SYS_MEM" PORT="mem_in"/>
+            <CONNECTION INSTANCE="Memory_Video_Buffer_0" PORT="data"/>
             <CONNECTION INSTANCE="Memory_Ctrl_Registers" PORT="data"/>
-            <CONNECTION INSTANCE="Memory_Video_Buffer" PORT="data"/>
+            <CONNECTION INSTANCE="Memory_io_regs_0" PORT="data"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="15" NAME="mem_data_out" RIGHT="0" SIGIS="undef" SIGNAME="Memory_MCU_mem_data_out">
@@ -1517,7 +1530,12 @@
         </PORT>
         <PORT DIR="O" NAME="vbuff_mem_rw" SIGIS="undef" SIGNAME="Memory_MCU_vbuff_mem_rw">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Memory_Video_Buffer" PORT="rw"/>
+            <CONNECTION INSTANCE="Memory_Video_Buffer_0" PORT="rw"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="io_regs_rw" SIGIS="undef" SIGNAME="Memory_MCU_io_regs_rw">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_io_regs_0" PORT="rw"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1596,10 +1614,10 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="1" FULLNAME="/Memory/Video_Buffer" HWVERSION="1.0" INSTANCE="Memory_Video_Buffer" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Video_Buffer" VLNV="xilinx.com:module_ref:Video_Buffer:1.0">
+    <MODULE COREREVISION="1" FULLNAME="/Memory/Video_Buffer_0" HWVERSION="1.0" INSTANCE="Memory_Video_Buffer_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Video_Buffer" VLNV="xilinx.com:module_ref:Video_Buffer:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="risc16System_Video_Buffer_0_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="risc16System_Video_Buffer_0_1"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -1623,19 +1641,19 @@
             <CONNECTION INSTANCE="Memory_MCU" PORT="vbuff_mem_rw"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="red" RIGHT="0" SIGIS="undef" SIGNAME="Memory_Video_Buffer_red">
+        <PORT DIR="I" LEFT="5" NAME="px_buff_line_addr" RIGHT="0" SIGIS="undef" SIGNAME="vga_0_px_line">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vga_0" PORT="red_in"/>
+            <CONNECTION INSTANCE="vga_0" PORT="px_line"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="green" RIGHT="0" SIGIS="undef" SIGNAME="Memory_Video_Buffer_green">
+        <PORT DIR="I" LEFT="5" NAME="px_buff_pos_addr" RIGHT="0" SIGIS="undef" SIGNAME="vga_0_px_pos">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vga_0" PORT="green_in"/>
+            <CONNECTION INSTANCE="vga_0" PORT="px_pos"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="blue" RIGHT="0" SIGIS="undef" SIGNAME="Memory_Video_Buffer_blue">
+        <PORT DIR="O" NAME="px_out" SIGIS="undef" SIGNAME="Memory_Video_Buffer_0_px_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vga_0" PORT="blue_in"/>
+            <CONNECTION INSTANCE="vga_0" PORT="px_in"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1661,6 +1679,46 @@
         <PORT DIR="O" NAME="c" SIGIS="undef" SIGNAME="Memory_hlt_cpu_or_c">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Risc16_CPU" PORT="extern_halt"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Memory/io_regs_0" HWVERSION="1.0" INSTANCE="Memory_io_regs_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="io_regs" VLNV="xilinx.com:module_ref:io_regs:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="risc16System_io_regs_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="Memory_MCU_mem_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_MCU" PORT="mem_clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="addr" RIGHT="0" SIGIS="undef" SIGNAME="Memory_MCU_addr_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_MCU" PORT="addr_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="data" RIGHT="0" SIGIS="undef" SIGNAME="Memory_MCU_data_bus_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_MCU" PORT="data_bus_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rw" SIGIS="undef" SIGNAME="Memory_MCU_io_regs_rw">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_MCU" PORT="io_regs_rw"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="input_a" SIGIS="undef" SIGNAME="External_Ports_usr_sw">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="usr_sw"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="data_out" RIGHT="0" SIGIS="undef" SIGNAME="Memory_io_regs_0_data_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_MCU" PORT="io_regs_data_in"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1902,19 +1960,9 @@
             <CONNECTION INSTANCE="External_Ports" PORT="BTND"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="red_in" RIGHT="0" SIGIS="undef" SIGNAME="Memory_Video_Buffer_red">
+        <PORT DIR="I" NAME="px_in" SIGIS="undef" SIGNAME="Memory_Video_Buffer_0_px_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Memory_Video_Buffer" PORT="red"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="green_in" RIGHT="0" SIGIS="undef" SIGNAME="Memory_Video_Buffer_green">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="Memory_Video_Buffer" PORT="green"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="blue_in" RIGHT="0" SIGIS="undef" SIGNAME="Memory_Video_Buffer_blue">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="Memory_Video_Buffer" PORT="blue"/>
+            <CONNECTION INSTANCE="Memory_Video_Buffer_0" PORT="px_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="red" RIGHT="0" SIGIS="undef" SIGNAME="vga_0_red">
@@ -1940,6 +1988,16 @@
         <PORT DIR="O" NAME="vsync" SIGIS="undef" SIGNAME="vga_0_vsync">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="VGA_VS"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="5" NAME="px_line" RIGHT="0" SIGIS="undef" SIGNAME="vga_0_px_line">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_Video_Buffer_0" PORT="px_buff_line_addr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="5" NAME="px_pos" RIGHT="0" SIGIS="undef" SIGNAME="vga_0_px_pos">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_Video_Buffer_0" PORT="px_buff_pos_addr"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

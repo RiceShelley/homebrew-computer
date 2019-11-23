@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Sun Oct  6 03:11:54 2019
+// Date        : Mon Oct 28 16:09:27 2019
 // Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 // Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ risc16System_clock_bus_0_0_sim_netlist.v
@@ -19,21 +19,21 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix
    (clka,
     clkb,
     clkc,
+    clkd,
     clk_bus);
   input clka;
   input clkb;
   input clkc;
+  input clkd;
   output [2:0]clk_bus;
 
-  wire \<const0> ;
   wire clkb;
   wire clkc;
+  wire clkd;
 
   assign clk_bus[2] = clkb;
   assign clk_bus[1] = clkc;
-  assign clk_bus[0] = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
+  assign clk_bus[0] = clkd;
 endmodule
 `ifndef GLBL
 `define GLBL

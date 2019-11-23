@@ -58,14 +58,14 @@
 module risc16System_vga_0_0 (
   clk,
   rst,
-  red_in,
-  green_in,
-  blue_in,
+  px_in,
   red,
   green,
   blue,
   hsync,
-  vsync
+  vsync,
+  px_line,
+  px_pos
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /Clocks/VGA_25MHz_CLK_clk_out1, INSERT_VIP 0" *)
@@ -74,14 +74,14 @@ input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
-input wire [3 : 0] red_in;
-input wire [3 : 0] green_in;
-input wire [3 : 0] blue_in;
+input wire px_in;
 output wire [3 : 0] red;
 output wire [3 : 0] green;
 output wire [3 : 0] blue;
 output wire hsync;
 output wire vsync;
+output wire [5 : 0] px_line;
+output wire [5 : 0] px_pos;
 
   vga #(
     .hsync_end(10'B0001011111),
@@ -95,13 +95,13 @@ output wire vsync;
   ) inst (
     .clk(clk),
     .rst(rst),
-    .red_in(red_in),
-    .green_in(green_in),
-    .blue_in(blue_in),
+    .px_in(px_in),
     .red(red),
     .green(green),
     .blue(blue),
     .hsync(hsync),
-    .vsync(vsync)
+    .vsync(vsync),
+    .px_line(px_line),
+    .px_pos(px_pos)
   );
 endmodule

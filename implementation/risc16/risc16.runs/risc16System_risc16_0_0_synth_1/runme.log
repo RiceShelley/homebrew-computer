@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 27084 
+INFO: Helper process launched with PID 18677 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1424.988 ; gain = 27.867 ; free physical = 1145 ; free virtual = 8243
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1423.723 ; gain = 52.867 ; free physical = 1637 ; free virtual = 8054
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'risc16System_risc16_0_0' [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_risc16_0_0/synth/risc16System_risc16_0_0.v:58]
 INFO: [Synth 8-6157] synthesizing module 'risc16' [/home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v:1]
@@ -26,20 +26,18 @@ INFO: [Synth 8-6157] synthesizing module 'gpr' [/home/rootie/devel/homebrew-comp
 INFO: [Synth 8-6155] done synthesizing module 'gpr' (1#1) [/home/rootie/devel/homebrew-computer/risc-16/hardware/gpr.v:2]
 INFO: [Synth 8-6157] synthesizing module 'alu' [/home/rootie/devel/homebrew-computer/risc-16/hardware/alu.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'alu' (2#1) [/home/rootie/devel/homebrew-computer/risc-16/hardware/alu.v:1]
+INFO: [Synth 8-226] default block is never used [/home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v:82]
 INFO: [Synth 8-6157] synthesizing module 'ctrl' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:1]
 	Parameter ALU bound to: 3'b000 
 	Parameter CTRL bound to: 3'b001 
 	Parameter MEM bound to: 3'b010 
 	Parameter GPR bound to: 3'b000 
-INFO: [Synth 8-226] default block is never used [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:28]
+INFO: [Synth 8-226] default block is never used [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:29]
 INFO: [Synth 8-6155] done synthesizing module 'ctrl' (3#1) [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:1]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin /home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v-36.4 with 1st driver pin 'risc16:/cpu_ctrl/gpr_write_en' [/home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v:36]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin /home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v-36.4 with 2nd driver pin 'VCC' [/home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v:36]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net /home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v-36.4 is connected to at least one constant driver which has been preserved, other driver is ignored [/home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v:36]
 INFO: [Synth 8-6155] done synthesizing module 'risc16' (4#1) [/home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'risc16System_risc16_0_0' (5#1) [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_risc16_0_0/synth/risc16System_risc16_0_0.v:58]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1469.738 ; gain = 72.617 ; free physical = 1167 ; free virtual = 8268
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1469.473 ; gain = 98.617 ; free physical = 1647 ; free virtual = 8065
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -52,10 +50,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1469.738 ; gain = 72.617 ; free physical = 1153 ; free virtual = 8254
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1469.473 ; gain = 98.617 ; free physical = 1648 ; free virtual = 8066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1469.738 ; gain = 72.617 ; free physical = 1153 ; free virtual = 8254
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1469.473 ; gain = 98.617 ; free physical = 1648 ; free virtual = 8066
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -64,29 +62,29 @@ Processing XDC Constraints
 Initializing timing engine
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1820.602 ; gain = 0.000 ; free physical = 651 ; free virtual = 7758
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1819.328 ; gain = 0.000 ; free physical = 1393 ; free virtual = 7812
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1820.602 ; gain = 0.000 ; free physical = 651 ; free virtual = 7758
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1819.328 ; gain = 0.000 ; free physical = 1393 ; free virtual = 7812
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.11 . Memory (MB): peak = 1822.602 ; gain = 2.000 ; free physical = 645 ; free virtual = 7752
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1821.328 ; gain = 2.000 ; free physical = 1390 ; free virtual = 7809
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 783 ; free virtual = 7892
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1462 ; free virtual = 7880
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 783 ; free virtual = 7891
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1462 ; free virtual = 7880
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 787 ; free virtual = 7895
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1464 ; free virtual = 7882
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "r_reg[7]" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "r_reg[6]" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
@@ -97,21 +95,19 @@ INFO: [Synth 8-5544] ROM "r_reg[2]" won't be mapped to Block RAM because address
 INFO: [Synth 8-5544] ROM "r_reg[1]" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "r_reg[0]" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/rootie/devel/homebrew-computer/risc-16/hardware/alu.v:16]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/rootie/devel/homebrew-computer/risc-16/hardware/risc16.v:110]
-INFO: [Synth 8-5546] ROM "pc" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_addr_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:35]
-WARNING: [Synth 8-327] inferring latch for variable 'gpr_read_addr_0_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:36]
-WARNING: [Synth 8-327] inferring latch for variable 'gpr_read_addr_1_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:37]
-WARNING: [Synth 8-327] inferring latch for variable 'alu_op_code_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:39]
-WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_en_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:34]
-WARNING: [Synth 8-327] inferring latch for variable 'imm_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:49]
-WARNING: [Synth 8-327] inferring latch for variable 'mem_addr_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:90]
-WARNING: [Synth 8-327] inferring latch for variable 'rw_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:33]
-WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_src_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:38]
-WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_data_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:77]
-WARNING: [Synth 8-327] inferring latch for variable 'branch_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:32]
+WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_addr_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:36]
+WARNING: [Synth 8-327] inferring latch for variable 'gpr_read_addr_0_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:37]
+WARNING: [Synth 8-327] inferring latch for variable 'gpr_read_addr_1_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:38]
+WARNING: [Synth 8-327] inferring latch for variable 'alu_op_code_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:40]
+WARNING: [Synth 8-327] inferring latch for variable 'rw_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:34]
+WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_en_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:35]
+WARNING: [Synth 8-327] inferring latch for variable 'imm_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:51]
+WARNING: [Synth 8-327] inferring latch for variable 'mem_addr_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:95]
+WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_src_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:39]
+WARNING: [Synth 8-327] inferring latch for variable 'gpr_write_data_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:81]
+WARNING: [Synth 8-327] inferring latch for variable 'branch_reg' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:33]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 769 ; free virtual = 7878
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1455 ; free virtual = 7873
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -125,20 +121,19 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     16 Bit       Adders := 2     
-	   4 Input     16 Bit       Adders := 1     
-	   2 Input      7 Bit       Adders := 1     
+	   3 Input     16 Bit       Adders := 1     
 +---Registers : 
 	               16 Bit    Registers := 9     
 +---Muxes : 
 	   7 Input     16 Bit        Muxes := 1     
-	   8 Input     16 Bit        Muxes := 1     
-	   2 Input     16 Bit        Muxes := 4     
+	   8 Input     16 Bit        Muxes := 2     
+	   2 Input     16 Bit        Muxes := 3     
 	   4 Input     16 Bit        Muxes := 1     
-	   8 Input      3 Bit        Muxes := 4     
+	   2 Input      7 Bit        Muxes := 2     
+	   8 Input      3 Bit        Muxes := 5     
 	   8 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 9     
-	   8 Input      1 Bit        Muxes := 8     
-	   4 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 8     
+	   8 Input      1 Bit        Muxes := 9     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -163,22 +158,20 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input     16 Bit       Adders := 1     
 +---Muxes : 
-	   8 Input     16 Bit        Muxes := 1     
-	   8 Input      3 Bit        Muxes := 4     
+	   8 Input     16 Bit        Muxes := 2     
+	   8 Input      3 Bit        Muxes := 5     
 	   8 Input      2 Bit        Muxes := 1     
-	   8 Input      1 Bit        Muxes := 8     
+	   8 Input      1 Bit        Muxes := 9     
 Module risc16 
 Detailed RTL Component Info : 
 +---Adders : 
-	   4 Input     16 Bit       Adders := 1     
-	   2 Input      7 Bit       Adders := 1     
+	   3 Input     16 Bit       Adders := 1     
 +---Registers : 
 	               16 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 4     
+	   2 Input     16 Bit        Muxes := 3     
 	   4 Input     16 Bit        Muxes := 1     
-	   4 Input      1 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -195,24 +188,51 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-INFO: [Synth 8-3917] design risc16System_risc16_0_0 has port addr[15] driven by constant 0
-INFO: [Synth 8-3917] design risc16System_risc16_0_0 has port addr[14] driven by constant 0
-INFO: [Synth 8-3917] design risc16System_risc16_0_0 has port addr[13] driven by constant 0
-INFO: [Synth 8-3917] design risc16System_risc16_0_0 has port addr[12] driven by constant 0
-INFO: [Synth 8-3917] design risc16System_risc16_0_0 has port addr[11] driven by constant 0
-INFO: [Synth 8-3917] design risc16System_risc16_0_0 has port addr[10] driven by constant 0
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_ctrl/gpr_write_src_reg[2] )
-INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/imm_reg[9]' (LD) to 'inst/cpu_ctrl/imm_reg[8]'
-INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/imm_reg[8]' (LD) to 'inst/cpu_ctrl/imm_reg[7]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_ctrl/imm_reg[7] )
+INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/mem_addr_reg[10]' (LD) to 'inst/cpu_ctrl/mem_addr_reg[15]'
+INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/mem_addr_reg[11]' (LD) to 'inst/cpu_ctrl/mem_addr_reg[15]'
+INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/mem_addr_reg[12]' (LD) to 'inst/cpu_ctrl/mem_addr_reg[15]'
+INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/mem_addr_reg[13]' (LD) to 'inst/cpu_ctrl/mem_addr_reg[15]'
+INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/mem_addr_reg[14]' (LD) to 'inst/cpu_ctrl/mem_addr_reg[15]'
+INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/imm_reg[7]' (LD) to 'inst/cpu_ctrl/imm_reg[9]'
+INFO: [Synth 8-3886] merging instance 'inst/cpu_ctrl/imm_reg[8]' (LD) to 'inst/cpu_ctrl/imm_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_ctrl/imm_reg[9] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_ctrl/alu_op_code_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_ctrl/mem_addr_reg[15] )
 INFO: [Synth 8-3332] Sequential element (inst/cpu_ctrl/alu_op_code_reg[2]) is unused and will be removed from module risc16System_risc16_0_0.
-INFO: [Synth 8-3332] Sequential element (inst/cpu_ctrl/gpr_write_en_reg) is unused and will be removed from module risc16System_risc16_0_0.
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin gpr_write_en with 1st driver pin 'inst/cpu_ctrl/gpr_write_en_reg/Q' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:34]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin gpr_write_en with 2nd driver pin 'VCC' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:34]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net gpr_write_en is connected to at least one constant driver which has been preserved, other driver is ignored [/home/rootie/devel/homebrew-computer/risc-16/hardware/ctrl.v:34]
-INFO: [Synth 8-3332] Sequential element (inst/cpu_ctrl/imm_reg[7]) is unused and will be removed from module risc16System_risc16_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/cpu_ctrl/imm_reg[9]) is unused and will be removed from module risc16System_risc16_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/cpu_ctrl/mem_addr_reg[15]) is unused and will be removed from module risc16System_risc16_0_0.
 INFO: [Synth 8-3332] Sequential element (inst/cpu_ctrl/gpr_write_src_reg[2]) is unused and will be removed from module risc16System_risc16_0_0.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1439 ; free virtual = 7859
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1316 ; free virtual = 7737
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1316 ; free virtual = 7736
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_gpr/r_reg[0][0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_gpr/r_reg[0][1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_gpr/r_reg[0][2] )
@@ -230,37 +250,7 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_gpr/r_reg[0][14] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/cpu_gpr/r_reg[0][15] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 704 ; free virtual = 7825
----------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
----------------------------------------------------------------------------------
-Start Applying XDC Timing Constraints
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 616 ; free virtual = 7657
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Timing Optimization
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 612 ; free virtual = 7653
----------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
----------------------------------------------------------------------------------
-Start Technology Mapping
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 604 ; free virtual = 7646
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7734
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -284,7 +274,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 624 ; free virtual = 7665
+Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -297,7 +287,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 626 ; free virtual = 7667
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -309,25 +299,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 630 ; free virtual = 7673
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 630 ; free virtual = 7673
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 637 ; free virtual = 7680
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 639 ; free virtual = 7682
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -344,57 +334,57 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |CARRY4 |    14|
-|2     |LUT1   |     1|
-|3     |LUT2   |    19|
-|4     |LUT3   |    49|
-|5     |LUT4   |    44|
-|6     |LUT5   |    80|
-|7     |LUT6   |    45|
+|2     |LUT1   |     2|
+|3     |LUT2   |    35|
+|4     |LUT3   |    46|
+|5     |LUT4   |    34|
+|6     |LUT5   |    76|
+|7     |LUT6   |    38|
 |8     |MUXF7  |    32|
 |9     |FDRE   |   124|
 |10    |FDSE   |     4|
-|11    |LD     |    49|
+|11    |LD     |    50|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+-------------+-------+------+
 |      |Instance     |Module |Cells |
 +------+-------------+-------+------+
-|1     |top          |       |   461|
-|2     |  inst       |risc16 |   461|
+|1     |top          |       |   455|
+|2     |  inst       |risc16 |   455|
 |3     |    cpu_alu  |alu    |     6|
-|4     |    cpu_ctrl |ctrl   |   199|
-|5     |    cpu_gpr  |gpr    |   236|
+|4     |    cpu_ctrl |ctrl   |   188|
+|5     |    cpu_gpr  |gpr    |   237|
 +------+-------------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 641 ; free virtual = 7684
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1314 ; free virtual = 7735
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 3 critical warnings and 11 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1822.602 ; gain = 72.617 ; free physical = 794 ; free virtual = 7838
-Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1822.602 ; gain = 425.480 ; free physical = 797 ; free virtual = 7840
+Synthesis finished with 0 errors, 0 critical warnings and 11 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1821.328 ; gain = 98.617 ; free physical = 1369 ; free virtual = 7789
+Synthesis Optimization Complete : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1821.328 ; gain = 450.473 ; free physical = 1369 ; free virtual = 7789
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 95 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 96 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 1 inverter(s) to 3 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1822.602 ; gain = 0.000 ; free physical = 1200 ; free virtual = 8245
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 4 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1821.328 ; gain = 0.000 ; free physical = 1311 ; free virtual = 7732
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 49 instances were transformed.
+  A total of 50 instances were transformed.
   LD => LDCE: 46 instances
-  LD => LDCE (inverted pins: G): 3 instances
+  LD => LDCE (inverted pins: G): 4 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-64 Infos, 12 Warnings, 6 Critical Warnings and 0 Errors encountered.
+63 Infos, 12 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1822.602 ; gain = 425.613 ; free physical = 1255 ; free virtual = 8299
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1822.602 ; gain = 0.000 ; free physical = 1255 ; free virtual = 8299
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1821.328 ; gain = 450.605 ; free physical = 1363 ; free virtual = 7784
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1821.328 ; gain = 0.000 ; free physical = 1363 ; free virtual = 7784
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_risc16_0_0_synth_1/risc16System_risc16_0_0.dcp' has been generated.
 INFO: [Coretcl 2-1174] Renamed 4 cell refs.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1846.613 ; gain = 0.000 ; free physical = 1256 ; free virtual = 8301
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1845.340 ; gain = 0.000 ; free physical = 1362 ; free virtual = 7783
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_risc16_0_0_synth_1/risc16System_risc16_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file risc16System_risc16_0_0_utilization_synth.rpt -pb risc16System_risc16_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Oct 23 18:17:23 2019...
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 31 18:02:11 2019...

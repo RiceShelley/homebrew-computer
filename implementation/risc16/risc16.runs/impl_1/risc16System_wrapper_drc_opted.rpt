@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Wed Oct 23 20:51:22 2019
+| Date         : Thu Oct 31 20:22:07 2019
 | Host         : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 | Command      : report_drc -file risc16System_wrapper_drc_opted.rpt -pb risc16System_wrapper_drc_opted.pb -rpx risc16System_wrapper_drc_opted.rpx
 | Design       : risc16System_wrapper
@@ -55,8 +55,8 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT risc16System_i/Memory/MCU/mem_clk_INST_0 is driving clock pin of 4115 cells. This could lead to large hold time violations. Involved cells are:
-risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][0], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][10], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][11], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][12], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][13], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][14], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][15], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][1], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][2], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][3], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][4], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][5], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][6], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][7], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][8] (the first 15 of 4115 listed)
+A LUT risc16System_i/Memory/MCU/mem_clk_INST_0 is driving clock pin of 4372 cells. This could lead to large hold time violations. Involved cells are:
+risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][0], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][10], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][11], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][12], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][13], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][14], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][15], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][1], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][2], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][3], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][4], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][5], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][6], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][7], risc16System_i/Memory/Ctrl_Registers/inst/mem_reg[0][8] (the first 15 of 4372 listed)
 Related violations: <none>
 
 

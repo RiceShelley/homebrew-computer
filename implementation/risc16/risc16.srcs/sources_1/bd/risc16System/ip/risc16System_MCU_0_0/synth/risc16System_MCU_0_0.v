@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "MCU,Vivado 2018.3" *)
 (* CHECK_LICENSE_TYPE = "risc16System_MCU_0_0,MCU,{}" *)
-(* CORE_GENERATION_INFO = "risc16System_MCU_0_0,MCU,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=MCU,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,CR_MEM_START=0,CR_MEM_END=1,VBUFF_MEM_START=2,VBUFF_MEM_END=4,SYS_MEM_START=5,SYS_MEM_END=260}" *)
+(* CORE_GENERATION_INFO = "risc16System_MCU_0_0,MCU,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=MCU,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module risc16System_MCU_0_0 (
@@ -64,6 +64,7 @@ module risc16System_MCU_0_0 (
   rw,
   sys_mem_data_in,
   ctrl_reg_mem_data_in,
+  io_regs_data_in,
   mem_clk,
   hlt_cpu,
   addr_out,
@@ -71,7 +72,8 @@ module risc16System_MCU_0_0 (
   mem_data_out,
   sys_mem_rw,
   CR_mem_rw,
-  vbuff_mem_rw
+  vbuff_mem_rw,
+  io_regs_rw
 );
 
 input wire mem_clk_in;
@@ -84,6 +86,7 @@ input wire [15 : 0] data_bus;
 input wire rw;
 input wire [15 : 0] sys_mem_data_in;
 input wire [15 : 0] ctrl_reg_mem_data_in;
+input wire [15 : 0] io_regs_data_in;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME mem_clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN risc16System_MCU_0_0_mem_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 mem_clk CLK" *)
 output wire mem_clk;
@@ -94,15 +97,9 @@ output wire [15 : 0] mem_data_out;
 output wire sys_mem_rw;
 output wire CR_mem_rw;
 output wire vbuff_mem_rw;
+output wire io_regs_rw;
 
-  MCU #(
-    .CR_MEM_START(0),
-    .CR_MEM_END(1),
-    .VBUFF_MEM_START(2),
-    .VBUFF_MEM_END(4),
-    .SYS_MEM_START(5),
-    .SYS_MEM_END(260)
-  ) inst (
+  MCU inst (
     .mem_clk_in(mem_clk_in),
     .pgm_mem_clk(pgm_mem_clk),
     .pgm(pgm),
@@ -111,6 +108,7 @@ output wire vbuff_mem_rw;
     .rw(rw),
     .sys_mem_data_in(sys_mem_data_in),
     .ctrl_reg_mem_data_in(ctrl_reg_mem_data_in),
+    .io_regs_data_in(io_regs_data_in),
     .mem_clk(mem_clk),
     .hlt_cpu(hlt_cpu),
     .addr_out(addr_out),
@@ -118,6 +116,7 @@ output wire vbuff_mem_rw;
     .mem_data_out(mem_data_out),
     .sys_mem_rw(sys_mem_rw),
     .CR_mem_rw(CR_mem_rw),
-    .vbuff_mem_rw(vbuff_mem_rw)
+    .vbuff_mem_rw(vbuff_mem_rw),
+    .io_regs_rw(io_regs_rw)
   );
 endmodule

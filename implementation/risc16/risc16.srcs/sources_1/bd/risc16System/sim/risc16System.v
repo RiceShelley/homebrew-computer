@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-//Date        : Wed Oct 23 20:48:22 2019
+//Date        : Thu Oct 31 20:19:03 2019
 //Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 //Command     : generate_target risc16System.bd
 //Design      : risc16System
@@ -55,9 +55,10 @@ module Clocks_imp_M0LRZS
         .mux_sel(clk_sel_1));
   risc16System_clock_bus_0_0 Clock_Bus
        (.clk_bus(Clock_Bus_clk_bus),
-        .clka(SLOW_DEBUG_CLK_clk_out),
+        .clka(extern_clk_1),
         .clkb(BTNU_1),
-        .clkc(extern_clk_1));
+        .clkc(SLOW_DEBUG_CLK_clk_out),
+        .clkd(clk_div_by_10_clk_out));
   risc16System_clk_div_1_0 SLOW_DEBUG_CLK
        (.clk(clk_div_by_10_clk_out),
         .clk_out(SLOW_DEBUG_CLK_clk_out));
@@ -71,9 +72,7 @@ endmodule
 
 module Memory_imp_1ZN6E9
    (addr,
-    blue,
     data_bus,
-    green,
     hlt_cpu,
     ir,
     mem_clk,
@@ -84,13 +83,14 @@ module Memory_imp_1ZN6E9
     pgm_addr,
     pgm_clk,
     pgm_data,
-    red,
+    px_buff_line_addr,
+    px_buff_pos_addr,
+    px_out,
     rst,
-    rw);
+    rw,
+    usr_sw);
   input [15:0]addr;
-  output [3:0]blue;
   input [15:0]data_bus;
-  output [3:0]green;
   output hlt_cpu;
   output [15:0]ir;
   input mem_clk;
@@ -101,29 +101,32 @@ module Memory_imp_1ZN6E9
   input [15:0]pgm_addr;
   input pgm_clk;
   input [15:0]pgm_data;
-  output [3:0]red;
+  input [5:0]px_buff_line_addr;
+  input [5:0]px_buff_pos_addr;
+  output px_out;
   input rst;
   input rw;
+  input usr_sw;
 
   wire BTND_1;
-  wire [15:0]Ctrl_Registers_0_data_out;
-  wire Ctrl_Registers_0_hlt_cpu;
+  wire [15:0]Ctrl_Registers_data_out;
+  wire Ctrl_Registers_hlt_cpu;
   wire MCU_CR_mem_rw;
   wire [15:0]MCU_addr_out;
   wire [15:0]MCU_data_bus;
   wire MCU_hlt_cpu;
+  wire MCU_io_regs_rw;
   wire MCU_mem_clk;
   wire [15:0]MCU_mem_data_out;
   wire MCU_sys_mem_rw;
   wire MCU_vbuff_mem_rw;
   wire [15:0]SYS_MEM_data_out;
   wire [15:0]SYS_MEM_ir;
-  wire [3:0]Video_Buffer_0_blue;
-  wire [3:0]Video_Buffer_0_green;
-  wire [3:0]Video_Buffer_0_red;
+  wire Video_Buffer_0_px_out;
   wire [15:0]addr_in_1;
   wire clk_1;
   wire [15:0]data_bus_1;
+  wire [15:0]io_regs_0_data_out;
   wire mem_clk_in_1;
   wire or_gate_0_c;
   wire [15:0]pc_1;
@@ -131,14 +134,15 @@ module Memory_imp_1ZN6E9
   wire pgm_1;
   wire [15:0]pgm_addr_1;
   wire [15:0]pgm_data_1;
+  wire [5:0]px_buff_line_addr_1;
+  wire [5:0]px_buff_pos_addr_1;
   wire rw_1;
+  wire usr_sw_1;
 
   assign BTND_1 = rst;
   assign addr_in_1 = addr[15:0];
-  assign blue[3:0] = Video_Buffer_0_blue;
   assign clk_1 = pgm_clk;
   assign data_bus_1 = data_bus[15:0];
-  assign green[3:0] = Video_Buffer_0_green;
   assign hlt_cpu = or_gate_0_c;
   assign ir[15:0] = SYS_MEM_ir;
   assign mem_clk_in_1 = mem_clk;
@@ -148,23 +152,28 @@ module Memory_imp_1ZN6E9
   assign pgm_1 = pgm;
   assign pgm_addr_1 = pgm_addr[15:0];
   assign pgm_data_1 = pgm_data[15:0];
-  assign red[3:0] = Video_Buffer_0_red;
+  assign px_buff_line_addr_1 = px_buff_line_addr[5:0];
+  assign px_buff_pos_addr_1 = px_buff_pos_addr[5:0];
+  assign px_out = Video_Buffer_0_px_out;
   assign rw_1 = rw;
+  assign usr_sw_1 = usr_sw;
   risc16System_Ctrl_Registers_0_0 Ctrl_Registers
        (.addr(MCU_addr_out),
         .clk(MCU_mem_clk),
         .data(MCU_data_bus),
-        .data_out(Ctrl_Registers_0_data_out),
-        .hlt_cpu(Ctrl_Registers_0_hlt_cpu),
+        .data_out(Ctrl_Registers_data_out),
+        .hlt_cpu(Ctrl_Registers_hlt_cpu),
         .rw(MCU_CR_mem_rw));
   risc16System_MCU_0_0 MCU
        (.CR_mem_rw(MCU_CR_mem_rw),
         .addr_in(addr_in_1),
         .addr_out(MCU_addr_out),
-        .ctrl_reg_mem_data_in(Ctrl_Registers_0_data_out),
+        .ctrl_reg_mem_data_in(Ctrl_Registers_data_out),
         .data_bus(data_bus_1),
         .data_bus_out(MCU_data_bus),
         .hlt_cpu(MCU_hlt_cpu),
+        .io_regs_data_in(io_regs_0_data_out),
+        .io_regs_rw(MCU_io_regs_rw),
         .mem_clk(MCU_mem_clk),
         .mem_clk_in(mem_clk_in_1),
         .mem_data_out(MCU_mem_data_out),
@@ -187,18 +196,25 @@ module Memory_imp_1ZN6E9
         .pgm_data(pgm_data_1),
         .rst(BTND_1),
         .rw(MCU_sys_mem_rw));
-  risc16System_Video_Buffer_0_0 Video_Buffer
+  risc16System_Video_Buffer_0_1 Video_Buffer_0
        (.addr(MCU_addr_out),
-        .blue(Video_Buffer_0_blue),
         .clk(MCU_mem_clk),
         .data(MCU_data_bus),
-        .green(Video_Buffer_0_green),
-        .red(Video_Buffer_0_red),
+        .px_buff_line_addr(px_buff_line_addr_1),
+        .px_buff_pos_addr(px_buff_pos_addr_1),
+        .px_out(Video_Buffer_0_px_out),
         .rw(MCU_vbuff_mem_rw));
   risc16System_or_gate_0_0 hlt_cpu_or
-       (.a(Ctrl_Registers_0_hlt_cpu),
+       (.a(Ctrl_Registers_hlt_cpu),
         .b(MCU_hlt_cpu),
         .c(or_gate_0_c));
+  risc16System_io_regs_0_0 io_regs_0
+       (.addr(MCU_addr_out),
+        .clk(MCU_mem_clk),
+        .data(MCU_data_bus),
+        .data_out(io_regs_0_data_out),
+        .input_a(usr_sw_1),
+        .rw(MCU_io_regs_rw));
 endmodule
 
 module Nexys_Peripherals_imp_2MRWYA
@@ -294,7 +310,7 @@ module programer_imp_1MHW5NV
         .tx_load({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
 
-(* CORE_GENERATION_INFO = "risc16System,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=risc16System,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=21,numReposBlks=17,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=15,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "risc16System.hwdef" *) 
+(* CORE_GENERATION_INFO = "risc16System,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=risc16System,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=22,numReposBlks=18,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=16,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "risc16System.hwdef" *) 
 module risc16System
    (BTND,
     BTNU,
@@ -314,7 +330,8 @@ module risc16System
     sclk,
     seg,
     seg_sel,
-    ss);
+    ss,
+    usr_sw);
   input BTND;
   input BTNU;
   output LED_B;
@@ -334,16 +351,15 @@ module risc16System
   output [7:0]seg;
   output [7:0]seg_sel;
   input ss;
+  input usr_sw;
 
   wire BTND_1;
   wire BTNU_1;
   wire CPU_Programmer_0_pgm;
-  wire [3:0]Memory_blue;
   wire Memory_c;
-  wire [3:0]Memory_green;
   wire [15:0]Memory_ir;
   wire [15:0]Memory_mem_data_out;
-  wire [3:0]Memory_red;
+  wire Memory_px_out;
   wire [7:0]Nexys_Peripherals_seg;
   wire [7:0]Nexys_Peripherals_seg_sel;
   wire [15:0]Risc16_CPU_addr;
@@ -365,9 +381,12 @@ module risc16System
   wire [15:0]risc16_0_pc_out;
   wire sclk_1;
   wire ss_1;
+  wire usr_sw_1;
   wire [3:0]vga_0_blue;
   wire [3:0]vga_0_green;
   wire vga_0_hsync;
+  wire [5:0]vga_0_px_line;
+  wire [5:0]vga_0_px_pos;
   wire [3:0]vga_0_red;
   wire vga_0_vsync;
 
@@ -390,6 +409,7 @@ module risc16System
   assign seg[7:0] = Nexys_Peripherals_seg;
   assign seg_sel[7:0] = Nexys_Peripherals_seg_sel;
   assign ss_1 = ss;
+  assign usr_sw_1 = usr_sw;
   Clocks_imp_M0LRZS Clocks
        (.BTNU(BTNU_1),
         .CPU_Clk(clocks_CPU_Clk),
@@ -401,9 +421,7 @@ module risc16System
         .extern_clk(extern_clk_1));
   Memory_imp_1ZN6E9 Memory
        (.addr(Risc16_CPU_addr),
-        .blue(Memory_blue),
         .data_bus(Risc16_CPU_data_bus),
-        .green(Memory_green),
         .hlt_cpu(Memory_c),
         .ir(Memory_ir),
         .mem_clk(mem_clk_1),
@@ -414,9 +432,12 @@ module risc16System
         .pgm_addr(programer_pgm_addr),
         .pgm_clk(clk_1),
         .pgm_data(programer_pgm_data),
-        .red(Memory_red),
+        .px_buff_line_addr(vga_0_px_line),
+        .px_buff_pos_addr(vga_0_px_pos),
+        .px_out(Memory_px_out),
         .rst(BTND_1),
-        .rw(Risc16_CPU_mem_rw));
+        .rw(Risc16_CPU_mem_rw),
+        .usr_sw(usr_sw_1));
   Nexys_Peripherals_imp_2MRWYA Nexys_Peripherals
        (.clk(clk_div_0_clk_out),
         .data(Risc16_CPU_outRegA),
@@ -445,13 +466,13 @@ module risc16System
         .ss(ss_1));
   risc16System_vga_0_0 vga_0
        (.blue(vga_0_blue),
-        .blue_in(Memory_blue),
         .clk(clocks_clk_out2),
         .green(vga_0_green),
-        .green_in(Memory_green),
         .hsync(vga_0_hsync),
+        .px_in(Memory_px_out),
+        .px_line(vga_0_px_line),
+        .px_pos(vga_0_px_pos),
         .red(vga_0_red),
-        .red_in(Memory_red),
         .rst(BTND_1),
         .vsync(vga_0_vsync));
 endmodule

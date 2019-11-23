@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB3CEFF0A3D525F19",
+      "boundary_crc": "0xCD01D7271CECEA4A",
       "device": "xc7a100tcsg324-1",
       "name": "risc16System",
       "synth_flow_mode": "Hierarchical",
@@ -28,12 +28,13 @@
       "Memory": {
         "hlt_cpu_or": "",
         "SYS_MEM": "",
+        "Video_Buffer_0": "",
         "Ctrl_Registers": "",
-        "Video_Buffer": "",
-        "MCU": ""
+        "MCU": "",
+        "io_regs_0": ""
       },
-      "Risc16_CPU": "",
-      "vga_0": ""
+      "vga_0": "",
+      "Risc16_CPU": ""
     },
     "ports": {
       "clk": {
@@ -104,6 +105,9 @@
         "direction": "I",
         "left": "1",
         "right": "0"
+      },
+      "usr_sw": {
+        "direction": "I"
       }
     },
     "components": {
@@ -497,6 +501,9 @@
               "clkc": {
                 "direction": "I"
               },
+              "clkd": {
+                "direction": "I"
+              },
               "clk_bus": {
                 "direction": "O",
                 "left": "2",
@@ -537,18 +544,6 @@
               "VGA_Base_Clk_25MHz"
             ]
           },
-          "SLOW_DEBUG_CLK_clk_out": {
-            "ports": [
-              "SLOW_DEBUG_CLK/clk_out",
-              "Clock_Bus/clka"
-            ]
-          },
-          "extern_clk_1": {
-            "ports": [
-              "extern_clk",
-              "Clock_Bus/clkc"
-            ]
-          },
           "clk_sel_1": {
             "ports": [
               "clk_sel",
@@ -560,13 +555,26 @@
               "clk_div_by_10/clk_out",
               "NEXYS_7SEG_CLK",
               "SLOW_DEBUG_CLK/clk",
-              "clk_out1"
+              "clk_out1",
+              "Clock_Bus/clkd"
             ]
           },
           "CLK_5MHz_clk_out1": {
             "ports": [
               "CLK_5MHz/clk_out1",
               "clk_div_by_10/clk"
+            ]
+          },
+          "SLOW_DEBUG_CLK_clk_out": {
+            "ports": [
+              "SLOW_DEBUG_CLK/clk_out",
+              "Clock_Bus/clkc"
+            ]
+          },
+          "extern_clk_1": {
+            "ports": [
+              "extern_clk",
+              "Clock_Bus/clka"
             ]
           }
         }
@@ -760,20 +768,21 @@
           "rw": {
             "direction": "I"
           },
-          "red": {
-            "direction": "O",
-            "left": "3",
+          "px_out": {
+            "direction": "O"
+          },
+          "px_buff_line_addr": {
+            "direction": "I",
+            "left": "5",
             "right": "0"
           },
-          "green": {
-            "direction": "O",
-            "left": "3",
+          "px_buff_pos_addr": {
+            "direction": "I",
+            "left": "5",
             "right": "0"
           },
-          "blue": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
+          "usr_sw": {
+            "direction": "I"
           }
         },
         "components": {
@@ -870,6 +879,53 @@
               }
             }
           },
+          "Video_Buffer_0": {
+            "vlnv": "xilinx.com:module_ref:Video_Buffer:1.0",
+            "xci_name": "risc16System_Video_Buffer_0_1",
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "Video_Buffer",
+              "boundary_crc": "0x0"
+            },
+            "ports": {
+              "clk": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "CLK_DOMAIN": {
+                    "value": "risc16System_MCU_0_0_mem_clk",
+                    "value_src": "default_prop"
+                  }
+                }
+              },
+              "addr": {
+                "direction": "I",
+                "left": "15",
+                "right": "0"
+              },
+              "data": {
+                "direction": "I",
+                "left": "15",
+                "right": "0"
+              },
+              "rw": {
+                "direction": "I"
+              },
+              "px_buff_line_addr": {
+                "direction": "I",
+                "left": "5",
+                "right": "0"
+              },
+              "px_buff_pos_addr": {
+                "direction": "I",
+                "left": "5",
+                "right": "0"
+              },
+              "px_out": {
+                "direction": "O"
+              }
+            }
+          },
           "Ctrl_Registers": {
             "vlnv": "xilinx.com:module_ref:Ctrl_Registers:1.0",
             "xci_name": "risc16System_Ctrl_Registers_0_0",
@@ -909,55 +965,6 @@
               },
               "hlt_cpu": {
                 "direction": "O"
-              }
-            }
-          },
-          "Video_Buffer": {
-            "vlnv": "xilinx.com:module_ref:Video_Buffer:1.0",
-            "xci_name": "risc16System_Video_Buffer_0_0",
-            "reference_info": {
-              "ref_type": "hdl",
-              "ref_name": "Video_Buffer",
-              "boundary_crc": "0x0"
-            },
-            "ports": {
-              "clk": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "CLK_DOMAIN": {
-                    "value": "risc16System_MCU_0_0_mem_clk",
-                    "value_src": "default_prop"
-                  }
-                }
-              },
-              "addr": {
-                "direction": "I",
-                "left": "15",
-                "right": "0"
-              },
-              "data": {
-                "direction": "I",
-                "left": "15",
-                "right": "0"
-              },
-              "rw": {
-                "direction": "I"
-              },
-              "red": {
-                "direction": "O",
-                "left": "3",
-                "right": "0"
-              },
-              "green": {
-                "direction": "O",
-                "left": "3",
-                "right": "0"
-              },
-              "blue": {
-                "direction": "O",
-                "left": "3",
-                "right": "0"
               }
             }
           },
@@ -1007,6 +1014,11 @@
                 "left": "15",
                 "right": "0"
               },
+              "io_regs_data_in": {
+                "direction": "I",
+                "left": "15",
+                "right": "0"
+              },
               "hlt_cpu": {
                 "direction": "O"
               },
@@ -1033,6 +1045,51 @@
               },
               "vbuff_mem_rw": {
                 "direction": "O"
+              },
+              "io_regs_rw": {
+                "direction": "O"
+              }
+            }
+          },
+          "io_regs_0": {
+            "vlnv": "xilinx.com:module_ref:io_regs:1.0",
+            "xci_name": "risc16System_io_regs_0_0",
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "io_regs",
+              "boundary_crc": "0x0"
+            },
+            "ports": {
+              "clk": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "CLK_DOMAIN": {
+                    "value": "risc16System_MCU_0_0_mem_clk",
+                    "value_src": "default_prop"
+                  }
+                }
+              },
+              "addr": {
+                "direction": "I",
+                "left": "15",
+                "right": "0"
+              },
+              "data": {
+                "direction": "I",
+                "left": "15",
+                "right": "0"
+              },
+              "rw": {
+                "direction": "I"
+              },
+              "input_a": {
+                "direction": "I"
+              },
+              "data_out": {
+                "direction": "O",
+                "left": "15",
+                "right": "0"
               }
             }
           }
@@ -1055,8 +1112,9 @@
             "ports": [
               "MCU/data_bus_out",
               "SYS_MEM/mem_in",
+              "Video_Buffer_0/data",
               "Ctrl_Registers/data",
-              "Video_Buffer/data"
+              "io_regs_0/data"
             ]
           },
           "SYS_MEM_ir": {
@@ -1093,8 +1151,9 @@
             "ports": [
               "MCU/addr_out",
               "SYS_MEM/addr",
+              "Video_Buffer_0/addr",
               "Ctrl_Registers/addr",
-              "Video_Buffer/addr"
+              "io_regs_0/addr"
             ]
           },
           "BTND_1": {
@@ -1107,8 +1166,9 @@
             "ports": [
               "MCU/mem_clk",
               "SYS_MEM/clk",
+              "Video_Buffer_0/clk",
               "Ctrl_Registers/clk",
-              "Video_Buffer/clk"
+              "io_regs_0/clk"
             ]
           },
           "clk_1": {
@@ -1165,47 +1225,136 @@
               "MCU/rw"
             ]
           },
+          "Video_Buffer_0_px_out": {
+            "ports": [
+              "Video_Buffer_0/px_out",
+              "px_out"
+            ]
+          },
+          "px_buff_line_addr_1": {
+            "ports": [
+              "px_buff_line_addr",
+              "Video_Buffer_0/px_buff_line_addr"
+            ]
+          },
+          "px_buff_pos_addr_1": {
+            "ports": [
+              "px_buff_pos_addr",
+              "Video_Buffer_0/px_buff_pos_addr"
+            ]
+          },
+          "MCU_vbuff_mem_rw": {
+            "ports": [
+              "MCU/vbuff_mem_rw",
+              "Video_Buffer_0/rw"
+            ]
+          },
+          "Ctrl_Registers_hlt_cpu": {
+            "ports": [
+              "Ctrl_Registers/hlt_cpu",
+              "hlt_cpu_or/a"
+            ]
+          },
+          "Ctrl_Registers_data_out": {
+            "ports": [
+              "Ctrl_Registers/data_out",
+              "MCU/ctrl_reg_mem_data_in"
+            ]
+          },
           "MCU_CR_mem_rw": {
             "ports": [
               "MCU/CR_mem_rw",
               "Ctrl_Registers/rw"
             ]
           },
-          "Ctrl_Registers_0_hlt_cpu": {
+          "MCU_io_regs_rw": {
             "ports": [
-              "Ctrl_Registers/hlt_cpu",
-              "hlt_cpu_or/a"
+              "MCU/io_regs_rw",
+              "io_regs_0/rw"
             ]
           },
-          "Ctrl_Registers_0_data_out": {
+          "io_regs_0_data_out": {
             "ports": [
-              "Ctrl_Registers/data_out",
-              "MCU/ctrl_reg_mem_data_in"
+              "io_regs_0/data_out",
+              "MCU/io_regs_data_in"
             ]
           },
-          "MCU_vbuff_mem_rw": {
+          "usr_sw_1": {
             "ports": [
-              "MCU/vbuff_mem_rw",
-              "Video_Buffer/rw"
+              "usr_sw",
+              "io_regs_0/input_a"
             ]
+          }
+        }
+      },
+      "vga_0": {
+        "vlnv": "xilinx.com:module_ref:vga:1.0",
+        "xci_name": "risc16System_vga_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "vga",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "/Clocks/VGA_25MHz_CLK_clk_out1",
+                "value_src": "ip_prop"
+              },
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              }
+            }
           },
-          "Video_Buffer_0_red": {
-            "ports": [
-              "Video_Buffer/red",
-              "red"
-            ]
+          "rst": {
+            "type": "rst",
+            "direction": "I"
           },
-          "Video_Buffer_0_green": {
-            "ports": [
-              "Video_Buffer/green",
-              "green"
-            ]
+          "px_in": {
+            "direction": "I"
           },
-          "Video_Buffer_0_blue": {
-            "ports": [
-              "Video_Buffer/blue",
-              "blue"
-            ]
+          "red": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "green": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "blue": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "hsync": {
+            "direction": "O"
+          },
+          "vsync": {
+            "direction": "O"
+          },
+          "px_line": {
+            "direction": "O",
+            "left": "5",
+            "right": "0"
+          },
+          "px_pos": {
+            "direction": "O",
+            "left": "5",
+            "right": "0"
           }
         }
       },
@@ -1269,79 +1418,6 @@
             "direction": "O"
           }
         }
-      },
-      "vga_0": {
-        "vlnv": "xilinx.com:module_ref:vga:1.0",
-        "xci_name": "risc16System_vga_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "vga",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst",
-                "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "/Clocks/VGA_25MHz_CLK_clk_out1",
-                "value_src": "ip_prop"
-              },
-              "FREQ_HZ": {
-                "value": "25000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              }
-            }
-          },
-          "rst": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "red_in": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "green_in": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "blue_in": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "red": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "green": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "blue": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "hsync": {
-            "direction": "O"
-          },
-          "vsync": {
-            "direction": "O"
-          }
-        }
       }
     },
     "nets": {
@@ -1364,8 +1440,8 @@
         "ports": [
           "BTND",
           "Memory/rst",
-          "Risc16_CPU/rst",
-          "vga_0/rst"
+          "vga_0/rst",
+          "Risc16_CPU/rst"
         ]
       },
       "CPU_Programmer_0_pgm": {
@@ -1520,12 +1596,6 @@
           "VGA_G"
         ]
       },
-      "Memory_green": {
-        "ports": [
-          "Memory/green",
-          "vga_0/green_in"
-        ]
-      },
       "vga_0_vsync": {
         "ports": [
           "vga_0/vsync",
@@ -1544,22 +1614,34 @@
           "VGA_R"
         ]
       },
-      "Memory_blue": {
-        "ports": [
-          "Memory/blue",
-          "vga_0/blue_in"
-        ]
-      },
-      "Memory_red": {
-        "ports": [
-          "Memory/red",
-          "vga_0/red_in"
-        ]
-      },
       "clocks_clk_out2": {
         "ports": [
           "Clocks/VGA_Base_Clk_25MHz",
           "vga_0/clk"
+        ]
+      },
+      "Memory_px_out": {
+        "ports": [
+          "Memory/px_out",
+          "vga_0/px_in"
+        ]
+      },
+      "vga_0_px_line": {
+        "ports": [
+          "vga_0/px_line",
+          "Memory/px_buff_line_addr"
+        ]
+      },
+      "vga_0_px_pos": {
+        "ports": [
+          "vga_0/px_pos",
+          "Memory/px_buff_pos_addr"
+        ]
+      },
+      "usr_sw_1": {
+        "ports": [
+          "usr_sw",
+          "Memory/usr_sw"
         ]
       }
     }

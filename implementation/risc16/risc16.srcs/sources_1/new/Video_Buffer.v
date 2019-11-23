@@ -25,21 +25,19 @@ module Video_Buffer(
     input [15:0] addr,
     input [15:0] data,
     input rw,
-    output [3:0] red,
-    output [3:0] green,
-    output [3:0] blue
+    input [5:0] px_buff_line_addr,
+    input [5:0] px_buff_pos_addr,
+    output px_out
     );
     
-    reg [15:0] colors[2:0];
+    reg [63:0] px_map[47:0];
     
     always @(posedge clk) begin
         if (rw) begin
-            colors[addr] <= data;
+            px_map[addr][data[11:6]] <= data[0];
         end
     end
     
-    assign red = colors[0][3:0];
-    assign green = colors[1][3:0];
-    assign blue = colors[2][3:0];
+    assign px_out = px_map[px_buff_line_addr][px_buff_pos_addr];
     
 endmodule

@@ -18,7 +18,7 @@ module gpr(
 
 reg [15:0] r[7:0];
 
-always @( posedge clk )
+always @( negedge clk )
 begin
     if (write_en && write_dest != 0)
     begin

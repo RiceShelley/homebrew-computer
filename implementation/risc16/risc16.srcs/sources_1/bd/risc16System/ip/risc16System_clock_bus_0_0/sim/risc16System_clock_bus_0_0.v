@@ -58,18 +58,21 @@ module risc16System_clock_bus_0_0 (
   clka,
   clkb,
   clkc,
+  clkd,
   clk_bus
 );
 
 input wire clka;
 input wire clkb;
 input wire clkc;
+input wire clkd;
 output wire [2 : 0] clk_bus;
 
   clock_bus inst (
     .clka(clka),
     .clkb(clkb),
     .clkc(clkc),
+    .clkd(clkd),
     .clk_bus(clk_bus)
   );
 endmodule

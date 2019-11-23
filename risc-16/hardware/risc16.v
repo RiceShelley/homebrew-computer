@@ -6,7 +6,7 @@ module risc16 (
            input [15:0] data_in,
            output[15:0] pc_out,
            output[15:0] outRegA,
-           output [15:0] addr,
+           output reg [15:0] addr,
            output [15:0] data_bus,
            output mem_rw
        );
@@ -22,7 +22,7 @@ reg [15:0] pc = PROG_START;
 assign pc_out = pc;
 
 // general purpose register file
-wire gpr_write_en = 1'd1;
+wire gpr_write_en;
 wire [2:0] gpr_write_addr;
 reg [15:0] gpr_write_data;
 wire [2:0] gpr_read_addr_1;
@@ -31,7 +31,7 @@ wire [15:0] gpr_read_data_1;
 wire [15:0] gpr_read_data_2;
 
 // output reg value from GPR file onto data bus.
-assign data_bus = gpr_read_data_1;
+assign data_bus = gpr_read_data_2;
 
 gpr cpu_gpr(
         .clk(clk),
@@ -73,6 +73,19 @@ begin
     endcase
 end
 
+wire addr_bus_src;
+wire [15:0] addr_from_cpu_ctrl;
+
+// address bus write mux
+always @(*)
+begin
+    case (addr_bus_src)
+        1'b0: addr = addr_from_cpu_ctrl;
+        1'b1: addr = alu_out;
+        default: addr = addr_from_cpu_ctrl;
+    endcase
+end
+
 wire [1:0] branch;
 
 ctrl cpu_ctrl(
@@ -82,9 +95,10 @@ ctrl cpu_ctrl(
          .gpr_read_addr_0(gpr_read_addr_1),
          .gpr_read_addr_1(gpr_read_addr_2),
          .alu_op_code(alu_op_code),
+         .addr_bus_src(addr_bus_src),
          .gpr_write_en(gpr_write_en),
          .imm(imm),
-         .mem_addr(addr),
+         .mem_addr(addr_from_cpu_ctrl),
          .rw(mem_rw),
          .gpr_write_src(gpr_write_src),
          .gpr_write_data(gpr_write_data_ctrl_out),
@@ -103,13 +117,18 @@ begin
         end else begin
             if (branch == 2'b01) begin
                 pc <= gpr_read_data_1;
-            end 
-            else if (branch == 2'b10) begin
-                if (alu_out == 16'd1) begin
+            end else if (branch == 2'b10) begin
+                if (alu_out[0]) begin
                     // if imm is neg
-                    if (imm[6] == 1'b1) pc <= (pc + 16'd1 - {9'd0, (~imm[6:0] + 7'd1)});
+                    /*if (imm[6] == 1'b1) begin
+                        pc <= (pc + 16'd1 - {9'd0, (~imm[6:0] + 7'd1)});
+                    end
                     // if imm is positive
-                    else pc <= (pc + 16'd1 + {9'd0, imm[6:0]});
+                    else begin*/
+                        pc <= (pc + 16'd1 + {9'd0, imm[6:0]});
+                    //end 
+                end else begin
+                    pc <= pc + 16'd1;
                 end
             end
             else begin

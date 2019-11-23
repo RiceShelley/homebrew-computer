@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-//Date        : Wed Oct 23 20:48:22 2019
+//Date        : Thu Oct 31 20:19:03 2019
 //Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
 //Command     : generate_target risc16System_wrapper.bd
 //Design      : risc16System_wrapper
@@ -28,7 +28,8 @@ module risc16System_wrapper
     sclk,
     seg,
     seg_sel,
-    ss);
+    ss,
+    usr_sw);
   input BTND;
   input BTNU;
   output LED_B;
@@ -48,6 +49,7 @@ module risc16System_wrapper
   output [7:0]seg;
   output [7:0]seg_sel;
   input ss;
+  input usr_sw;
 
   wire BTND;
   wire BTNU;
@@ -68,6 +70,7 @@ module risc16System_wrapper
   wire [7:0]seg;
   wire [7:0]seg_sel;
   wire ss;
+  wire usr_sw;
 
   risc16System risc16System_i
        (.BTND(BTND),
@@ -88,5 +91,6 @@ module risc16System_wrapper
         .sclk(sclk),
         .seg(seg),
         .seg_sel(seg_sel),
-        .ss(ss));
+        .ss(ss),
+        .usr_sw(usr_sw));
 endmodule

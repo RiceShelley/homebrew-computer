@@ -23,14 +23,14 @@
 module vga(
     input clk,
     input rst,
-    input [3:0] red_in,
-    input [3:0] green_in,
-    input [3:0] blue_in,
+    input px_in,
     output [3:0] red,
     output [3:0] green,
     output [3:0] blue,
     output hsync,
-    output vsync
+    output vsync,
+    output [5:0] px_line,
+    output [5:0] px_pos
     );
     
     // VGA mode parameters for a 640x480 screen at 60Hz and a 25MHz horizontal pixel clock 
@@ -65,9 +65,11 @@ module vga(
         end
     end
     
-    reg [63:0] px_map[47:0];
-    reg [$clog2(48):0] cur_line = 0;
-    reg [$clog2(64):0] cur_px = 0;
+    reg [5:0] cur_line = 0;
+    reg [5:0] cur_px = 0;
+    
+    assign px_line = cur_line;
+    assign px_pos = cur_px;
     
     wire video_active = ((hcount >= hdat_begin) && (hcount < hdat_end)) && ((vcount >= vdat_begin) && (vcount < vdat_end));
     wire before = ((hcount < hdat_begin) && (vcount < vdat_begin));
@@ -78,7 +80,7 @@ module vga(
     reg [3:0] ten_px_count = 0;
     reg [3:0] horz_l_count = 0;
     
-    integer i = 0;
+    /*integer i = 0;
     
     reg [$clog2(100000):0] c_div = 0;
     reg [15:0] count = 0;
@@ -90,7 +92,7 @@ module vga(
             end
             count <= count + 1;
         end
-    end
+    end*/
     
     always @(posedge clk) begin        
         if (hcount < hdat_begin) begin
@@ -126,8 +128,8 @@ module vga(
     assign green[3:0] = (video_active) ? green_in[3:0] : 4'd0;
     assign blue[3:0] = (video_active) ? blue_in[3:0] : 4'd0;*/
     
-    assign red[3:0] = ((video_active) && px_map[cur_line][cur_px]) ? 4'hF : 4'd0;
-    assign green[3:0] = ((video_active) && px_map[cur_line][cur_px]) ? 4'hF : 4'd0;
-    assign blue[3:0] = ((video_active) && px_map[cur_line][cur_px]) ? 4'hF : 4'd0;
+    assign red[3:0] = ((video_active) && px_in) ? 4'h0 : 4'd0;
+    assign green[3:0] = ((video_active) && px_in) ? 4'hF : 4'd0;
+    assign blue[3:0] = ((video_active) && px_in) ? 4'h0 : 4'd0;
     
 endmodule
