@@ -60,6 +60,7 @@ module risc16System_Video_Buffer_0_1 (
   addr,
   data,
   rw,
+  clr,
   px_buff_line_addr,
   px_buff_pos_addr,
   px_out
@@ -71,6 +72,7 @@ input wire clk;
 input wire [15 : 0] addr;
 input wire [15 : 0] data;
 input wire rw;
+input wire clr;
 input wire [5 : 0] px_buff_line_addr;
 input wire [5 : 0] px_buff_pos_addr;
 output wire px_out;
@@ -80,6 +82,7 @@ output wire px_out;
     .addr(addr),
     .data(data),
     .rw(rw),
+    .clr(clr),
     .px_buff_line_addr(px_buff_line_addr),
     .px_buff_pos_addr(px_buff_pos_addr),
     .px_out(px_out)

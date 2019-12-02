@@ -1,8 +1,8 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
--- Date        : Thu Oct 31 20:19:56 2019
--- Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
+-- Date        : Sat Nov 30 17:25:29 2019
+-- Host        : rootieW running 64-bit Ubuntu 18.10
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_io_regs_0_0/risc16System_io_regs_0_0_sim_netlist.vhdl
 -- Design      : risc16System_io_regs_0_0
@@ -16,25 +16,197 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity risc16System_io_regs_0_0_io_regs is
   port (
-    data_out : out STD_LOGIC_VECTOR ( 0 to 0 );
-    input_a : in STD_LOGIC;
-    clk : in STD_LOGIC
+    data_out : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    D : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    clk : in STD_LOGIC;
+    addr : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of risc16System_io_regs_0_0_io_regs : entity is "io_regs";
 end risc16System_io_regs_0_0_io_regs;
 
 architecture STRUCTURE of risc16System_io_regs_0_0_io_regs is
+  signal a_rising : STD_LOGIC;
+  signal b_rising : STD_LOGIC;
+  signal c_rising : STD_LOGIC;
+  signal ia_buff : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal ib_buff : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal ic_buff : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal \mem_reg[0]\ : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal \mem_reg[1]\ : STD_LOGIC_VECTOR ( 2 downto 0 );
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \data_out[0]_INST_0\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \data_out[1]_INST_0\ : label is "soft_lutpair0";
 begin
-\mem_reg[0]\: unisim.vcomponents.FDRE
+\data_out[0]_INST_0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => \mem_reg[1]\(0),
+      I1 => \mem_reg[0]\(0),
+      I2 => addr(0),
+      O => data_out(0)
+    );
+\data_out[1]_INST_0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => \mem_reg[1]\(1),
+      I1 => \mem_reg[0]\(1),
+      I2 => addr(0),
+      O => data_out(1)
+    );
+\data_out[2]_INST_0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => \mem_reg[1]\(2),
+      I1 => \mem_reg[0]\(2),
+      I2 => addr(0),
+      O => data_out(2)
+    );
+\ia_buff_reg[0]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk,
       CE => '1',
-      D => input_a,
-      Q => data_out(0),
+      D => D(0),
+      Q => ia_buff(0),
+      R => '0'
+    );
+\ia_buff_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => clk,
+      CE => '1',
+      D => ia_buff(0),
+      Q => ia_buff(1),
+      R => '0'
+    );
+\ib_buff_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => clk,
+      CE => '1',
+      D => D(1),
+      Q => ib_buff(0),
+      R => '0'
+    );
+\ib_buff_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => clk,
+      CE => '1',
+      D => ib_buff(0),
+      Q => ib_buff(1),
+      R => '0'
+    );
+\ic_buff_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => clk,
+      CE => '1',
+      D => D(2),
+      Q => ic_buff(0),
+      R => '0'
+    );
+\ic_buff_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => clk,
+      CE => '1',
+      D => ic_buff(0),
+      Q => ic_buff(1),
+      R => '0'
+    );
+\mem[1][0]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
+    )
+        port map (
+      I0 => ia_buff(0),
+      I1 => ia_buff(1),
+      O => a_rising
+    );
+\mem[1][1]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
+    )
+        port map (
+      I0 => ib_buff(0),
+      I1 => ib_buff(1),
+      O => b_rising
+    );
+\mem[1][2]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
+    )
+        port map (
+      I0 => ic_buff(0),
+      I1 => ic_buff(1),
+      O => c_rising
+    );
+\mem_reg[0][0]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => D(0),
+      Q => \mem_reg[0]\(0),
+      R => '0'
+    );
+\mem_reg[0][1]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => D(1),
+      Q => \mem_reg[0]\(1),
+      R => '0'
+    );
+\mem_reg[0][2]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => D(2),
+      Q => \mem_reg[0]\(2),
+      R => '0'
+    );
+\mem_reg[1][0]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => a_rising,
+      Q => \mem_reg[1]\(0),
+      R => '0'
+    );
+\mem_reg[1][1]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => b_rising,
+      Q => \mem_reg[1]\(1),
+      R => '0'
+    );
+\mem_reg[1][2]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => c_rising,
+      Q => \mem_reg[1]\(2),
       R => '0'
     );
 end STRUCTURE;
@@ -49,6 +221,8 @@ entity risc16System_io_regs_0_0 is
     data : in STD_LOGIC_VECTOR ( 15 downto 0 );
     rw : in STD_LOGIC;
     input_a : in STD_LOGIC;
+    input_b : in STD_LOGIC;
+    input_c : in STD_LOGIC;
     data_out : out STD_LOGIC_VECTOR ( 15 downto 0 )
   );
   attribute NotValidForBitStream : boolean;
@@ -65,7 +239,7 @@ end risc16System_io_regs_0_0;
 
 architecture STRUCTURE of risc16System_io_regs_0_0 is
   signal \<const0>\ : STD_LOGIC;
-  signal \^data_out\ : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal \^data_out\ : STD_LOGIC_VECTOR ( 2 downto 0 );
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
@@ -84,17 +258,18 @@ begin
   data_out(5) <= \<const0>\;
   data_out(4) <= \<const0>\;
   data_out(3) <= \<const0>\;
-  data_out(2) <= \<const0>\;
-  data_out(1) <= \<const0>\;
-  data_out(0) <= \^data_out\(0);
+  data_out(2 downto 0) <= \^data_out\(2 downto 0);
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
     );
 inst: entity work.risc16System_io_regs_0_0_io_regs
      port map (
+      D(2) => input_c,
+      D(1) => input_b,
+      D(0) => input_a,
+      addr(0) => addr(0),
       clk => clk,
-      data_out(0) => \^data_out\(0),
-      input_a => input_a
+      data_out(2 downto 0) => \^data_out\(2 downto 0)
     );
 end STRUCTURE;

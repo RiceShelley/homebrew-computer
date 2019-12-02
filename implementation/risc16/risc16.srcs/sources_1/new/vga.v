@@ -22,7 +22,6 @@
 
 module vga(
     input clk,
-    input rst,
     input px_in,
     output [3:0] red,
     output [3:0] green,
@@ -115,7 +114,7 @@ module vga(
                 horz_l_count <= horz_l_count + 1;
             end
             // if horz line count is 10 increment cur_line
-            if (horz_l_count == 4'd9) begin
+            if (horz_l_count == 4'd10) begin
                 horz_l_count <= 4'd0;
                 cur_line <= cur_line + 1;
             end

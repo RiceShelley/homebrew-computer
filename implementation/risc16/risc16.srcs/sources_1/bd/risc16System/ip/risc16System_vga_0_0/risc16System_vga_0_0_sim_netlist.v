@@ -1,8 +1,8 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Mon Oct 28 17:44:46 2019
-// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
+// Date        : Sat Nov 30 16:59:40 2019
+// Host        : rootieW running 64-bit Ubuntu 18.10
 // Command     : write_verilog -force -mode funcsim
 //               /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_vga_0_0/risc16System_vga_0_0_sim_netlist.v
 // Design      : risc16System_vga_0_0
@@ -17,7 +17,6 @@
 (* NotValidForBitStream *)
 module risc16System_vga_0_0
    (clk,
-    rst,
     px_in,
     red,
     green,
@@ -26,8 +25,7 @@ module risc16System_vga_0_0
     vsync,
     px_line,
     px_pos);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /Clocks/VGA_25MHz_CLK_clk_out1, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /Clocks/VGA_25MHz_CLK_clk_out1, INSERT_VIP 0" *) input clk;
   input px_in;
   output [3:0]red;
   output [3:0]green;
@@ -185,7 +183,6 @@ module risc16System_vga_0_0_vga
   wire vsync;
   wire vsync_INST_0_i_1_n_0;
 
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'h4530)) 
     \cur_line[0]_i_1 
@@ -200,7 +197,7 @@ module risc16System_vga_0_0_vga
        (.I0(\cur_line_reg[0]_0 ),
         .I1(\cur_line_reg[1]_0 ),
         .O(\cur_line[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \cur_line[2]_i_1 
@@ -218,22 +215,22 @@ module risc16System_vga_0_0_vga
         .I3(\cur_line_reg[1]_0 ),
         .O(\cur_line[3]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAAA2AAAAAAAAA)) 
+    .INIT(64'hA8AAAAAAAAAAAAAA)) 
     \cur_line[4]_i_1 
        (.I0(\cur_line[5]_i_3_n_0 ),
-        .I1(horz_l_count[3]),
+        .I1(horz_l_count[2]),
         .I2(horz_l_count[0]),
-        .I3(horz_l_count[2]),
+        .I3(horz_l_count[3]),
         .I4(horz_l_count[1]),
         .I5(p_4_in),
         .O(\cur_line[4]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAAAEAAAAAAAAA)) 
+    .INIT(64'hABAAAAAAAAAAAAAA)) 
     \cur_line[4]_i_2 
        (.I0(\cur_line[5]_i_3_n_0 ),
-        .I1(horz_l_count[3]),
+        .I1(horz_l_count[2]),
         .I2(horz_l_count[0]),
-        .I3(horz_l_count[2]),
+        .I3(horz_l_count[3]),
         .I4(horz_l_count[1]),
         .I5(p_4_in),
         .O(\cur_line[4]_i_2_n_0 ));
@@ -257,7 +254,7 @@ module risc16System_vga_0_0_vga
         .I4(p_4_in),
         .I5(px_line[1]),
         .O(\cur_line[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     \cur_line[5]_i_2 
@@ -278,11 +275,11 @@ module risc16System_vga_0_0_vga
         .O(\cur_line[5]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
-    .INIT(16'hFFF7)) 
+    .INIT(16'hEFFF)) 
     \cur_line[5]_i_4 
-       (.I0(horz_l_count[3]),
+       (.I0(horz_l_count[2]),
         .I1(horz_l_count[0]),
-        .I2(horz_l_count[2]),
+        .I2(horz_l_count[3]),
         .I3(horz_l_count[1]),
         .O(\cur_line[5]_i_4_n_0 ));
   FDRE #(
@@ -333,6 +330,7 @@ module risc16System_vga_0_0_vga
         .D(\cur_line[5]_i_1_n_0 ),
         .Q(px_line[1]),
         .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'h4530)) 
     \cur_px[0]_i_1 
@@ -347,7 +345,7 @@ module risc16System_vga_0_0_vga
        (.I0(\cur_px_reg[0]_0 ),
         .I1(\cur_px_reg[1]_0 ),
         .O(\cur_px[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \cur_px[2]_i_1 
@@ -355,7 +353,7 @@ module risc16System_vga_0_0_vga
         .I1(\cur_px_reg[1]_0 ),
         .I2(\cur_px_reg[0]_0 ),
         .O(\cur_px[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \cur_px[3]_i_1 
@@ -413,7 +411,7 @@ module risc16System_vga_0_0_vga
         .I3(\cur_px_reg[0]_0 ),
         .I4(\cur_px_reg[2]_0 ),
         .O(\cur_px[5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'hEFFF)) 
     \cur_px[5]_i_3 
@@ -470,7 +468,7 @@ module risc16System_vga_0_0_vga
         .D(\cur_px[5]_i_1_n_0 ),
         .Q(px_pos[1]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \green[0]_INST_0 
@@ -497,14 +495,14 @@ module risc16System_vga_0_0_vga
         .I4(vsync_INST_0_i_1_n_0),
         .I5(vcount_reg__0[9]),
         .O(\green[0]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \green[0]_INST_0_i_3 
        (.I0(hcount_reg__0[5]),
         .I1(hcount_reg__0[6]),
         .O(\green[0]_INST_0_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'h15555555)) 
     \green[0]_INST_0_i_4 
@@ -534,7 +532,7 @@ module risc16System_vga_0_0_vga
         .I1(hcount_reg__0[0]),
         .I2(hcount_reg__0[1]),
         .O(p_0_in__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \hcount[3]_i_1 
@@ -543,7 +541,7 @@ module risc16System_vga_0_0_vga
         .I2(hcount_reg__0[0]),
         .I3(hcount_reg__0[3]),
         .O(p_0_in__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \hcount[4]_i_1 
@@ -570,7 +568,7 @@ module risc16System_vga_0_0_vga
         .I1(\hcount[9]_i_3_n_0 ),
         .I2(hcount_reg__0[5]),
         .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \hcount[7]_i_1 
@@ -579,7 +577,7 @@ module risc16System_vga_0_0_vga
         .I2(hcount_reg__0[6]),
         .I3(\hcount[9]_i_3_n_0 ),
         .O(\hcount[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \hcount[8]_i_1 
@@ -609,7 +607,7 @@ module risc16System_vga_0_0_vga
         .I4(\hcount[9]_i_3_n_0 ),
         .I5(hcount_reg__0[8]),
         .O(p_0_in__0[9]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \hcount[9]_i_3 
@@ -699,27 +697,30 @@ module risc16System_vga_0_0_vga
         .D(p_0_in__0[9]),
         .Q(hcount_reg__0[9]),
         .R(hcount_ov));
-  LUT1 #(
-    .INIT(2'h1)) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT4 #(
+    .INIT(16'h00F7)) 
     \horz_l_count[0]_i_1 
-       (.I0(horz_l_count[0]),
+       (.I0(horz_l_count[1]),
+        .I1(horz_l_count[3]),
+        .I2(horz_l_count[2]),
+        .I3(horz_l_count[0]),
         .O(\horz_l_count[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
-    .INIT(16'h0FB0)) 
+    .INIT(16'h0FD0)) 
     \horz_l_count[1]_i_1 
-       (.I0(horz_l_count[2]),
-        .I1(horz_l_count[3]),
-        .I2(horz_l_count[0]),
-        .I3(horz_l_count[1]),
+       (.I0(horz_l_count[3]),
+        .I1(horz_l_count[2]),
+        .I2(horz_l_count[1]),
+        .I3(horz_l_count[0]),
         .O(\horz_l_count[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \horz_l_count[2]_i_1 
        (.I0(horz_l_count[2]),
-        .I1(horz_l_count[0]),
-        .I2(horz_l_count[1]),
+        .I1(horz_l_count[1]),
+        .I2(horz_l_count[0]),
         .O(\horz_l_count[2]_i_1_n_0 ));
   LUT4 #(
     .INIT(16'hD0CC)) 
@@ -733,17 +734,17 @@ module risc16System_vga_0_0_vga
     .INIT(16'hBFAA)) 
     \horz_l_count[3]_i_2 
        (.I0(\cur_line[5]_i_3_n_0 ),
-        .I1(\cur_line[5]_i_4_n_0 ),
-        .I2(\horz_l_count[3]_i_4_n_0 ),
+        .I1(\horz_l_count[3]_i_4_n_0 ),
+        .I2(\cur_line[5]_i_4_n_0 ),
         .I3(p_4_in),
         .O(\horz_l_count[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'h7B80)) 
     \horz_l_count[3]_i_3 
        (.I0(horz_l_count[2]),
-        .I1(horz_l_count[0]),
-        .I2(horz_l_count[1]),
+        .I1(horz_l_count[1]),
+        .I2(horz_l_count[0]),
         .I3(horz_l_count[3]),
         .O(\horz_l_count[3]_i_3_n_0 ));
   LUT6 #(
@@ -788,7 +789,7 @@ module risc16System_vga_0_0_vga
         .D(\horz_l_count[3]_i_3_n_0 ),
         .Q(horz_l_count[3]),
         .R(\horz_l_count[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'hFFFEFEFE)) 
     hsync_INST_0
@@ -803,7 +804,7 @@ module risc16System_vga_0_0_vga
     \ten_px_count[0]_i_1 
        (.I0(\ten_px_count_reg_n_0_[0] ),
         .O(\ten_px_count[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h0FD0)) 
     \ten_px_count[1]_i_1 
@@ -812,7 +813,7 @@ module risc16System_vga_0_0_vga
         .I2(\ten_px_count_reg_n_0_[0] ),
         .I3(\ten_px_count_reg_n_0_[1] ),
         .O(\ten_px_count[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \ten_px_count[2]_i_1 
@@ -830,7 +831,7 @@ module risc16System_vga_0_0_vga
         .I4(hcount_reg__0[5]),
         .I5(\green[0]_INST_0_i_4_n_0 ),
         .O(ten_px_count));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'h7B80)) 
     \ten_px_count[3]_i_2 
@@ -896,7 +897,7 @@ module risc16System_vga_0_0_vga
         .I1(vcount_reg__0[0]),
         .I2(vcount_reg__0[1]),
         .O(p_0_in__1[2]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \vcount[3]_i_1 
@@ -905,7 +906,7 @@ module risc16System_vga_0_0_vga
         .I2(vcount_reg__0[0]),
         .I3(vcount_reg__0[2]),
         .O(p_0_in__1[3]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \vcount[4]_i_1 
@@ -981,7 +982,7 @@ module risc16System_vga_0_0_vga
         .I4(vcount_reg__0[4]),
         .I5(vcount_reg__0[3]),
         .O(\vcount[9]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
     \vcount[9]_i_4 
@@ -1081,7 +1082,7 @@ module risc16System_vga_0_0_vga
         .I4(vcount_reg__0[6]),
         .I5(vcount_reg__0[5]),
         .O(vsync));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     vsync_INST_0_i_1

@@ -66,7 +66,7 @@ module MCU(
             sys_mem_rw = 1'b0;
             vbuff_mem_rw = 1'b0;
         // System Memory space. [5 - 260]
-        end else if (addr_in >= 16'd5 && addr_in <= 16'd260) begin
+        end else if (addr_in >= 16'd5 && addr_in <= 16'd517) begin
             addr_out = addr_in - 16'd5;
             mem_data_out = sys_mem_data_in;
             CR_mem_rw = 1'b0;
@@ -74,8 +74,8 @@ module MCU(
             sys_mem_rw = rw;
             vbuff_mem_rw = 1'b0;
          // Video buffer mem space. (Write only) [261 - 309]
-        end else if (addr_in >= 16'd261 && addr_in <= 16'd309) begin
-            addr_out = addr_in - 16'd261;
+        end else if (addr_in >= 16'd518 && addr_in <= 16'd566) begin
+            addr_out = addr_in - 16'd518;
             mem_data_out = 15'd0;
             CR_mem_rw = 1'b0;
             io_regs_rw = 1'b0;

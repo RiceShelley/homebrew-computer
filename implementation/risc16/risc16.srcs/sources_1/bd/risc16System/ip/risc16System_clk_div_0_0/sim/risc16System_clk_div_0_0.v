@@ -59,13 +59,13 @@ module risc16System_clk_div_0_0 (
   clk_out
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 5000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 5000000, PHASE 0.0, CLK_DOMAIN /Clocks/CLK_5MHz_clk_out1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 output wire clk_out;
 
   clk_div #(
-    .DIV(10)
+    .DIV(5)
   ) inst (
     .clk(clk),
     .clk_out(clk_out)

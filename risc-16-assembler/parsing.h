@@ -13,7 +13,7 @@ uint16_t parse_rrr(uint8_t op_code, char* rA_str, char* rB_str, char* rC_str, in
 uint16_t parse_rri(uint8_t op_code, char* rA_str, char* rB_str, char* imm_str, int line);
 uint16_t parse_ri(uint8_t op_code, char* rA_str, char* imm_str, int line);
 uint16_t parse_imm(char* imm);
-uint16_t parse_reg(char* reg);
+uint16_t parse_reg(const char* reg);
 void u16_to_ascii_bin(char* dest, uint16_t val);
 
 #endif

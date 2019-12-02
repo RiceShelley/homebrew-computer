@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="risc16System" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1572571144"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1572571144"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1572571144"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1572571144"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1575267468"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1575267468"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1575267468"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1575267468"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth/risc16System.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
@@ -35,7 +35,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/risc16System_clk_div_0_0/risc16System_clk_div_0_0.xci" Type="IP">
-        <Instance HierarchyPath="Clocks/clk_div_by_10"/>
+        <Instance HierarchyPath="Clocks/clk_div_by_5"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -156,6 +156,22 @@
       </File>
       <File Name="ip/risc16System_io_regs_0_0/risc16System_io_regs_0_0.xci" Type="IP">
         <Instance HierarchyPath="Memory/io_regs_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/risc16System_spkr_driver_0_0/risc16System_spkr_driver_0_0.xci" Type="IP">
+        <Instance HierarchyPath="spkr_driver"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/risc16System_xlconstant_0_0/risc16System_xlconstant_0_0.xci" Type="IP">
+        <Instance HierarchyPath="xlconstant_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

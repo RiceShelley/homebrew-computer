@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "clk_div,Vivado 2018.3" *)
 (* CHECK_LICENSE_TYPE = "risc16System_clk_div_0_0,clk_div,{}" *)
-(* CORE_GENERATION_INFO = "risc16System_clk_div_0_0,clk_div,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=clk_div,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DIV=10}" *)
+(* CORE_GENERATION_INFO = "risc16System_clk_div_0_0,clk_div,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=clk_div,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DIV=5}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module risc16System_clk_div_0_0 (
@@ -60,13 +60,13 @@ module risc16System_clk_div_0_0 (
   clk_out
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 5000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 5000000, PHASE 0.0, CLK_DOMAIN /Clocks/CLK_5MHz_clk_out1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 output wire clk_out;
 
   clk_div #(
-    .DIV(10)
+    .DIV(5)
   ) inst (
     .clk(clk),
     .clk_out(clk_out)

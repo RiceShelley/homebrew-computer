@@ -60,6 +60,8 @@ module risc16System_io_regs_0_0 (
   data,
   rw,
   input_a,
+  input_b,
+  input_c,
   data_out
 );
 
@@ -70,6 +72,8 @@ input wire [15 : 0] addr;
 input wire [15 : 0] data;
 input wire rw;
 input wire input_a;
+input wire input_b;
+input wire input_c;
 output wire [15 : 0] data_out;
 
   io_regs inst (
@@ -78,6 +82,8 @@ output wire [15 : 0] data_out;
     .data(data),
     .rw(rw),
     .input_a(input_a),
+    .input_b(input_b),
+    .input_c(input_c),
     .data_out(data_out)
   );
 endmodule

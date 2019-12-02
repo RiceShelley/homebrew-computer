@@ -52,12 +52,11 @@
 
 (* X_CORE_INFO = "ram,Vivado 2018.3" *)
 (* CHECK_LICENSE_TYPE = "risc16System_ram_0_0,ram,{}" *)
-(* CORE_GENERATION_INFO = "risc16System_ram_0_0,ram,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=ram,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,MEM_SIZE=255,READ=0,WRITE=1}" *)
+(* CORE_GENERATION_INFO = "risc16System_ram_0_0,ram,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=ram,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,MEM_SIZE=512,READ=0,WRITE=1}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module risc16System_ram_0_0 (
   clk,
-  rst,
   addr,
   pc,
   pgm,
@@ -70,12 +69,9 @@ module risc16System_ram_0_0 (
   mem_in
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN risc16System_MCU_0_0_mem_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN risc16System_MCU_0_0_mem_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
-input wire rst;
 input wire [15 : 0] addr;
 input wire [15 : 0] pc;
 input wire pgm;
@@ -88,12 +84,11 @@ output wire [15 : 0] data_out;
 input wire [15 : 0] mem_in;
 
   ram #(
-    .MEM_SIZE(255),
+    .MEM_SIZE(512),
     .READ(0),
     .WRITE(1)
   ) inst (
     .clk(clk),
-    .rst(rst),
     .addr(addr),
     .pc(pc),
     .pgm(pgm),

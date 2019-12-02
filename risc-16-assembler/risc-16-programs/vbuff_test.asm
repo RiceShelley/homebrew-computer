@@ -9,8 +9,10 @@ section .text
 	; draw horz line sub routine
 	draw_horz_line:
 		lui		r1, 0x0
-		addi	r1, r1, 0x1		; pix line addr reg
+		; pix line addr reg
+		addi	r1, r1, 0x1
 		lui		r4, 0x0
+
 		line1:
 			; write to vga buff
 			str		r1, 0x105

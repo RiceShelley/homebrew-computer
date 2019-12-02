@@ -57,30 +57,41 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module risc16System_Ctrl_Registers_0_0 (
   clk,
+  rst,
   addr,
   data,
   rw,
   data_out,
-  hlt_cpu
+  hlt_cpu,
+  clr_video_buff,
+  spkr_enable
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN risc16System_MCU_0_0_mem_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN risc16System_MCU_0_0_mem_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
+input wire rst;
 input wire [15 : 0] addr;
 input wire [15 : 0] data;
 input wire rw;
 output wire [15 : 0] data_out;
 output wire hlt_cpu;
+output wire clr_video_buff;
+output wire spkr_enable;
 
   Ctrl_Registers #(
     .MEM_SIZE(2)
   ) inst (
     .clk(clk),
+    .rst(rst),
     .addr(addr),
     .data(data),
     .rw(rw),
     .data_out(data_out),
-    .hlt_cpu(hlt_cpu)
+    .hlt_cpu(hlt_cpu),
+    .clr_video_buff(clr_video_buff),
+    .spkr_enable(spkr_enable)
   );
 endmodule

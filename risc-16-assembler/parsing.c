@@ -78,9 +78,6 @@ uint16_t parse_ri(uint8_t op_code, char* rA_str, char* imm_str, int line) {
 	ins |= rA << 10;
 	ins |= imm;
 
-	if (ins == 0x7000) {
-		printf("FOUND BAD INS op code = '%d' ra = '%s' imm = '%s'\n\n\n", (int) op_code, rA_str, imm_str);
-	}
 	return ins;
 }
 
@@ -96,7 +93,7 @@ uint16_t parse_imm(char* imm) {
 	}
 }
 
-uint16_t parse_reg(char *reg) {
+uint16_t parse_reg(const char *reg) {
 	if (strncmp(reg, "r", 1) == 0) {
 		int r = atoi((const char*) &reg[1]);
 		if (r >= 0 && r < 8) {

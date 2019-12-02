@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1574547012">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1575267483">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="risc16System_wrapper.drc"/>
   <File Type="BG-BGN" Name="risc16System_wrapper.bgn"/>
@@ -197,6 +197,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/spkr_driver.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/bd/risc16System/risc16System.bd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -234,7 +241,7 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/Nexys-A7-100T.xdc">
+    <File Path="$PPRDIR/../../Nexys-A7-100T-Master.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -262,10 +269,11 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_io_regs_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="risc16System_vga_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_spkr_driver_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_Ctrl_Registers_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_ram_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_io_regs_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="risc16System_vga_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_Video_Buffer_0_1"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_mux_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="risc16System_clk_wiz_0_1"/>

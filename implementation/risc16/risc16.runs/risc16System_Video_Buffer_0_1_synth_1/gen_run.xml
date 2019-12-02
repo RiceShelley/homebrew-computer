@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="risc16System_Video_Buffer_0_1_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1572291640">
-  <File Type="RDS-UTIL-PB" Name="risc16System_Video_Buffer_0_1_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="risc16System_Video_Buffer_0_1_utilization_synth.rpt"/>
-  <File Type="RDS-RDS" Name="risc16System_Video_Buffer_0_1.vds"/>
+<GenRun Id="risc16System_Video_Buffer_0_1_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1575150520">
+  <File Type="VDS-TIMING-PB" Name="risc16System_Video_Buffer_0_1_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="risc16System_Video_Buffer_0_1_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="risc16System_Video_Buffer_0_1.dcp"/>
-  <File Type="PA-TCL" Name="risc16System_Video_Buffer_0_1.tcl"/>
   <File Type="REPORTS-TCL" Name="risc16System_Video_Buffer_0_1_reports.tcl"/>
+  <File Type="PA-TCL" Name="risc16System_Video_Buffer_0_1.tcl"/>
+  <File Type="RDS-RDS" Name="risc16System_Video_Buffer_0_1.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="risc16System_Video_Buffer_0_1_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="risc16System_Video_Buffer_0_1_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="risc16System_Video_Buffer_0_1_utilization_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/risc16System_Video_Buffer_0_1">
     <File Path="$PSRCDIR/sources_1/bd/risc16System/ip/risc16System_Video_Buffer_0_1/risc16System_Video_Buffer_0_1.xci">
       <FileInfo>
@@ -43,7 +46,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

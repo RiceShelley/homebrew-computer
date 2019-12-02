@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# risc16, vga, mux, clock_bus, clk_div, clk_div, Ctrl_Registers, MCU, ram, Video_Buffer, or_gate, io_regs, display_ctrl, nexys_7seg, CPU_Programmer, spi_slave
+# risc16, spkr_driver, vga, mux, clock_bus, clk_div, clk_div, Ctrl_Registers, MCU, ram, Video_Buffer, or_gate, io_regs, display_ctrl, nexys_7seg, CPU_Programmer, spi_slave
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -328,6 +328,9 @@ proc create_hier_cell_Memory { parentCell nameHier } {
 
   # Create pins
   create_bd_pin -dir I -from 15 -to 0 addr
+  create_bd_pin -dir I ctrl_a
+  create_bd_pin -dir I ctrl_b
+  create_bd_pin -dir I ctrl_c
   create_bd_pin -dir I -from 15 -to 0 data_bus
   create_bd_pin -dir O hlt_cpu
   create_bd_pin -dir O -from 15 -to 0 ir
@@ -344,7 +347,7 @@ proc create_hier_cell_Memory { parentCell nameHier } {
   create_bd_pin -dir O px_out
   create_bd_pin -dir I -type rst rst
   create_bd_pin -dir I rw
-  create_bd_pin -dir I usr_sw
+  create_bd_pin -dir O spkr_enable
 
   # Create instance: Ctrl_Registers, and set properties
   set block_name Ctrl_Registers
@@ -413,9 +416,11 @@ proc create_hier_cell_Memory { parentCell nameHier } {
    }
   
   # Create port connections
-  connect_bd_net -net BTND_1 [get_bd_pins rst] [get_bd_pins SYS_MEM/rst]
+  connect_bd_net -net BTND_1 [get_bd_pins rst] [get_bd_pins Ctrl_Registers/rst]
+  connect_bd_net -net Ctrl_Registers_clr_video_buff [get_bd_pins Ctrl_Registers/clr_video_buff] [get_bd_pins Video_Buffer_0/clr]
   connect_bd_net -net Ctrl_Registers_data_out [get_bd_pins Ctrl_Registers/data_out] [get_bd_pins MCU/ctrl_reg_mem_data_in]
   connect_bd_net -net Ctrl_Registers_hlt_cpu [get_bd_pins Ctrl_Registers/hlt_cpu] [get_bd_pins hlt_cpu_or/a]
+  connect_bd_net -net Ctrl_Registers_spkr_enable [get_bd_pins spkr_enable] [get_bd_pins Ctrl_Registers/spkr_enable]
   connect_bd_net -net MCU_CR_mem_rw [get_bd_pins Ctrl_Registers/rw] [get_bd_pins MCU/CR_mem_rw]
   connect_bd_net -net MCU_addr_out [get_bd_pins Ctrl_Registers/addr] [get_bd_pins MCU/addr_out] [get_bd_pins SYS_MEM/addr] [get_bd_pins Video_Buffer_0/addr] [get_bd_pins io_regs_0/addr]
   connect_bd_net -net MCU_data_bus [get_bd_pins Ctrl_Registers/data] [get_bd_pins MCU/data_bus_out] [get_bd_pins SYS_MEM/mem_in] [get_bd_pins Video_Buffer_0/data] [get_bd_pins io_regs_0/data]
@@ -430,6 +435,9 @@ proc create_hier_cell_Memory { parentCell nameHier } {
   connect_bd_net -net Video_Buffer_0_px_out [get_bd_pins px_out] [get_bd_pins Video_Buffer_0/px_out]
   connect_bd_net -net addr_in_1 [get_bd_pins addr] [get_bd_pins MCU/addr_in]
   connect_bd_net -net clk_1 [get_bd_pins pgm_clk] [get_bd_pins MCU/pgm_mem_clk]
+  connect_bd_net -net ctrl_a_1 [get_bd_pins ctrl_a] [get_bd_pins io_regs_0/input_a]
+  connect_bd_net -net ctrl_b_1 [get_bd_pins ctrl_b] [get_bd_pins io_regs_0/input_b]
+  connect_bd_net -net ctrl_c_1 [get_bd_pins ctrl_c] [get_bd_pins io_regs_0/input_c]
   connect_bd_net -net data_bus_1 [get_bd_pins data_bus] [get_bd_pins MCU/data_bus]
   connect_bd_net -net io_regs_0_data_out [get_bd_pins MCU/io_regs_data_in] [get_bd_pins io_regs_0/data_out]
   connect_bd_net -net mem_clk_in_1 [get_bd_pins mem_clk] [get_bd_pins MCU/mem_clk_in]
@@ -442,7 +450,6 @@ proc create_hier_cell_Memory { parentCell nameHier } {
   connect_bd_net -net px_buff_line_addr_1 [get_bd_pins px_buff_line_addr] [get_bd_pins Video_Buffer_0/px_buff_line_addr]
   connect_bd_net -net px_buff_pos_addr_1 [get_bd_pins px_buff_pos_addr] [get_bd_pins Video_Buffer_0/px_buff_pos_addr]
   connect_bd_net -net rw_1 [get_bd_pins rw] [get_bd_pins MCU/rw]
-  connect_bd_net -net usr_sw_1 [get_bd_pins usr_sw] [get_bd_pins io_regs_0/input_a]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -493,6 +500,7 @@ proc create_hier_cell_Clocks { parentCell nameHier } {
   create_bd_pin -dir O -type clk clk_out1
   create_bd_pin -dir I -from 1 -to 0 clk_sel
   create_bd_pin -dir I extern_clk
+  create_bd_pin -dir O -type clk sig_5mhz
 
   # Create instance: CLK_5MHz, and set properties
   set CLK_5MHz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 CLK_5MHz ]
@@ -559,29 +567,29 @@ proc create_hier_cell_Clocks { parentCell nameHier } {
    CONFIG.USE_RESET {false} \
  ] $VGA_25MHz_CLK
 
-  # Create instance: clk_div_by_10, and set properties
+  # Create instance: clk_div_by_5, and set properties
   set block_name clk_div
-  set block_cell_name clk_div_by_10
-  if { [catch {set clk_div_by_10 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  set block_cell_name clk_div_by_5
+  if { [catch {set clk_div_by_5 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $clk_div_by_10 eq "" } {
+   } elseif { $clk_div_by_5 eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
     set_property -dict [ list \
-   CONFIG.DIV {10} \
- ] $clk_div_by_10
+   CONFIG.DIV {5} \
+ ] $clk_div_by_5
 
   # Create port connections
   connect_bd_net -net BTNU_1 [get_bd_pins BTNU] [get_bd_pins Clock_Bus/clkb]
-  connect_bd_net -net CLK_5MHz_clk_out1 [get_bd_pins CLK_5MHz/clk_out1] [get_bd_pins clk_div_by_10/clk]
+  connect_bd_net -net CLK_5MHz_clk_out1 [get_bd_pins sig_5mhz] [get_bd_pins CLK_5MHz/clk_out1] [get_bd_pins clk_div_by_5/clk]
   connect_bd_net -net Clk_Mux_mux_out [get_bd_pins CPU_Clk] [get_bd_pins Clk_Mux/mux_out]
   connect_bd_net -net Clock_Bus_clk_bus [get_bd_pins Clk_Mux/mux_in] [get_bd_pins Clock_Bus/clk_bus]
   connect_bd_net -net SLOW_DEBUG_CLK_clk_out [get_bd_pins Clock_Bus/clkc] [get_bd_pins SLOW_DEBUG_CLK/clk_out]
   connect_bd_net -net VGA_25MHz_CLK_clk_out1 [get_bd_pins VGA_Base_Clk_25MHz] [get_bd_pins VGA_25MHz_CLK/clk_out1]
   connect_bd_net -net clk1_1 [get_bd_pins clk1] [get_bd_pins CLK_5MHz/clk_in1] [get_bd_pins VGA_25MHz_CLK/clk_in1]
-  connect_bd_net -net clk_div_by_10_clk_out [get_bd_pins NEXYS_7SEG_CLK] [get_bd_pins clk_out1] [get_bd_pins Clock_Bus/clkd] [get_bd_pins SLOW_DEBUG_CLK/clk] [get_bd_pins clk_div_by_10/clk_out]
+  connect_bd_net -net clk_div_by_10_clk_out [get_bd_pins NEXYS_7SEG_CLK] [get_bd_pins clk_out1] [get_bd_pins Clock_Bus/clkd] [get_bd_pins SLOW_DEBUG_CLK/clk] [get_bd_pins clk_div_by_5/clk_out]
   connect_bd_net -net clk_sel_1 [get_bd_pins clk_sel] [get_bd_pins Clk_Mux/mux_sel]
   connect_bd_net -net extern_clk_1 [get_bd_pins extern_clk] [get_bd_pins Clock_Bus/clka]
 
@@ -625,7 +633,6 @@ proc create_root_design { parentCell } {
   # Create interface ports
 
   # Create ports
-  set BTND [ create_bd_port -dir I BTND ]
   set BTNU [ create_bd_port -dir I BTNU ]
   set LED_B [ create_bd_port -dir O LED_B ]
   set VGA_B [ create_bd_port -dir O -from 3 -to 0 VGA_B ]
@@ -635,16 +642,21 @@ proc create_root_design { parentCell } {
   set VGA_VS [ create_bd_port -dir O VGA_VS ]
   set clk [ create_bd_port -dir I clk ]
   set clk_sel [ create_bd_port -dir I -from 1 -to 0 clk_sel ]
+  set ctrl_a [ create_bd_port -dir I ctrl_a ]
+  set ctrl_b [ create_bd_port -dir I ctrl_b ]
+  set ctrl_c [ create_bd_port -dir I ctrl_c ]
   set extern_clk [ create_bd_port -dir I extern_clk ]
+  set extern_rst [ create_bd_port -dir I extern_rst ]
   set miso [ create_bd_port -dir O miso ]
   set mosi [ create_bd_port -dir I mosi ]
+  set on_led [ create_bd_port -dir O -from 0 -to 0 on_led ]
   set pgm [ create_bd_port -dir I pgm ]
   set pgm_led [ create_bd_port -dir O pgm_led ]
   set sclk [ create_bd_port -dir I sclk ]
   set seg [ create_bd_port -dir O -from 7 -to 0 seg ]
   set seg_sel [ create_bd_port -dir O -from 7 -to 0 seg_sel ]
+  set spkr [ create_bd_port -dir O spkr ]
   set ss [ create_bd_port -dir I ss ]
-  set usr_sw [ create_bd_port -dir I usr_sw ]
 
   # Create instance: Clocks
   create_hier_cell_Clocks [current_bd_instance .] Clocks
@@ -669,6 +681,17 @@ proc create_root_design { parentCell } {
   # Create instance: programer
   create_hier_cell_programer [current_bd_instance .] programer
 
+  # Create instance: spkr_driver, and set properties
+  set block_name spkr_driver
+  set block_cell_name spkr_driver
+  if { [catch {set spkr_driver [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $spkr_driver eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: vga_0, and set properties
   set block_name vga
   set block_cell_name vga_0
@@ -680,14 +703,18 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  # Create instance: xlconstant_0, and set properties
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+
   # Create port connections
-  connect_bd_net -net BTND_1 [get_bd_ports BTND] [get_bd_pins Memory/rst] [get_bd_pins Risc16_CPU/rst] [get_bd_pins vga_0/rst]
   connect_bd_net -net BTNU_1 [get_bd_ports BTNU] [get_bd_pins Clocks/BTNU]
   connect_bd_net -net CPU_Programmer_0_pgm [get_bd_ports pgm] [get_bd_ports pgm_led] [get_bd_pins Memory/pgm]
+  connect_bd_net -net Clocks_clk_out3 [get_bd_pins Clocks/sig_5mhz] [get_bd_pins spkr_driver/spkr_base_freq]
   connect_bd_net -net Memory_c [get_bd_pins Memory/hlt_cpu] [get_bd_pins Risc16_CPU/extern_halt]
   connect_bd_net -net Memory_ir [get_bd_pins Memory/ir] [get_bd_pins Risc16_CPU/ir]
   connect_bd_net -net Memory_mem_data_out [get_bd_pins Memory/mem_data_out] [get_bd_pins Risc16_CPU/data_in]
   connect_bd_net -net Memory_px_out [get_bd_pins Memory/px_out] [get_bd_pins vga_0/px_in]
+  connect_bd_net -net Memory_spkr_enable [get_bd_pins Memory/spkr_enable] [get_bd_pins spkr_driver/spkr_enable]
   connect_bd_net -net Nexys_Peripherals_seg [get_bd_ports seg] [get_bd_pins Nexys_Peripherals/seg]
   connect_bd_net -net Nexys_Peripherals_seg_sel [get_bd_ports seg_sel] [get_bd_pins Nexys_Peripherals/seg_sel]
   connect_bd_net -net Risc16_CPU_addr [get_bd_pins Memory/addr] [get_bd_pins Risc16_CPU/addr]
@@ -697,19 +724,23 @@ proc create_root_design { parentCell } {
   connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins Clocks/clk1] [get_bd_pins Memory/pgm_clk] [get_bd_pins programer/clk]
   connect_bd_net -net clk_div_0_clk_out [get_bd_ports LED_B] [get_bd_pins Clocks/NEXYS_7SEG_CLK] [get_bd_pins Nexys_Peripherals/clk]
   connect_bd_net -net clk_sel_1 [get_bd_ports clk_sel] [get_bd_pins Clocks/clk_sel]
-  connect_bd_net -net clocks_CPU_Clk [get_bd_pins Clocks/CPU_Clk] [get_bd_pins Risc16_CPU/clk]
+  connect_bd_net -net clocks_CPU_Clk [get_bd_pins Clocks/CPU_Clk] [get_bd_pins Risc16_CPU/clk] [get_bd_pins spkr_driver/clk]
   connect_bd_net -net clocks_clk_out2 [get_bd_pins Clocks/VGA_Base_Clk_25MHz] [get_bd_pins vga_0/clk]
+  connect_bd_net -net ctrl_a_1 [get_bd_ports ctrl_a] [get_bd_pins Memory/ctrl_a]
+  connect_bd_net -net ctrl_b_1 [get_bd_ports ctrl_b] [get_bd_pins Memory/ctrl_b]
+  connect_bd_net -net ctrl_c_1 [get_bd_ports ctrl_c] [get_bd_pins Memory/ctrl_c]
   connect_bd_net -net extern_clk_1 [get_bd_ports extern_clk] [get_bd_pins Clocks/extern_clk]
   connect_bd_net -net mem_clk_1 [get_bd_pins Clocks/clk_out1] [get_bd_pins Memory/mem_clk]
   connect_bd_net -net mosi_1 [get_bd_ports mosi] [get_bd_pins programer/mosi]
+  connect_bd_net -net or_gate_0_c [get_bd_ports extern_rst] [get_bd_pins Memory/rst] [get_bd_pins Risc16_CPU/rst]
   connect_bd_net -net programer_miso [get_bd_ports miso] [get_bd_pins programer/miso]
   connect_bd_net -net programer_pg_wr [get_bd_pins Memory/pg_wr] [get_bd_pins programer/pg_wr]
   connect_bd_net -net programer_pgm_addr [get_bd_pins Memory/pgm_addr] [get_bd_pins programer/pgm_addr]
   connect_bd_net -net programer_pgm_data [get_bd_pins Memory/pgm_data] [get_bd_pins programer/pgm_data]
   connect_bd_net -net risc16_0_pc_out [get_bd_pins Memory/pc] [get_bd_pins Nexys_Peripherals/pc_in] [get_bd_pins Risc16_CPU/pc_out]
   connect_bd_net -net sclk_1 [get_bd_ports sclk] [get_bd_pins programer/sclk]
+  connect_bd_net -net spkr_driver_0_spkr_out [get_bd_ports spkr] [get_bd_pins spkr_driver/spkr_out]
   connect_bd_net -net ss_1 [get_bd_ports ss] [get_bd_pins programer/ss]
-  connect_bd_net -net usr_sw_1 [get_bd_ports usr_sw] [get_bd_pins Memory/usr_sw]
   connect_bd_net -net vga_0_blue [get_bd_ports VGA_B] [get_bd_pins vga_0/blue]
   connect_bd_net -net vga_0_green [get_bd_ports VGA_G] [get_bd_pins vga_0/green]
   connect_bd_net -net vga_0_hsync [get_bd_ports VGA_HS] [get_bd_pins vga_0/hsync]
@@ -717,6 +748,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net vga_0_px_pos [get_bd_pins Memory/px_buff_pos_addr] [get_bd_pins vga_0/px_pos]
   connect_bd_net -net vga_0_red [get_bd_ports VGA_R] [get_bd_pins vga_0/red]
   connect_bd_net -net vga_0_vsync [get_bd_ports VGA_VS] [get_bd_pins vga_0/vsync]
+  connect_bd_net -net xlconstant_0_dout [get_bd_ports on_led] [get_bd_pins xlconstant_0/dout]
 
   # Create address segments
 

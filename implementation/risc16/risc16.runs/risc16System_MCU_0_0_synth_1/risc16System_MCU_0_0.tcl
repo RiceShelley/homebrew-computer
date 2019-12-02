@@ -31,7 +31,6 @@ set_property parent.project_path /home/rootie/devel/homebrew-computer/implementa
 set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property board_part_repo_paths {/home/rootie/Documents/vivado-boards/new/board_files} [current_project]
 set_property board_part digilentinc.com:nexys-a7-100t:part0:1.0 [current_project]
 set_property ip_output_repo /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]

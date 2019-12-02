@@ -1,8 +1,8 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Sun Sep 15 01:29:35 2019
-// Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.2 LTS
+// Date        : Sun Nov 24 00:33:01 2019
+// Host        : rootieW running 64-bit Ubuntu 18.10
 // Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ risc16System_clk_div_0_0_sim_netlist.v
 // Design      : risc16System_clk_div_0_0
@@ -19,32 +19,26 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clk_div
   input clk;
 
   wire clk;
-  wire \clk_count[9]_i_2_n_0 ;
   wire \clk_count_reg_n_0_[0] ;
   wire \clk_count_reg_n_0_[1] ;
   wire \clk_count_reg_n_0_[2] ;
   wire \clk_count_reg_n_0_[3] ;
-  wire \clk_count_reg_n_0_[4] ;
-  wire \clk_count_reg_n_0_[5] ;
-  wire \clk_count_reg_n_0_[6] ;
-  wire \clk_count_reg_n_0_[7] ;
-  wire \clk_count_reg_n_0_[8] ;
   wire clk_out;
-  wire [9:0]p_0_in;
+  wire [4:0]p_0_in;
 
   LUT1 #(
     .INIT(2'h1)) 
     \clk_count[0]_i_1 
        (.I0(\clk_count_reg_n_0_[0] ),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \clk_count[1]_i_1 
        (.I0(\clk_count_reg_n_0_[0] ),
         .I1(\clk_count_reg_n_0_[1] ),
         .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \clk_count[2]_i_1 
@@ -69,62 +63,8 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clk_div
         .I1(\clk_count_reg_n_0_[0] ),
         .I2(\clk_count_reg_n_0_[1] ),
         .I3(\clk_count_reg_n_0_[3] ),
-        .I4(\clk_count_reg_n_0_[4] ),
-        .O(p_0_in[4]));
-  LUT6 #(
-    .INIT(64'h7FFFFFFF80000000)) 
-    \clk_count[5]_i_1 
-       (.I0(\clk_count_reg_n_0_[3] ),
-        .I1(\clk_count_reg_n_0_[1] ),
-        .I2(\clk_count_reg_n_0_[0] ),
-        .I3(\clk_count_reg_n_0_[2] ),
-        .I4(\clk_count_reg_n_0_[4] ),
-        .I5(\clk_count_reg_n_0_[5] ),
-        .O(p_0_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \clk_count[6]_i_1 
-       (.I0(\clk_count[9]_i_2_n_0 ),
-        .I1(\clk_count_reg_n_0_[6] ),
-        .O(p_0_in[6]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT3 #(
-    .INIT(8'h78)) 
-    \clk_count[7]_i_1 
-       (.I0(\clk_count[9]_i_2_n_0 ),
-        .I1(\clk_count_reg_n_0_[6] ),
-        .I2(\clk_count_reg_n_0_[7] ),
-        .O(p_0_in[7]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    \clk_count[8]_i_1 
-       (.I0(\clk_count_reg_n_0_[6] ),
-        .I1(\clk_count[9]_i_2_n_0 ),
-        .I2(\clk_count_reg_n_0_[7] ),
-        .I3(\clk_count_reg_n_0_[8] ),
-        .O(p_0_in[8]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'h7FFF8000)) 
-    \clk_count[9]_i_1 
-       (.I0(\clk_count_reg_n_0_[7] ),
-        .I1(\clk_count[9]_i_2_n_0 ),
-        .I2(\clk_count_reg_n_0_[6] ),
-        .I3(\clk_count_reg_n_0_[8] ),
         .I4(clk_out),
-        .O(p_0_in[9]));
-  LUT6 #(
-    .INIT(64'h8000000000000000)) 
-    \clk_count[9]_i_2 
-       (.I0(\clk_count_reg_n_0_[5] ),
-        .I1(\clk_count_reg_n_0_[3] ),
-        .I2(\clk_count_reg_n_0_[1] ),
-        .I3(\clk_count_reg_n_0_[0] ),
-        .I4(\clk_count_reg_n_0_[2] ),
-        .I5(\clk_count_reg_n_0_[4] ),
-        .O(\clk_count[9]_i_2_n_0 ));
+        .O(p_0_in[4]));
   FDRE #(
     .INIT(1'b0)) 
     \clk_count_reg[0] 
@@ -163,46 +103,6 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clk_div
        (.C(clk),
         .CE(1'b1),
         .D(p_0_in[4]),
-        .Q(\clk_count_reg_n_0_[4] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \clk_count_reg[5] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(p_0_in[5]),
-        .Q(\clk_count_reg_n_0_[5] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \clk_count_reg[6] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(p_0_in[6]),
-        .Q(\clk_count_reg_n_0_[6] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \clk_count_reg[7] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(p_0_in[7]),
-        .Q(\clk_count_reg_n_0_[7] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \clk_count_reg[8] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(p_0_in[8]),
-        .Q(\clk_count_reg_n_0_[8] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \clk_count_reg[9] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(p_0_in[9]),
         .Q(clk_out),
         .R(1'b0));
 endmodule
@@ -213,7 +113,7 @@ endmodule
 module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix
    (clk,
     clk_out);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 5000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 5000000, PHASE 0.0, CLK_DOMAIN /Clocks/CLK_5MHz_clk_out1, INSERT_VIP 0" *) input clk;
   output clk_out;
 
   wire clk;

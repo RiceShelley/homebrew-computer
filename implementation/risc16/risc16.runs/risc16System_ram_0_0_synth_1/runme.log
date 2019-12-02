@@ -8,20 +8,19 @@
   **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
     ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 
-Sourcing tcl script '/home/rootie/.Xilinx/Vivado/Vivado_init.tcl'
 source risc16System_ram_0_0.tcl -notrace
 Command: synth_design -top risc16System_ram_0_0 -part xc7a100tcsg324-1 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 7351 
+INFO: Helper process launched with PID 16489 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1423.418 ; gain = 36.867 ; free physical = 2277 ; free virtual = 9934
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1389.988 ; gain = 38.816 ; free physical = 17562 ; free virtual = 25882
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'risc16System_ram_0_0' [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_ram_0_0/synth/risc16System_ram_0_0.v:58]
 INFO: [Synth 8-6157] synthesizing module 'ram' [/home/rootie/devel/homebrew-computer/risc-16/hardware/ram.v:1]
-	Parameter MEM_SIZE bound to: 255 - type: integer 
+	Parameter MEM_SIZE bound to: 512 - type: integer 
 	Parameter READ bound to: 0 - type: integer 
 	Parameter WRITE bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'ram' (1#1) [/home/rootie/devel/homebrew-computer/risc-16/hardware/ram.v:1]
@@ -33,9 +32,8 @@ WARNING: [Synth 8-3331] design ram has unconnected port pc[12]
 WARNING: [Synth 8-3331] design ram has unconnected port pc[11]
 WARNING: [Synth 8-3331] design ram has unconnected port pc[10]
 WARNING: [Synth 8-3331] design ram has unconnected port pc[9]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[8]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1498.168 ; gain = 111.617 ; free physical = 2128 ; free virtual = 9748
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1435.738 ; gain = 84.566 ; free physical = 17585 ; free virtual = 25905
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -48,10 +46,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1498.168 ; gain = 111.617 ; free physical = 2079 ; free virtual = 9697
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1435.738 ; gain = 84.566 ; free physical = 17561 ; free virtual = 25881
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1498.168 ; gain = 111.617 ; free physical = 2079 ; free virtual = 9697
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1435.738 ; gain = 84.566 ; free physical = 17561 ; free virtual = 25881
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -60,133 +58,32 @@ Processing XDC Constraints
 Initializing timing engine
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1853.984 ; gain = 0.000 ; free physical = 1686 ; free virtual = 9305
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1729.570 ; gain = 0.000 ; free physical = 17163 ; free virtual = 25484
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1853.984 ; gain = 0.000 ; free physical = 1686 ; free virtual = 9305
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1729.570 ; gain = 0.000 ; free physical = 17163 ; free virtual = 25484
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.37 ; elapsed = 00:00:00.19 . Memory (MB): peak = 1858.984 ; gain = 5.000 ; free physical = 1707 ; free virtual = 9328
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.11 . Memory (MB): peak = 1730.570 ; gain = 1.000 ; free physical = 17162 ; free virtual = 25483
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 1710 ; free virtual = 9334
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1730.570 ; gain = 379.398 ; free physical = 17218 ; free virtual = 25539
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 1710 ; free virtual = 9334
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1730.570 ; gain = 379.398 ; free physical = 17218 ; free virtual = 25539
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 1710 ; free virtual = 9334
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1730.570 ; gain = 379.398 ; free physical = 17218 ; free virtual = 25539
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5546] ROM "mem_reg[254]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[254]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[253]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[253]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[252]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[252]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[251]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[251]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[250]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[250]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[249]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[249]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[248]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[248]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[247]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[247]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[246]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[246]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[245]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[245]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[244]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[244]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[243]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[243]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[242]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[242]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[241]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[241]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[240]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[240]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[239]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[239]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[238]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[238]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[237]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[237]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[236]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[236]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[235]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[235]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[234]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[234]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[233]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[233]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[232]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[232]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[231]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[231]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[230]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[230]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[229]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[229]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[228]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[228]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[227]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[227]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[226]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[226]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[225]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[225]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[224]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[224]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[223]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[223]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[222]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[222]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[221]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[221]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[220]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[220]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[219]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[219]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[218]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[218]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[217]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[217]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[216]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[216]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[215]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[215]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[214]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[214]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[213]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[213]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[212]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[212]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[211]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[211]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[210]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[210]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[209]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[209]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[208]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[208]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[207]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[207]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[206]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[206]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[205]" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_reg[205]" won't be mapped to RAM because it is too sparse
-INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 1610 ; free virtual = 9228
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1730.570 ; gain = 379.398 ; free physical = 17208 ; free virtual = 25531
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -199,11 +96,10 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Registers : 
-	               16 Bit    Registers := 255   
 	                3 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 765   
+	   2 Input     16 Bit        Muxes := 3     
+	   2 Input      9 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -214,11 +110,10 @@ Hierarchical RTL Component report
 Module ram 
 Detailed RTL Component Info : 
 +---Registers : 
-	               16 Bit    Registers := 255   
 	                3 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 765   
+	   2 Input     16 Bit        Muxes := 3     
+	   2 Input      9 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -235,16 +130,44 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-WARNING: [Synth 8-3331] design ram has unconnected port pc[15]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[14]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[13]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[12]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[11]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[10]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[9]
-WARNING: [Synth 8-3331] design ram has unconnected port pc[8]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port addr[15]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port addr[14]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port addr[13]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port addr[12]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port addr[11]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port addr[10]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port addr[9]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pc[15]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pc[14]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pc[13]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pc[12]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pc[11]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pc[10]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pc[9]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pgm_addr[15]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pgm_addr[14]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pgm_addr[13]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pgm_addr[12]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pgm_addr[11]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pgm_addr[10]
+WARNING: [Synth 8-3331] design risc16System_ram_0_0 has unconnected port pgm_addr[9]
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2769 ; free virtual = 10387
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1730.570 ; gain = 379.398 ; free physical = 17180 ; free virtual = 25503
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++---------------------+--------------+-----------+----------------------+-------------------------------+
+|Module Name          | RTL Object   | Inference | Size (Depth x Width) | Primitives                    | 
++---------------------+--------------+-----------+----------------------+-------------------------------+
+|risc16System_ram_0_0 | inst/mem_reg | Implied   | 512 x 16             | RAM64X1D x 24  RAM64M x 120   | 
++---------------------+--------------+-----------+----------------------+-------------------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -256,13 +179,27 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:38 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2652 ; free virtual = 10267
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1735.555 ; gain = 384.383 ; free physical = 16938 ; free virtual = 25262
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:38 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2650 ; free virtual = 10265
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1735.555 ; gain = 384.383 ; free physical = 16937 ; free virtual = 25262
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping  Report
++---------------------+--------------+-----------+----------------------+-------------------------------+
+|Module Name          | RTL Object   | Inference | Size (Depth x Width) | Primitives                    | 
++---------------------+--------------+-----------+----------------------+-------------------------------+
+|risc16System_ram_0_0 | inst/mem_reg | Implied   | 512 x 16             | RAM64X1D x 24  RAM64M x 120   | 
++---------------------+--------------+-----------+----------------------+-------------------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -274,7 +211,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2649 ; free virtual = 10264
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16936 ; free virtual = 25261
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -298,7 +235,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2648 ; free virtual = 10264
+Finished IO Insertion : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16975 ; free virtual = 25300
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -311,7 +248,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2648 ; free virtual = 10264
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16974 ; free virtual = 25299
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -323,25 +260,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2648 ; free virtual = 10264
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16968 ; free virtual = 25293
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2648 ; free virtual = 10264
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16968 ; free virtual = 25293
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2648 ; free virtual = 10263
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16967 ; free virtual = 25292
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2648 ; free virtual = 10263
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16966 ; free virtual = 25291
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -354,53 +291,53 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+------+------+
-|      |Cell  |Count |
-+------+------+------+
-|1     |LUT2  |    99|
-|2     |LUT3  |    70|
-|3     |LUT4  |    59|
-|4     |LUT5  |     8|
-|5     |LUT6  |  3004|
-|6     |MUXF7 |  1025|
-|7     |MUXF8 |   416|
-|8     |FDRE  |  4083|
-+------+------+------+
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |LUT3     |     7|
+|2     |LUT5     |    16|
+|3     |LUT6     |   120|
+|4     |MUXF7    |    48|
+|5     |RAM64M   |   120|
+|6     |RAM64X1D |    24|
+|7     |FDRE     |     3|
++------+---------+------+
 
 Report Instance Areas: 
 +------+---------+-------+------+
 |      |Instance |Module |Cells |
 +------+---------+-------+------+
-|1     |top      |       |  8764|
-|2     |  inst   |ram    |  8755|
+|1     |top      |       |   338|
+|2     |  inst   |ram    |   338|
 +------+---------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2648 ; free virtual = 10263
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.570 ; gain = 396.398 ; free physical = 16966 ; free virtual = 25290
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:36 . Memory (MB): peak = 1858.984 ; gain = 111.617 ; free physical = 2702 ; free virtual = 10318
-Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1858.984 ; gain = 472.434 ; free physical = 2702 ; free virtual = 10318
+Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1747.570 ; gain = 101.566 ; free physical = 17002 ; free virtual = 25327
+Synthesis Optimization Complete : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1747.578 ; gain = 396.398 ; free physical = 17002 ; free virtual = 25327
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 1441 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 192 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-WARNING: [Netlist 29-101] Netlist 'risc16System_ram_0_0' is not ideal for floorplanning, since the cellview 'ram' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1875.000 ; gain = 0.000 ; free physical = 2647 ; free virtual = 10263
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1753.570 ; gain = 0.000 ; free physical = 16970 ; free virtual = 25295
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 144 instances were transformed.
+  RAM64M => RAM64M (RAMD64E, RAMD64E, RAMD64E, RAMD64E): 120 instances
+  RAM64X1D => RAM64X1D (RAMD64E, RAMD64E): 24 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-116 Infos, 18 Warnings, 0 Critical Warnings and 0 Errors encountered.
+15 Infos, 29 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:43 . Memory (MB): peak = 1875.000 ; gain = 488.582 ; free physical = 2706 ; free virtual = 10321
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1875.000 ; gain = 0.000 ; free physical = 2706 ; free virtual = 10321
+synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1753.570 ; gain = 402.582 ; free physical = 17025 ; free virtual = 25349
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1753.570 ; gain = 0.000 ; free physical = 17025 ; free virtual = 25349
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_ram_0_0_synth_1/risc16System_ram_0_0.dcp' has been generated.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1899.012 ; gain = 0.000 ; free physical = 2703 ; free virtual = 10324
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1753.570 ; gain = 0.000 ; free physical = 17610 ; free virtual = 25933
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_ram_0_0_synth_1/risc16System_ram_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file risc16System_ram_0_0_utilization_synth.rpt -pb risc16System_ram_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Oct  6 00:01:26 2019...
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 30 21:27:06 2019...

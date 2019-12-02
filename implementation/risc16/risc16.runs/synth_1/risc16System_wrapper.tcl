@@ -51,8 +51,8 @@ set_property used_in_implementation false [get_files -all /home/rootie/devel/hom
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/rootie/devel/homebrew-computer/implementation/risc16/Nexys-A7-100T.xdc
-set_property used_in_implementation false [get_files /home/rootie/devel/homebrew-computer/implementation/risc16/Nexys-A7-100T.xdc]
+read_xdc /home/rootie/devel/homebrew-computer/Nexys-A7-100T-Master.xdc
+set_property used_in_implementation false [get_files /home/rootie/devel/homebrew-computer/Nexys-A7-100T-Master.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]

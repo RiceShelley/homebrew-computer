@@ -57,7 +57,6 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module risc16System_vga_0_0 (
   clk,
-  rst,
   px_in,
   red,
   green,
@@ -68,12 +67,9 @@ module risc16System_vga_0_0 (
   px_pos
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /Clocks/VGA_25MHz_CLK_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /Clocks/VGA_25MHz_CLK_clk_out1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
-input wire rst;
 input wire px_in;
 output wire [3 : 0] red;
 output wire [3 : 0] green;
@@ -94,7 +90,6 @@ output wire [5 : 0] px_pos;
     .vline_end(10'B1000001100)
   ) inst (
     .clk(clk),
-    .rst(rst),
     .px_in(px_in),
     .red(red),
     .green(green),

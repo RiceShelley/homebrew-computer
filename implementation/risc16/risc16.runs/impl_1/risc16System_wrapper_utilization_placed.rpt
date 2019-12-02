@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Sat Nov 23 16:12:34 2019
+| Date         : Mon Dec  2 00:20:28 2019
 | Host         : rootieW running 64-bit Ubuntu 18.10
 | Command      : report_utilization -file risc16System_wrapper_utilization_placed.rpt -pb risc16System_wrapper_utilization_placed.pb
 | Design       : risc16System_wrapper
@@ -31,16 +31,16 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs                 | 3984 |     0 |     63400 |  6.28 |
-|   LUT as Logic             | 3728 |     0 |     63400 |  5.88 |
-|   LUT as Memory            |  256 |     0 |     19000 |  1.35 |
-|     LUT as Distributed RAM |  256 |     0 |           |       |
+| Slice LUTs                 | 5077 |     0 |     63400 |  8.01 |
+|   LUT as Logic             | 4549 |     0 |     63400 |  7.18 |
+|   LUT as Memory            |  528 |     0 |     19000 |  2.78 |
+|     LUT as Distributed RAM |  528 |     0 |           |       |
 |     LUT as Shift Register  |    0 |     0 |           |       |
-| Slice Registers            | 4496 |     0 |    126800 |  3.55 |
-|   Register as Flip Flop    | 4430 |     0 |    126800 |  3.49 |
+| Slice Registers            | 3501 |     0 |    126800 |  2.76 |
+|   Register as Flip Flop    | 3435 |     0 |    126800 |  2.71 |
 |   Register as Latch        |   66 |     0 |    126800 |  0.05 |
-| F7 Muxes                   | 1095 |     0 |     31700 |  3.45 |
-| F8 Muxes                   |  433 |     0 |     15850 |  2.73 |
+| F7 Muxes                   |  502 |     0 |     31700 |  1.58 |
+| F8 Muxes                   |  209 |     0 |     15850 |  1.32 |
 +----------------------------+------+-------+-----------+-------+
 
 
@@ -59,7 +59,7 @@ Table of Contents
 | 0     |          Yes |           - |          Set |
 | 66    |          Yes |           - |        Reset |
 | 8     |          Yes |         Set |            - |
-| 4422  |          Yes |       Reset |            - |
+| 3427  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -69,25 +69,25 @@ Table of Contents
 +--------------------------------------------+------+-------+-----------+-------+
 |                  Site Type                 | Used | Fixed | Available | Util% |
 +--------------------------------------------+------+-------+-----------+-------+
-| Slice                                      | 2367 |     0 |     15850 | 14.93 |
-|   SLICEL                                   | 1802 |     0 |           |       |
-|   SLICEM                                   |  565 |     0 |           |       |
-| LUT as Logic                               | 3728 |     0 |     63400 |  5.88 |
+| Slice                                      | 1489 |     0 |     15850 |  9.39 |
+|   SLICEL                                   | 1057 |     0 |           |       |
+|   SLICEM                                   |  432 |     0 |           |       |
+| LUT as Logic                               | 4549 |     0 |     63400 |  7.18 |
 |   using O5 output only                     |    0 |       |           |       |
-|   using O6 output only                     | 3538 |       |           |       |
-|   using O5 and O6                          |  190 |       |           |       |
-| LUT as Memory                              |  256 |     0 |     19000 |  1.35 |
-|   LUT as Distributed RAM                   |  256 |     0 |           |       |
+|   using O6 output only                     | 4246 |       |           |       |
+|   using O5 and O6                          |  303 |       |           |       |
+| LUT as Memory                              |  528 |     0 |     19000 |  2.78 |
+|   LUT as Distributed RAM                   |  528 |     0 |           |       |
 |     using O5 output only                   |    0 |       |           |       |
-|     using O6 output only                   |  256 |       |           |       |
+|     using O6 output only                   |  528 |       |           |       |
 |     using O5 and O6                        |    0 |       |           |       |
 |   LUT as Shift Register                    |    0 |     0 |           |       |
-| Slice Registers                            | 4496 |     0 |    126800 |  3.55 |
-|   Register driven from within the Slice    |  153 |       |           |       |
-|   Register driven from outside the Slice   | 4343 |       |           |       |
-|     LUT in front of the register is unused | 2981 |       |           |       |
-|     LUT in front of the register is used   | 1362 |       |           |       |
-| Unique Control Sets                        |  422 |       |     15850 |  2.66 |
+| Slice Registers                            | 3501 |     0 |    126800 |  2.76 |
+|   Register driven from within the Slice    | 3235 |       |           |       |
+|   Register driven from outside the Slice   |  266 |       |           |       |
+|     LUT in front of the register is unused |  154 |       |           |       |
+|     LUT in front of the register is used   |  112 |       |           |       |
+| Unique Control Sets                        |   48 |       |     15850 |  0.30 |
 +--------------------------------------------+------+-------+-----------+-------+
 * Note: Available Control Sets calculated as Slice Registers / 8, Review the Control Sets Report for more information regarding control sets.
 
@@ -121,9 +121,9 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   43 |    43 |       210 | 20.48 |
-|   IOB Master Pads           |   19 |       |           |       |
-|   IOB Slave Pads            |   22 |       |           |       |
+| Bonded IOB                  |   47 |    47 |       210 | 22.38 |
+|   IOB Master Pads           |   20 |       |           |       |
+|   IOB Slave Pads            |   25 |       |           |       |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         6 |  0.00 |
@@ -179,19 +179,19 @@ Table of Contents
 +------------+------+---------------------+
 |  Ref Name  | Used | Functional Category |
 +------------+------+---------------------+
-| FDRE       | 4422 |        Flop & Latch |
-| LUT6       | 3160 |                 LUT |
-| MUXF7      | 1095 |               MuxFx |
-| MUXF8      |  433 |               MuxFx |
-| RAMD32     |  256 |  Distributed Memory |
-| LUT4       |  212 |                 LUT |
-| LUT2       |  189 |                 LUT |
-| LUT5       |  181 |                 LUT |
-| LUT3       |  170 |                 LUT |
+| FDRE       | 3427 |        Flop & Latch |
+| LUT6       | 2858 |                 LUT |
+| LUT5       | 1028 |                 LUT |
+| LUT4       |  563 |                 LUT |
+| RAMD64E    |  528 |  Distributed Memory |
+| MUXF7      |  502 |               MuxFx |
+| LUT2       |  298 |                 LUT |
+| MUXF8      |  209 |               MuxFx |
+| LUT3       |   99 |                 LUT |
 | LDCE       |   66 |        Flop & Latch |
-| OBUF       |   33 |                  IO |
-| CARRY4     |   18 |          CarryLogic |
-| IBUF       |   10 |                  IO |
+| OBUF       |   35 |                  IO |
+| CARRY4     |   22 |          CarryLogic |
+| IBUF       |   12 |                  IO |
 | FDSE       |    8 |        Flop & Latch |
 | LUT1       |    6 |                 LUT |
 | BUFG       |    5 |               Clock |
@@ -214,6 +214,7 @@ Table of Contents
 |             Ref Name            | Used |
 +---------------------------------+------+
 | risc16System_vga_0_0            |    1 |
+| risc16System_spkr_driver_0_0    |    1 |
 | risc16System_spi_slave_0_0      |    1 |
 | risc16System_risc16_0_0         |    1 |
 | risc16System_ram_0_0            |    1 |

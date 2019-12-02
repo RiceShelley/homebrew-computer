@@ -25,16 +25,22 @@ module Video_Buffer(
     input [15:0] addr,
     input [15:0] data,
     input rw,
+    input clr,
     input [5:0] px_buff_line_addr,
     input [5:0] px_buff_pos_addr,
     output px_out
     );
     
     reg [63:0] px_map[47:0];
-    
+    integer i;
     always @(posedge clk) begin
         if (rw) begin
             px_map[addr][data[11:6]] <= data[0];
+        end
+        if (clr) begin 
+            for (i=0; i < 48; i=i+1) begin
+                px_map[i] <= 64'd0;
+            end
         end
     end
     

@@ -1,6 +1,5 @@
 module ram(
            input clk,
-           input rst,
            input [15:0] addr,
            input [15:0] pc,
            input pgm,
@@ -13,7 +12,7 @@ module ram(
            input [15:0] mem_in
 );
 
-parameter MEM_SIZE = 255;
+parameter MEM_SIZE = 512;
 parameter READ = 0, WRITE = 1;
 
 // memory
@@ -30,19 +29,15 @@ wire pg_wr_rising = (pg_wr_buff[2:1] == 2'b01);
 
 always @(posedge clk)
 begin
-    if (rst) begin
-        mem[0] <= 16'd0;
+    // Let external device write to mem
+    if (pgm) begin
+        if (pg_wr_rising) begin
+            mem[pgm_addr] <= pgm_data;
+        end
     end else begin
-        // Let external device write to mem
-        if (pgm) begin
-            if (pg_wr_rising) begin
-                mem[pgm_addr] <= pgm_data;
-            end
-        end else begin
-            // Internal write to memory
-            if (rw == WRITE) begin
-                mem[addr] <= mem_in;
-            end
+        // Internal write to memory
+        if (rw == WRITE) begin
+            mem[addr] <= mem_in;
         end
     end
 end

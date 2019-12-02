@@ -8,31 +8,20 @@
   **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
     ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 
-Sourcing tcl script '/home/rootie/.Xilinx/Vivado/Vivado_init.tcl'
 source risc16System_Video_Buffer_0_1.tcl -notrace
 Command: synth_design -top risc16System_Video_Buffer_0_1 -part xc7a100tcsg324-1 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 20643 
+INFO: Helper process launched with PID 7990 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1425.988 ; gain = 28.867 ; free physical = 3437 ; free virtual = 10979
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1389.562 ; gain = 48.816 ; free physical = 19358 ; free virtual = 27045
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'risc16System_Video_Buffer_0_1' [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_Video_Buffer_0_1/synth/risc16System_Video_Buffer_0_1.v:58]
 INFO: [Synth 8-6157] synthesizing module 'Video_Buffer' [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/new/Video_Buffer.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'Video_Buffer' (1#1) [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/new/Video_Buffer.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'risc16System_Video_Buffer_0_1' (2#1) [/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_Video_Buffer_0_1/synth/risc16System_Video_Buffer_0_1.v:58]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[15]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[14]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[13]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[12]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[11]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[10]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[9]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[8]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[7]
-WARNING: [Synth 8-3331] design Video_Buffer has unconnected port addr[6]
 WARNING: [Synth 8-3331] design Video_Buffer has unconnected port data[15]
 WARNING: [Synth 8-3331] design Video_Buffer has unconnected port data[14]
 WARNING: [Synth 8-3331] design Video_Buffer has unconnected port data[13]
@@ -43,7 +32,7 @@ WARNING: [Synth 8-3331] design Video_Buffer has unconnected port data[3]
 WARNING: [Synth 8-3331] design Video_Buffer has unconnected port data[2]
 WARNING: [Synth 8-3331] design Video_Buffer has unconnected port data[1]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1471.738 ; gain = 74.617 ; free physical = 3451 ; free virtual = 10994
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1439.312 ; gain = 98.566 ; free physical = 19332 ; free virtual = 27022
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -56,10 +45,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1471.738 ; gain = 74.617 ; free physical = 3451 ; free virtual = 10994
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1439.312 ; gain = 98.566 ; free physical = 19361 ; free virtual = 27051
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1471.738 ; gain = 74.617 ; free physical = 3451 ; free virtual = 10994
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1439.312 ; gain = 98.566 ; free physical = 19361 ; free virtual = 27051
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -68,45 +57,50 @@ Processing XDC Constraints
 Initializing timing engine
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1758.562 ; gain = 0.000 ; free physical = 3199 ; free virtual = 10742
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1801.168 ; gain = 0.000 ; free physical = 18944 ; free virtual = 26669
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1758.562 ; gain = 0.000 ; free physical = 3199 ; free virtual = 10742
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1801.168 ; gain = 0.000 ; free physical = 18944 ; free virtual = 26669
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1759.562 ; gain = 1.000 ; free physical = 3197 ; free virtual = 10739
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.27 ; elapsed = 00:00:00.14 . Memory (MB): peak = 1806.168 ; gain = 5.000 ; free physical = 18931 ; free virtual = 26655
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1759.562 ; gain = 362.441 ; free physical = 3263 ; free virtual = 10806
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1806.168 ; gain = 465.422 ; free physical = 19006 ; free virtual = 26735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1759.562 ; gain = 362.441 ; free physical = 3263 ; free virtual = 10806
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1806.168 ; gain = 465.422 ; free physical = 19006 ; free virtual = 26735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1759.562 ; gain = 362.441 ; free physical = 3265 ; free virtual = 10808
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1806.168 ; gain = 465.422 ; free physical = 19006 ; free virtual = 26735
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1759.562 ; gain = 362.441 ; free physical = 3258 ; free virtual = 10801
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1806.168 ; gain = 465.422 ; free physical = 18941 ; free virtual = 26677
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
++------+------------------+------------+----------+
+|      |RTL Partition     |Replication |Instances |
++------+------------------+------------+----------+
+|1     |Video_Buffer__GB0 |           1|     38090|
+|2     |Video_Buffer__GB1 |           1|     10179|
+|3     |Video_Buffer__GB2 |           1|     11494|
++------+------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
-+---RAMs : 
-	               3K Bit         RAMs := 1     
++---Registers : 
+	               64 Bit    Registers := 48    
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 54    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -116,8 +110,10 @@ Start RTL Hierarchical Component Statistics
 Hierarchical RTL Component report 
 Module Video_Buffer 
 Detailed RTL Component Info : 
-+---RAMs : 
-	               3K Bit         RAMs := 1     
++---Registers : 
+	               64 Bit    Registers := 48    
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 54    
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -134,16 +130,6 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[15]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[14]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[13]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[12]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[11]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[10]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[9]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[8]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[7]
-WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port addr[6]
 WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port data[15]
 WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port data[14]
 WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port data[13]
@@ -154,66 +140,43 @@ WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected por
 WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port data[2]
 WARNING: [Synth 8-3331] design risc16System_Video_Buffer_0_1 has unconnected port data[1]
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1759.562 ; gain = 362.441 ; free physical = 3245 ; free virtual = 10790
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP and Shift Register Reporting
----------------------------------------------------------------------------------
-
-Distributed RAM: Preliminary Mapping  Report (see note below)
-+------------------------------+-----------------+-----------+----------------------+--------------------------------+
-|Module Name                   | RTL Object      | Inference | Size (Depth x Width) | Primitives                     | 
-+------------------------------+-----------------+-----------+----------------------+--------------------------------+
-|risc16System_Video_Buffer_0_1 | inst/px_map_reg | Implied   | 64 x 64              | RAM16X1D x 64  RAM32X1D x 64   | 
-+------------------------------+-----------------+-----------+----------------------+--------------------------------+
-
-Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP and Shift Register Reporting
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1806.168 ; gain = 465.422 ; free physical = 19466 ; free virtual = 27214
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
++------+------------------+------------+----------+
+|      |RTL Partition     |Replication |Instances |
++------+------------------+------------+----------+
+|1     |Video_Buffer__GB0 |           1|     13302|
+|2     |Video_Buffer__GB1 |           1|       861|
+|3     |Video_Buffer__GB2 |           1|       755|
++------+------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1765.547 ; gain = 368.426 ; free physical = 3122 ; free virtual = 10667
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1806.168 ; gain = 465.422 ; free physical = 19353 ; free virtual = 27101
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1766.547 ; gain = 369.426 ; free physical = 3122 ; free virtual = 10666
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP and Shift Register Reporting
----------------------------------------------------------------------------------
-
-Distributed RAM: Final Mapping  Report
-+------------------------------+-----------------+-----------+----------------------+--------------------------------+
-|Module Name                   | RTL Object      | Inference | Size (Depth x Width) | Primitives                     | 
-+------------------------------+-----------------+-----------+----------------------+--------------------------------+
-|risc16System_Video_Buffer_0_1 | inst/px_map_reg | Implied   | 64 x 64              | RAM16X1D x 64  RAM32X1D x 64   | 
-+------------------------------+-----------------+-----------+----------------------+--------------------------------+
-
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP and Shift Register Reporting
+Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1806.168 ; gain = 465.422 ; free physical = 19353 ; free virtual = 27101
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
++------+------------------+------------+----------+
+|      |RTL Partition     |Replication |Instances |
++------+------------------+------------+----------+
+|1     |Video_Buffer__GB0 |           1|     13302|
+|2     |Video_Buffer__GB1 |           1|       861|
+|3     |Video_Buffer__GB2 |           1|       755|
++------+------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19355 ; free virtual = 27103
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -237,7 +200,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19347 ; free virtual = 27095
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -250,7 +213,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19347 ; free virtual = 27095
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -262,25 +225,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19346 ; free virtual = 27095
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19346 ; free virtual = 27095
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:56 ; elapsed = 00:00:59 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19351 ; free virtual = 27100
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:56 ; elapsed = 00:00:59 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19351 ; free virtual = 27100
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -293,54 +256,53 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+---------+------+
-|      |Cell     |Count |
-+------+---------+------+
-|1     |LUT3     |    16|
-|2     |LUT4     |    64|
-|3     |LUT5     |    64|
-|4     |LUT6     |    68|
-|5     |MUXF7    |    34|
-|6     |MUXF8    |    17|
-|7     |RAM16X1D |    64|
-|8     |RAM32X1D |    64|
-+------+---------+------+
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |LUT2  |   209|
+|2     |LUT3  |     3|
+|3     |LUT4  |   487|
+|4     |LUT5  |   906|
+|5     |LUT6  |  2641|
+|6     |MUXF7 |   418|
+|7     |MUXF8 |   209|
+|8     |FDRE  |  3072|
++------+------+------+
 
 Report Instance Areas: 
 +------+---------+-------------+------+
 |      |Instance |Module       |Cells |
 +------+---------+-------------+------+
-|1     |top      |             |   391|
-|2     |  inst   |Video_Buffer |   391|
+|1     |top      |             |  7945|
+|2     |  inst   |Video_Buffer |  7945|
 +------+---------+-------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.562 ; gain = 379.441 ; free physical = 3120 ; free virtual = 10665
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:56 ; elapsed = 00:00:59 . Memory (MB): peak = 1824.035 ; gain = 483.289 ; free physical = 19351 ; free virtual = 27100
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 19 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1776.562 ; gain = 91.617 ; free physical = 3174 ; free virtual = 10719
-Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.570 ; gain = 379.441 ; free physical = 3174 ; free virtual = 10719
+Synthesis finished with 0 errors, 0 critical warnings and 9 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:52 ; elapsed = 00:00:55 . Memory (MB): peak = 1824.035 ; gain = 116.434 ; free physical = 19405 ; free virtual = 27154
+Synthesis Optimization Complete : Time (s): cpu = 00:00:56 ; elapsed = 00:00:59 . Memory (MB): peak = 1824.043 ; gain = 483.289 ; free physical = 19405 ; free virtual = 27154
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 179 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 627 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'risc16System_Video_Buffer_0_1' is not ideal for floorplanning, since the cellview 'Video_Buffer' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1816.578 ; gain = 0.000 ; free physical = 3113 ; free virtual = 10658
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1856.051 ; gain = 0.000 ; free physical = 19350 ; free virtual = 27099
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 128 instances were transformed.
-  RAM16X1D => RAM32X1D (RAMD32, RAMD32): 64 instances
-  RAM32X1D => RAM32X1D (RAMD32, RAMD32): 64 instances
+No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-15 Infos, 39 Warnings, 0 Critical Warnings and 0 Errors encountered.
+15 Infos, 20 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1816.578 ; gain = 419.590 ; free physical = 3169 ; free virtual = 10713
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1816.578 ; gain = 0.000 ; free physical = 3169 ; free virtual = 10713
+synth_design: Time (s): cpu = 00:00:58 ; elapsed = 00:01:01 . Memory (MB): peak = 1856.051 ; gain = 515.488 ; free physical = 19408 ; free virtual = 27157
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1856.051 ; gain = 0.000 ; free physical = 19408 ; free virtual = 27157
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_Video_Buffer_0_1_synth_1/risc16System_Video_Buffer_0_1.dcp' has been generated.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1840.590 ; gain = 0.000 ; free physical = 3166 ; free virtual = 10711
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1880.062 ; gain = 0.000 ; free physical = 19403 ; free virtual = 27157
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/rootie/devel/homebrew-computer/implementation/risc16/risc16.runs/risc16System_Video_Buffer_0_1_synth_1/risc16System_Video_Buffer_0_1.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file risc16System_Video_Buffer_0_1_utilization_synth.rpt -pb risc16System_Video_Buffer_0_1_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Oct 28 14:41:09 2019...
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 30 15:49:56 2019...

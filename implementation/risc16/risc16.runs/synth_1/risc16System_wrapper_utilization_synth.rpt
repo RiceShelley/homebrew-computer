@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Sat Nov 23 16:11:14 2019
+| Date         : Mon Dec  2 00:19:08 2019
 | Host         : rootieW running 64-bit Ubuntu 18.10
 | Command      : report_utilization -file risc16System_wrapper_utilization_synth.rpt -pb risc16System_wrapper_utilization_synth.pb
 | Design       : risc16System_wrapper
@@ -90,7 +90,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   43 |     0 |       210 | 20.48 |
+| Bonded IOB                  |   47 |     0 |       210 | 22.38 |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         6 |  0.00 |
@@ -146,8 +146,8 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| OBUF     |   33 |                  IO |
-| IBUF     |   10 |                  IO |
+| OBUF     |   35 |                  IO |
+| IBUF     |   12 |                  IO |
 +----------+------+---------------------+
 
 
@@ -158,6 +158,7 @@ Table of Contents
 |             Ref Name            | Used |
 +---------------------------------+------+
 | risc16System_vga_0_0            |    1 |
+| risc16System_spkr_driver_0_0    |    1 |
 | risc16System_spi_slave_0_0      |    1 |
 | risc16System_risc16_0_0         |    1 |
 | risc16System_ram_0_0            |    1 |

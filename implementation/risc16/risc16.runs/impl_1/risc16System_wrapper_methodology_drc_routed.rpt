@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Sat Nov 23 16:14:29 2019
+| Date         : Mon Dec  2 00:21:26 2019
 | Host         : rootieW running 64-bit Ubuntu 18.10
 | Command      : report_methodology -file risc16System_wrapper_methodology_drc_routed.rpt -pb risc16System_wrapper_methodology_drc_routed.pb -rpx risc16System_wrapper_methodology_drc_routed.rpx
 | Design       : risc16System_wrapper
@@ -23,7 +23,7 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 237
+             Violations found: 240
 +-----------+----------+------------------------------------------------------------------+------------+
 | Rule      | Severity | Description                                                      | Violations |
 +-----------+----------+------------------------------------------------------------------+------------+
@@ -32,7 +32,7 @@ Table of Contents
 | TIMING-4  | Warning  | Invalid primary clock redefinition on a clock tree               | 2          |
 | TIMING-14 | Warning  | LUT on the clock tree                                            | 1          |
 | TIMING-17 | Warning  | Non-clocked sequential cell                                      | 153        |
-| TIMING-18 | Warning  | Missing input or output delay                                    | 11         |
+| TIMING-18 | Warning  | Missing input or output delay                                    | 14         |
 | TIMING-20 | Warning  | Non-clocked latch                                                | 66         |
 | TIMING-27 | Warning  | Invalid primary clock on hierarchical pin                        | 2          |
 +-----------+----------+------------------------------------------------------------------+------------+
@@ -46,7 +46,7 @@ Related violations: <none>
 
 CKLD-2#1 Warning
 Clock Net has IO Driver, not a Clock Buf, and/or non-Clock loads  
-Clock net BTND_IBUF is directly driven by an IO rather than a Clock Buffer or may be an IO driving a mix of Clock Buffer and non-Clock loads. This connectivity should be reviewed and corrected as appropriate. Driver(s): risc16System_i/BTND, BTND_IBUF_inst/O
+Clock net extern_rst_IBUF is directly driven by an IO rather than a Clock Buffer or may be an IO driving a mix of Clock Buffer and non-Clock loads. This connectivity should be reviewed and corrected as appropriate. Driver(s): extern_rst_IBUF_inst/O, risc16System_i/extern_rst
 Related violations: <none>
 
 TIMING-4#1 Warning
@@ -831,57 +831,72 @@ Related violations: <none>
 
 TIMING-18#1 Warning
 Missing input or output delay  
-An input delay is missing on BTND relative to clock(s) sys_clk_pin
+An input delay is missing on ctrl_a relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#2 Warning
 Missing input or output delay  
-An input delay is missing on mosi relative to clock(s) sys_clk_pin
+An input delay is missing on ctrl_b relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#3 Warning
 Missing input or output delay  
-An input delay is missing on pgm relative to clock(s) sys_clk_pin
+An input delay is missing on ctrl_c relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#4 Warning
 Missing input or output delay  
-An input delay is missing on sclk relative to clock(s) sys_clk_pin
+An input delay is missing on extern_rst relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#5 Warning
 Missing input or output delay  
-An input delay is missing on ss relative to clock(s) sys_clk_pin
+An input delay is missing on mosi relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#6 Warning
 Missing input or output delay  
-An input delay is missing on usr_sw relative to clock(s) sys_clk_pin
+An input delay is missing on pgm relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#7 Warning
 Missing input or output delay  
-An output delay is missing on VGA_G[0] relative to clock(s) sys_clk_pin
+An input delay is missing on sclk relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#8 Warning
 Missing input or output delay  
-An output delay is missing on VGA_G[1] relative to clock(s) sys_clk_pin
+An input delay is missing on ss relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#9 Warning
 Missing input or output delay  
-An output delay is missing on VGA_G[2] relative to clock(s) sys_clk_pin
+An output delay is missing on VGA_G[0] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#10 Warning
 Missing input or output delay  
-An output delay is missing on VGA_G[3] relative to clock(s) sys_clk_pin
+An output delay is missing on VGA_G[1] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#11 Warning
 Missing input or output delay  
+An output delay is missing on VGA_G[2] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#12 Warning
+Missing input or output delay  
+An output delay is missing on VGA_G[3] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#13 Warning
+Missing input or output delay  
 An output delay is missing on miso relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#14 Warning
+Missing input or output delay  
+An output delay is missing on spkr relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-20#1 Warning

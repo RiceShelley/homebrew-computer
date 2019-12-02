@@ -81,7 +81,7 @@ set rc [catch {
   set_param project.isImplRun true
   add_files /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/risc16System.bd
   set_param project.isImplRun false
-  read_xdc /home/rootie/devel/homebrew-computer/implementation/risc16/Nexys-A7-100T.xdc
+  read_xdc /home/rootie/devel/homebrew-computer/Nexys-A7-100T-Master.xdc
   set_param project.isImplRun true
   link_design -top risc16System_wrapper -part xc7a100tcsg324-1
   set_param project.isImplRun false

@@ -21,10 +21,10 @@
 #define BEQ 6
 #define JALR 7
 
-#define MAX_PROG_LEN 255
+#define MAX_PROG_LEN 511
 #define SYS_MEM_BASE_ADDR 5
 #define BASE_DATA_ADDR (SYS_MEM_BASE_ADDR)
-#define DATA_SEC_LEN 0x0F
+#define DATA_SEC_LEN 0x2F
 #define BASE_INS_ADDR (BASE_DATA_ADDR + DATA_SEC_LEN)
 
 #define SYNTAX_ERR -1
@@ -88,7 +88,7 @@ int setup_memory(prog_line* data_sec, prog_line* text_sec) {
 	
 			// replace numanic with address in text section
 			char addr[20];
-			sprintf(addr, "%x", next_addr);
+			sprintf(addr, "0x%x", next_addr);
 			prog_line* cur_line = prog_getline(0);
 			while (cur_line != NULL) {
 				if (cur_line->ins != NULL) {
@@ -147,6 +147,8 @@ void setup_labels_in_memory(int mem_start, prog_line* text) {
 				next_ins_addr += 2;	
 			} else if (strncmp(line, "neg", 3) == 0) {
 				next_ins_addr += 2;	
+			} else if (strncmp(line, "sub", 3) == 0) {
+				next_ins_addr += 3;	
 			} else if (line[strlen(line) - 1] == ':') {
 				char* numanic = line;
 				printf("FOUND LABEL at %d numanic = %s c = %c\n", next_ins_addr, line, line[strlen(line) - 1]);
@@ -270,6 +272,20 @@ int parse_ins(prog_line* text_sec) {
 			next_addr++;
 			bin[next_addr] = parse_rri(ADDI, rB, rA, "1", line_num);
 			next_addr++;
+		} else if (strcmp(op, "sub") == 0) {
+			// ra = rB - rC
+			char* rA = strtok(NULL, " ,\t");
+			char* rB = strtok(NULL, " ,\t");
+			char* rC = strtok(NULL, " ,\t");
+			// bitwise invert rC 
+			bin[next_addr] = parse_rrr(NAND, rC, rC, rC, line_num);
+			next_addr++;
+			// add one for 2's complement
+			bin[next_addr] = parse_rri(ADDI, rC, rC, "0x1", line_num);
+			next_addr++;
+			// add to A
+			bin[next_addr] = parse_rrr(ADD, rA, rB, rC, line_num);
+			next_addr++;
 		} else {
 			printf("Syntax error: \"%s\"\n", line);
 			return SYNTAX_ERR;
@@ -360,12 +376,7 @@ int main(int argc, char** argv) {
 	}
 	printf("Done.\n");
 	
-	printf("Generated Machine Code.\n");
-	int i;
-	for (i = SYS_MEM_BASE_ADDR; i < len; i++) {
-		printf("0x%04x 0x%04x\n", i - SYS_MEM_BASE_ADDR, bin[i]);
-	}
-	printf("\n");
+	printf("Words Used %d\n", len);
 	
 	write_hex(len);
 

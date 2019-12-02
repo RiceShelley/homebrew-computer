@@ -1,8 +1,8 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
--- Date        : Mon Oct 28 17:44:46 2019
--- Host        : rootie-ThinkPad-X1 running 64-bit Ubuntu 18.04.3 LTS
+-- Date        : Sat Nov 30 16:59:40 2019
+-- Host        : rootieW running 64-bit Ubuntu 18.10
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/rootie/devel/homebrew-computer/implementation/risc16/risc16.srcs/sources_1/bd/risc16System/ip/risc16System_vga_0_0/risc16System_vga_0_0_sim_netlist.vhdl
 -- Design      : risc16System_vga_0_0
@@ -106,42 +106,42 @@ architecture STRUCTURE of risc16System_vga_0_0_vga is
   signal \vcount_reg__0\ : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal vsync_INST_0_i_1_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \cur_line[0]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \cur_line[2]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \cur_line[2]_i_1\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \cur_line[3]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \cur_line[4]_i_3\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \cur_line[5]_i_2\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \cur_line[5]_i_2\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \cur_line[5]_i_4\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \cur_px[2]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \cur_px[3]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \cur_px[0]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \cur_px[2]_i_1\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \cur_px[3]_i_1\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \cur_px[4]_i_3\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \cur_px[5]_i_2\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \cur_px[5]_i_3\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \green[0]_INST_0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \green[0]_INST_0_i_3\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \green[0]_INST_0_i_4\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \cur_px[5]_i_3\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \green[0]_INST_0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \green[0]_INST_0_i_3\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \green[0]_INST_0_i_4\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \hcount[1]_i_1\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \hcount[2]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \hcount[3]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \hcount[4]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \hcount[7]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \hcount[8]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \hcount[9]_i_3\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \hcount[3]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \hcount[4]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \hcount[7]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \hcount[8]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \hcount[9]_i_3\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \horz_l_count[0]_i_1\ : label is "soft_lutpair8";
   attribute SOFT_HLUTNM of \horz_l_count[1]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \horz_l_count[2]_i_1\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \horz_l_count[3]_i_3\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of hsync_INST_0 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \ten_px_count[1]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \ten_px_count[2]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \ten_px_count[3]_i_2\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \horz_l_count[3]_i_3\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of hsync_INST_0 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \ten_px_count[1]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \ten_px_count[2]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \ten_px_count[3]_i_2\ : label is "soft_lutpair14";
   attribute SOFT_HLUTNM of \vcount[1]_i_1\ : label is "soft_lutpair16";
   attribute SOFT_HLUTNM of \vcount[2]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \vcount[3]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \vcount[4]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \vcount[3]_i_1\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \vcount[4]_i_1\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \vcount[7]_i_1\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \vcount[8]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \vcount[9]_i_4\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of vsync_INST_0_i_1 : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \vcount[9]_i_4\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of vsync_INST_0_i_1 : label is "soft_lutpair12";
 begin
   \cur_line_reg[0]_0\ <= \^cur_line_reg[0]_0\;
   \cur_line_reg[1]_0\ <= \^cur_line_reg[1]_0\;
@@ -196,26 +196,26 @@ begin
     );
 \cur_line[4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AAAAAA2AAAAAAAAA"
+      INIT => X"A8AAAAAAAAAAAAAA"
     )
         port map (
       I0 => \cur_line[5]_i_3_n_0\,
-      I1 => horz_l_count(3),
+      I1 => horz_l_count(2),
       I2 => horz_l_count(0),
-      I3 => horz_l_count(2),
+      I3 => horz_l_count(3),
       I4 => horz_l_count(1),
       I5 => p_4_in,
       O => \cur_line[4]_i_1_n_0\
     );
 \cur_line[4]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AAAAAAEAAAAAAAAA"
+      INIT => X"ABAAAAAAAAAAAAAA"
     )
         port map (
       I0 => \cur_line[5]_i_3_n_0\,
-      I1 => horz_l_count(3),
+      I1 => horz_l_count(2),
       I2 => horz_l_count(0),
-      I3 => horz_l_count(2),
+      I3 => horz_l_count(3),
       I4 => horz_l_count(1),
       I5 => p_4_in,
       O => \cur_line[4]_i_2_n_0\
@@ -271,12 +271,12 @@ begin
     );
 \cur_line[5]_i_4\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFF7"
+      INIT => X"EFFF"
     )
         port map (
-      I0 => horz_l_count(3),
+      I0 => horz_l_count(2),
       I1 => horz_l_count(0),
-      I2 => horz_l_count(2),
+      I2 => horz_l_count(3),
       I3 => horz_l_count(1),
       O => \cur_line[5]_i_4_n_0\
     );
@@ -826,23 +826,26 @@ begin
       Q => \hcount_reg__0\(9),
       R => hcount_ov
     );
-\horz_l_count[0]_i_1\: unisim.vcomponents.LUT1
+\horz_l_count[0]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"1"
+      INIT => X"00F7"
     )
         port map (
-      I0 => horz_l_count(0),
+      I0 => horz_l_count(1),
+      I1 => horz_l_count(3),
+      I2 => horz_l_count(2),
+      I3 => horz_l_count(0),
       O => \horz_l_count[0]_i_1_n_0\
     );
 \horz_l_count[1]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0FB0"
+      INIT => X"0FD0"
     )
         port map (
-      I0 => horz_l_count(2),
-      I1 => horz_l_count(3),
-      I2 => horz_l_count(0),
-      I3 => horz_l_count(1),
+      I0 => horz_l_count(3),
+      I1 => horz_l_count(2),
+      I2 => horz_l_count(1),
+      I3 => horz_l_count(0),
       O => \horz_l_count[1]_i_1_n_0\
     );
 \horz_l_count[2]_i_1\: unisim.vcomponents.LUT3
@@ -851,8 +854,8 @@ begin
     )
         port map (
       I0 => horz_l_count(2),
-      I1 => horz_l_count(0),
-      I2 => horz_l_count(1),
+      I1 => horz_l_count(1),
+      I2 => horz_l_count(0),
       O => \horz_l_count[2]_i_1_n_0\
     );
 \horz_l_count[3]_i_1\: unisim.vcomponents.LUT4
@@ -872,8 +875,8 @@ begin
     )
         port map (
       I0 => \cur_line[5]_i_3_n_0\,
-      I1 => \cur_line[5]_i_4_n_0\,
-      I2 => \horz_l_count[3]_i_4_n_0\,
+      I1 => \horz_l_count[3]_i_4_n_0\,
+      I2 => \cur_line[5]_i_4_n_0\,
       I3 => p_4_in,
       O => \horz_l_count[3]_i_2_n_0\
     );
@@ -883,8 +886,8 @@ begin
     )
         port map (
       I0 => horz_l_count(2),
-      I1 => horz_l_count(0),
-      I2 => horz_l_count(1),
+      I1 => horz_l_count(1),
+      I2 => horz_l_count(0),
       I3 => horz_l_count(3),
       O => \horz_l_count[3]_i_3_n_0\
     );
@@ -1348,7 +1351,6 @@ use UNISIM.VCOMPONENTS.ALL;
 entity risc16System_vga_0_0 is
   port (
     clk : in STD_LOGIC;
-    rst : in STD_LOGIC;
     px_in : in STD_LOGIC;
     red : out STD_LOGIC_VECTOR ( 3 downto 0 );
     green : out STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -1376,9 +1378,7 @@ architecture STRUCTURE of risc16System_vga_0_0 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /Clocks/VGA_25MHz_CLK_clk_out1, INSERT_VIP 0";
-  attribute X_INTERFACE_INFO of rst : signal is "xilinx.com:signal:reset:1.0 rst RST";
-  attribute X_INTERFACE_PARAMETER of rst : signal is "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /Clocks/VGA_25MHz_CLK_clk_out1, INSERT_VIP 0";
 begin
   blue(3) <= \<const0>\;
   blue(2) <= \<const0>\;
